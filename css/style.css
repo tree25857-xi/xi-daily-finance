@@ -1,19 +1,20 @@
 /* 
   Daily Finance News - 專業金融新聞網站
-  色調：沉穩深藍 + 金色強調
+  深色護眼模式
 */
 
-/* CSS Variables */
+/* CSS Variables - Dark Theme */
 :root {
-  --primary: #0d1b2a;      /* 深海藍 - 主色 */
-  --secondary: #1b3a4b;    /* 午夜藍 - 次色 */
+  --primary: #0d1b2a;      /* 深海藍 - 主背景 */
+  --secondary: #1b263b;    /* 深夜藍 - 次背景 */
+  --card-bg: #1e2a3a;      /* 卡片背景 */
   --accent: #c9a227;       /* 尊爵金 - 強調 */
   --accent-light: #e8d48a; /* 淺金 */
-  --bg: #f8f9fa;           /* 背景 */
-  --text: #2c3e50;         /* 文字 */
-  --text-light: #6c757d;   /* 次要文字 */
+  --bg: #0a0f1a;           /* 最深背景 */
+  --text: #e8eaed;         /* 主要文字 */
+  --text-secondary: #9aa0a6; /* 次要文字 */
   --white: #ffffff;
-  --border: #dee2e6;
+  --border: #3c4043;
 }
 
 /* Reset & Base */
@@ -35,7 +36,7 @@ header {
   background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
   color: var(--white);
   padding: 2rem 0;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
 }
 
 .container {
@@ -58,6 +59,10 @@ header {
   font-size: 1.8rem;
   font-weight: 700;
   letter-spacing: 2px;
+  background: linear-gradient(90deg, var(--white), var(--accent-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .logo .subtitle {
@@ -68,9 +73,10 @@ header {
 
 /* Navigation */
 nav {
-  background: var(--primary);
+  background: rgba(13, 27, 42, 0.95);
   padding: 0.8rem 0;
   border-top: 3px solid var(--accent);
+  backdrop-filter: blur(10px);
 }
 
 nav ul {
@@ -80,10 +86,11 @@ nav ul {
 }
 
 nav a {
-  color: var(--white);
+  color: var(--text);
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s;
+  padding: 0.5rem 0;
 }
 
 nav a:hover {
@@ -105,17 +112,17 @@ main {
 }
 
 .news-card {
-  background: var(--white);
-  border-radius: 8px;
+  background: var(--card-bg);
+  border-radius: 12px;
   padding: 1.5rem;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
   transition: transform 0.3s, box-shadow 0.3s;
   border-left: 4px solid var(--accent);
 }
 
 .news-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
 }
 
 .news-card.category-market {
@@ -128,6 +135,11 @@ main {
 
 .news-card.category-global {
   border-left-color: #9b59b6;
+}
+
+.news-card.category-ai {
+  border-left-color: #e67e22;
+}
 
 .news-category {
   display: inline-block;
@@ -140,19 +152,19 @@ main {
   margin-bottom: 0.8rem;
 }
 
-.category-market .news-category { background: #e8f5e9; color: #2ecc71; }
-.category-tech .news-category { background: #e3f2fd; color: #3498db; }
-.category-global .news-category { background: #f3e5f5; color: #9b59b6; }
-.category-ai .news-category { background: #fff3e0; color: #e67e22; }
+.category-market .news-category { background: rgba(46, 204, 113, 0.2); color: #2ecc71; }
+.category-tech .news-category { background: rgba(52, 152, 219, 0.2); color: #3498db; }
+.category-global .news-category { background: rgba(155, 89, 182, 0.2); color: #9b59b6; }
+.category-ai .news-category { background: rgba(230, 126, 34, 0.2); color: #e67e22; }
 
 .news-card h3 {
   font-size: 1.15rem;
   margin-bottom: 0.8rem;
-  color: var(--primary);
+  color: var(--white);
 }
 
 .news-card p {
-  color: var(--text-light);
+  color: var(--text-secondary);
   font-size: 0.95rem;
 }
 
@@ -163,32 +175,32 @@ main {
   display: flex;
   justify-content: space-between;
   font-size: 0.85rem;
-  color: var(--text-light);
+  color: var(--text-secondary);
 }
 
 /* Daily Section */
 .daily-header {
-  background: var(--white);
+  background: var(--card-bg);
   padding: 1.5rem;
-  border-radius: 8px;
+  border-radius: 12px;
   margin-bottom: 2rem;
   border-left: 4px solid var(--accent);
 }
 
 .daily-header h2 {
-  color: var(--primary);
+  color: var(--white);
   margin-bottom: 0.5rem;
 }
 
 .date {
-  color: var(--text-light);
+  color: var(--text-secondary);
   font-size: 0.9rem;
 }
 
 /* Footer */
 footer {
   background: var(--primary);
-  color: var(--text-light);
+  color: var(--text-secondary);
   text-align: center;
   padding: 1.5rem 0;
   margin-top: 3rem;
@@ -196,6 +208,15 @@ footer {
 
 footer p {
   font-size: 0.85rem;
+}
+
+footer p[style*="color: var(--accent)"] {
+  color: var(--accent) !important;
+}
+
+/* Section Titles */
+h3 {
+  color: var(--text) !important;
 }
 
 /* Responsive */
@@ -208,5 +229,9 @@ footer p {
     flex-wrap: wrap;
     justify-content: center;
     gap: 1rem;
+  }
+  
+  .logo h1 {
+    font-size: 1.4rem;
   }
 }
