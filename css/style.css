@@ -1,0 +1,212 @@
+/* 
+  Daily Finance News - 專業金融新聞網站
+  色調：沉穩深藍 + 金色強調
+*/
+
+/* CSS Variables */
+:root {
+  --primary: #0d1b2a;      /* 深海藍 - 主色 */
+  --secondary: #1b3a4b;    /* 午夜藍 - 次色 */
+  --accent: #c9a227;       /* 尊爵金 - 強調 */
+  --accent-light: #e8d48a; /* 淺金 */
+  --bg: #f8f9fa;           /* 背景 */
+  --text: #2c3e50;         /* 文字 */
+  --text-light: #6c757d;   /* 次要文字 */
+  --white: #ffffff;
+  --border: #dee2e6;
+}
+
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans TC', 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+
+/* Header */
+header {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: var(--white);
+  padding: 2rem 0;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo-icon {
+  font-size: 2.5rem;
+}
+
+.logo h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.logo .subtitle {
+  font-size: 0.9rem;
+  color: var(--accent-light);
+  margin-top: 4px;
+}
+
+/* Navigation */
+nav {
+  background: var(--primary);
+  padding: 0.8rem 0;
+  border-top: 3px solid var(--accent);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+nav a {
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: var(--accent);
+}
+
+/* Main Content */
+main {
+  padding: 2rem 0;
+  min-height: 60vh;
+}
+
+/* News Card */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.news-card {
+  background: var(--white);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+  border-left: 4px solid var(--accent);
+}
+
+.news-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+.news-card.category-market {
+  border-left-color: #2ecc71;
+}
+
+.news-card.category-tech {
+  border-left-color: #3498db;
+}
+
+.news-card.category-global {
+  border-left-color: #9b59b6;
+
+.news-category {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin-bottom: 0.8rem;
+}
+
+.category-market .news-category { background: #e8f5e9; color: #2ecc71; }
+.category-tech .news-category { background: #e3f2fd; color: #3498db; }
+.category-global .news-category { background: #f3e5f5; color: #9b59b6; }
+.category-ai .news-category { background: #fff3e0; color: #e67e22; }
+
+.news-card h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.8rem;
+  color: var(--primary);
+}
+
+.news-card p {
+  color: var(--text-light);
+  font-size: 0.95rem;
+}
+
+.news-meta {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+/* Daily Section */
+.daily-header {
+  background: var(--white);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  border-left: 4px solid var(--accent);
+}
+
+.daily-header h2 {
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.date {
+  color: var(--text-light);
+  font-size: 0.9rem;
+}
+
+/* Footer */
+footer {
+  background: var(--primary);
+  color: var(--text-light);
+  text-align: center;
+  padding: 1.5rem 0;
+  margin-top: 3rem;
+}
+
+footer p {
+  font-size: 0.85rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .news-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+}
