@@ -1,0 +1,29 @@
+{
+  "lastUpdate": "2026-03-13T11:20:00Z",
+  "markets": [
+    {
+      "symbol": "CL1!",
+      "name": "WTI原油期貨",
+      "price": 67.32,
+      "change": 2.45,
+      "direction": "up",
+      "chart": "screenshots/crude-oil-2026-03-13.png"
+    },
+    {
+      "symbol": "XAUUSD",
+      "name": "黃金現貨",
+      "price": 2956.42,
+      "change": 1.12,
+      "direction": "up",
+      "chart": "screenshots/gold-2026-03-13.png"
+    },
+    {
+      "symbol": "BTCUSD",
+      "name": "比特幣",
+      "price": 83542,
+      "change": 3.87,
+      "direction": "up",
+      "chart": "screenshots/btc-2026-03-13.png"
+    }
+  ]
+}
