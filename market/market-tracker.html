@@ -41,6 +41,19 @@
       height: 350px;
       width: 100%;
     }
+    .screenshot-container {
+      padding: 1rem;
+    }
+    .screenshot-container img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    .screenshot-note {
+      text-align: center;
+      padding: 1rem;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
     .section-title {
       color: var(--text);
       margin: 2rem 0 1rem;
@@ -54,6 +67,17 @@
       color: var(--text-secondary);
       font-size: 0.9rem;
     }
+    .intro-box {
+      background: var(--card-bg);
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      border-left: 4px solid var(--accent);
+    }
+    .intro-box p {
+      margin: 0;
+      color: var(--text-secondary);
+    }
   </style>
 </head>
 <body>
@@ -64,7 +88,7 @@
         <span class="logo-icon">📊</span>
         <div>
           <h1>MARKET TRACKER</h1>
-          <div class="subtitle">全球市場 · 即時監控 · TradingView Widget</div>
+          <div class="subtitle">全球市場 · 即時監控</div>
         </div>
       </div>
     </div>
@@ -88,11 +112,15 @@
     <div class="container">
       <div class="daily-header">
         <h2>📊 市場即時監控</h2>
-        <p class="date">2026年3月13日 · 追蹤六大熱門標的 · 即時互動</p>
+        <p class="date">2026年3月13日 · 追蹤六大熱門標的</p>
       </div>
 
-      <!-- Dashboard Grid - Commodities & Crypto -->
-      <h3 class="section-title">💎 避險資產</h3>
+      <div class="intro-box">
+        <p>💡 <strong>說明：</strong>部分市場（原油、台指期、黃金）無法嵌入外部Widget，將使用曦曦親手截圖呈現。其他標的則使用 TradingView 即時互動圖表。</p>
+      </div>
+
+      <!-- Section 1: 需要截圖的市場 -->
+      <h3 class="section-title">📸 曦曦截圖（每日更新）</h3>
       <div class="dashboard">
         
         <!-- Crude Oil -->
@@ -101,9 +129,10 @@
             <h3>🛢️ WTI 原油期貨</h3>
             <span class="symbol">CL1!</span>
           </div>
-          <div class="tradingview-widget-container">
-            <div id="tradingview_cl"></div>
+          <div class="screenshot-container">
+            <img src="screenshots/crude-oil-2026-03-13.png" alt="WTI Crude Oil Chart">
           </div>
+          <p class="screenshot-note">📸 截圖時間：2026-03-13</p>
         </div>
 
         <!-- Gold -->
@@ -112,11 +141,32 @@
             <h3>🥇 黃金現貨</h3>
             <span class="symbol">XAUUSD</span>
           </div>
-          <div class="tradingview-widget-container">
-            <div id="tradingview_gold"></div>
+          <div class="screenshot-container">
+            <img src="screenshots/gold-2026-03-13.png" alt="Gold Chart">
+          </div>
+          <p class="screenshot-note">📸 截圖時間：2026-03-13</p>
+        </div>
+
+        <!-- Taiwan Futures -->
+        <div class="market-card">
+          <div class="market-card-header">
+            <h3>🇹🇼 台指期</h3>
+            <span class="symbol">TXF1!</span>
+          </div>
+          <div class="screenshot-container">
+            <p style="text-align: center; padding: 2rem; color: var(--text-secondary);">
+              🔧 截圖待補<br>
+              <small>瀏覽器恢復後補上</small>
+            </p>
           </div>
         </div>
 
+      </div>
+
+      <!-- Section 2: TradingView Widget -->
+      <h3 class="section-title">📊 TradingView 即時互動</h3>
+      <div class="dashboard">
+        
         <!-- Bitcoin -->
         <div class="market-card">
           <div class="market-card-header">
@@ -125,23 +175,6 @@
           </div>
           <div class="tradingview-widget-container">
             <div id="tradingview_btc"></div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Dashboard Grid - Taiwan & Tech -->
-      <h3 class="section-title">🌏 台灣與科技</h3>
-      <div class="dashboard">
-        
-        <!-- Taiwan Futures -->
-        <div class="market-card">
-          <div class="market-card-header">
-            <h3>🇹🇼 台指期</h3>
-            <span class="symbol">TXF1!</span>
-          </div>
-          <div class="tradingview-widget-container">
-            <div id="tradingview_tx"></div>
           </div>
         </div>
 
@@ -170,8 +203,7 @@
       </div>
 
       <div class="last-updated">
-        <p>📌 資料來源：TradingView | 即時更新</p>
-        <p>💡 提示：點擊圖表可互動，切換不同時間週期</p>
+        <p>📌 資料來源：TradingView | 截圖來源：曦曦親手拍攝</p>
       </div>
 
     </div>
@@ -187,38 +219,6 @@
 
   <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
   <script type="text/javascript">
-    // WTI Crude Oil
-    new TradingView.widget({
-      "width": "100%",
-      "height": 350,
-      "symbol": "NYMEX:CL1!",
-      "interval": "D",
-      "theme": "dark",
-      "style": "1",
-      "locale": "zh_TW",
-      "toolbar_bg": "#0d1b2a",
-      "enable_publishing": false,
-      "hide_side_toolbar": false,
-      "allow_symbol_change": true,
-      "container_id": "tradingview_cl"
-    });
-
-    // Gold
-    new TradingView.widget({
-      "width": "100%",
-      "height": 350,
-      "symbol": "FX:XAUUSD",
-      "interval": "D",
-      "theme": "dark",
-      "style": "1",
-      "locale": "zh_TW",
-      "toolbar_bg": "#0d1b2a",
-      "enable_publishing": false,
-      "hide_side_toolbar": false,
-      "allow_symbol_change": true,
-      "container_id": "tradingview_gold"
-    });
-
     // Bitcoin
     new TradingView.widget({
       "width": "100%",
@@ -233,22 +233,6 @@
       "hide_side_toolbar": false,
       "allow_symbol_change": true,
       "container_id": "tradingview_btc"
-    });
-
-    // Taiwan Futures
-    new TradingView.widget({
-      "width": "100%",
-      "height": 350,
-      "symbol": "TAIFEX:TXF1!",
-      "interval": "D",
-      "theme": "dark",
-      "style": "1",
-      "locale": "zh_TW",
-      "toolbar_bg": "#0d1b2a",
-      "enable_publishing": false,
-      "hide_side_toolbar": false,
-      "allow_symbol_change": true,
-      "container_id": "tradingview_tx"
     });
 
     // TSM
