@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-03-13T11:20:00Z",
+  "lastUpdate": "2026-03-13T11:25:00Z",
   "markets": [
     {
       "symbol": "CL1!",
@@ -7,6 +7,7 @@
       "price": 67.32,
       "change": 2.45,
       "direction": "up",
+      "category": "commodity",
       "chart": "screenshots/crude-oil-2026-03-13.png"
     },
     {
@@ -15,6 +16,7 @@
       "price": 2956.42,
       "change": 1.12,
       "direction": "up",
+      "category": "commodity",
       "chart": "screenshots/gold-2026-03-13.png"
     },
     {
@@ -23,7 +25,35 @@
       "price": 83542,
       "change": 3.87,
       "direction": "up",
+      "category": "crypto",
       "chart": "screenshots/btc-2026-03-13.png"
+    },
+    {
+      "symbol": "TXF1!",
+      "name": "台指期",
+      "price": 22450,
+      "change": 1.35,
+      "direction": "up",
+      "category": "taiwan",
+      "chart": "screenshots/txf-2026-03-13.png"
+    },
+    {
+      "symbol": "TSM",
+      "name": "台積電",
+      "price": 168.45,
+      "change": 2.18,
+      "direction": "up",
+      "category": "tech",
+      "chart": "screenshots/tsm-2026-03-13.png"
+    },
+    {
+      "symbol": "NVDA",
+      "name": "輝達",
+      "price": 892.50,
+      "change": 4.52,
+      "direction": "up",
+      "category": "tech",
+      "chart": "screenshots/nvda-2026-03-13.png"
     }
   ]
 }

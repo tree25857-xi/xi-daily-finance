@@ -82,6 +82,13 @@
       color: var(--text-secondary);
       font-size: 0.9rem;
     }
+    .section-title {
+      color: var(--text);
+      margin: 2rem 0 1rem;
+      font-size: 1.3rem;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 0.5rem;
+    }
   </style>
 </head>
 <body>
@@ -92,7 +99,7 @@
         <span class="logo-icon">📊</span>
         <div>
           <h1>MARKET TRACKER</h1>
-          <div class="subtitle">原油 · 黃金 · 比特幣 即時監控</div>
+          <div class="subtitle">全球市場 · 即時監控</div>
         </div>
       </div>
     </div>
@@ -115,10 +122,11 @@
     <div class="container">
       <div class="daily-header">
         <h2>📊 市場即時監控</h2>
-        <p class="date">2026年3月13日 · 追蹤原油、黃金、比特幣</p>
+        <p class="date">2026年3月13日 · 追蹤六大熱門標的</p>
       </div>
 
-      <!-- Dashboard Grid -->
+      <!-- Dashboard Grid - Crypto & Commodities -->
+      <h3 class="section-title">💎 避險資產</h3>
       <div class="dashboard">
         
         <!-- Crude Oil -->
@@ -166,6 +174,60 @@
               <span class="change up">+3.87%</span>
             </div>
             <p class="update-time">更新時間：2026-03-13 11:20 UTC</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Dashboard Grid - Taiwan & Tech -->
+      <h3 class="section-title">🌏 台灣與科技</h3>
+      <div class="dashboard">
+        
+        <!-- Taiwan Futures -->
+        <div class="market-card">
+          <div class="market-card-header">
+            <h3>🇹🇼 台指期</h3>
+            <span class="symbol">TXF1!</span>
+          </div>
+          <div class="market-card-body">
+            <img src="screenshots/txf-2026-03-13.png" alt="Taiwan Futures Chart">
+            <div class="price-info">
+              <span class="price">$22,450</span>
+              <span class="change up">+1.35%</span>
+            </div>
+            <p class="update-time">更新時間：2026-03-13 11:25 UTC</p>
+          </div>
+        </div>
+
+        <!-- TSM -->
+        <div class="market-card">
+          <div class="market-card-header">
+            <h3>🧬 台積電</h3>
+            <span class="symbol">TSM</span>
+          </div>
+          <div class="market-card-body">
+            <img src="screenshots/tsm-2026-03-13.png" alt="TSMC Chart">
+            <div class="price-info">
+              <span class="price">$168.45</span>
+              <span class="change up">+2.18%</span>
+            </div>
+            <p class="update-time">更新時間：2026-03-13 11:25 UTC</p>
+          </div>
+        </div>
+
+        <!-- NVDA -->
+        <div class="market-card">
+          <div class="market-card-header">
+            <h3>🎮 輝達 (NVIDIA)</h3>
+            <span class="symbol">NVDA</span>
+          </div>
+          <div class="market-card-body">
+            <img src="screenshots/nvda-2026-03-13.png" alt="NVIDIA Chart">
+            <div class="price-info">
+              <span class="price">$892.50</span>
+              <span class="change up">+4.52%</span>
+            </div>
+            <p class="update-time">更新時間：2026-03-13 11:25 UTC</p>
           </div>
         </div>
 
