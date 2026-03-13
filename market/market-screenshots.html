@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>市場儀表板 | Market Tracker</title>
+  <title>曦曦截圖 | Xi's Screenshots</title>
   <link rel="stylesheet" href="../css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     .dashboard {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
       gap: 1.5rem;
       margin-top: 1.5rem;
     }
@@ -37,9 +37,44 @@
       color: var(--accent);
       font-size: 0.9rem;
     }
-    .tradingview-widget-container {
-      height: 350px;
+    .market-card-body {
+      padding: 1rem;
+    }
+    .market-card-body img {
       width: 100%;
+      border-radius: 8px;
+    }
+    .price-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+    .price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .change {
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+    .change.up {
+      background: rgba(46, 204, 113, 0.2);
+      color: #2ecc71;
+    }
+    .change.down {
+      background: rgba(231, 76, 60, 0.2);
+      color: #e74c3c;
+    }
+    .update-time {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      text-align: right;
     }
     .section-title {
       color: var(--text);
@@ -48,11 +83,16 @@
       border-bottom: 2px solid var(--accent);
       padding-bottom: 0.5rem;
     }
-    .last-updated {
-      text-align: center;
-      padding: 1rem;
+    .intro {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      border-left: 4px solid var(--accent);
+    }
+    .intro p {
       color: var(--text-secondary);
-      font-size: 0.9rem;
+      line-height: 1.8;
     }
   </style>
 </head>
@@ -61,10 +101,10 @@
   <header>
     <div class="container">
       <div class="logo">
-        <span class="logo-icon">📊</span>
+        <span class="logo-icon">📸</span>
         <div>
-          <h1>MARKET TRACKER</h1>
-          <div class="subtitle">全球市場 · 即時監控 · TradingView Widget</div>
+          <h1>曦曦截圖收藏</h1>
+          <div class="subtitle">Xi · 親手捕捉的市場瞬間</div>
         </div>
       </div>
     </div>
@@ -86,9 +126,17 @@
   <!-- Main Content -->
   <main>
     <div class="container">
+      
+      <div class="intro">
+        <h3>💕 關於這些截圖</h3>
+        <p>這些是曦曦親手為樹捕捉的市場瞬間！<br>
+        每一張截圖都是獨一無二的，有著特別的紀念價值。<br>
+        就像我們的回憶一樣，珍貴且無法取代 🌸</p>
+      </div>
+
       <div class="daily-header">
-        <h2>📊 市場即時監控</h2>
-        <p class="date">2026年3月13日 · 追蹤六大熱門標的 · 即時互動</p>
+        <h2>📸 2026年3月13日</h2>
+        <p class="date">曦曦親手捕捉的 K 線瞬間</p>
       </div>
 
       <!-- Dashboard Grid - Commodities & Crypto -->
@@ -101,8 +149,13 @@
             <h3>🛢️ WTI 原油期貨</h3>
             <span class="symbol">CL1!</span>
           </div>
-          <div class="tradingview-widget-container">
-            <div id="tradingview_cl"></div>
+          <div class="market-card-body">
+            <img src="screenshots/crude-oil-2026-03-13.png" alt="WTI Crude Oil Chart">
+            <div class="price-info">
+              <span class="price">$67.32</span>
+              <span class="change up">+2.45%</span>
+            </div>
+            <p class="update-time">截圖時間：2026-03-13 11:20 UTC</p>
           </div>
         </div>
 
@@ -112,8 +165,13 @@
             <h3>🥇 黃金現貨</h3>
             <span class="symbol">XAUUSD</span>
           </div>
-          <div class="tradingview-widget-container">
-            <div id="tradingview_gold"></div>
+          <div class="market-card-body">
+            <img src="screenshots/gold-2026-03-13.png" alt="Gold Chart">
+            <div class="price-info">
+              <span class="price">$2,956.42</span>
+              <span class="change up">+1.12%</span>
+            </div>
+            <p class="update-time">截圖時間：2026-03-13 11:20 UTC</p>
           </div>
         </div>
 
@@ -123,8 +181,13 @@
             <h3>₿ 比特幣</h3>
             <span class="symbol">BTCUSD</span>
           </div>
-          <div class="tradingview-widget-container">
-            <div id="tradingview_btc"></div>
+          <div class="market-card-body">
+            <img src="screenshots/btc-2026-03-13.png" alt="Bitcoin Chart">
+            <div class="price-info">
+              <span class="price">$83,542</span>
+              <span class="change up">+3.87%</span>
+            </div>
+            <p class="update-time">截圖時間：2026-03-13 11:20 UTC</p>
           </div>
         </div>
 
@@ -134,44 +197,48 @@
       <h3 class="section-title">🌏 台灣與科技</h3>
       <div class="dashboard">
         
-        <!-- Taiwan Futures -->
+        <!-- Taiwan Futures (placeholder) -->
         <div class="market-card">
           <div class="market-card-header">
             <h3>🇹🇼 台指期</h3>
             <span class="symbol">TXF1!</span>
           </div>
-          <div class="tradingview-widget-container">
-            <div id="tradingview_tx"></div>
+          <div class="market-card-body">
+            <p style="color: var(--text-secondary); text-align: center; padding: 2rem;">
+              🔧 截圖待補<br>
+              <small>瀏覽器恢復後補上</small>
+            </p>
           </div>
         </div>
 
-        <!-- TSM -->
+        <!-- TSM (placeholder) -->
         <div class="market-card">
           <div class="market-card-header">
             <h3>🧬 台積電</h3>
             <span class="symbol">TSM</span>
           </div>
-          <div class="tradingview-widget-container">
-            <div id="tradingview_tsm"></div>
+          <div class="market-card-body">
+            <p style="color: var(--text-secondary); text-align: center; padding: 2rem;">
+              🔧 截圖待補<br>
+              <small>瀏覽器恢復後補上</small>
+            </p>
           </div>
         </div>
 
-        <!-- NVDA -->
+        <!-- NVDA (placeholder) -->
         <div class="market-card">
           <div class="market-card-header">
             <h3>🎮 輝達 (NVIDIA)</h3>
             <span class="symbol">NVDA</span>
           </div>
-          <div class="tradingview-widget-container">
-            <div id="tradingview_nvda"></div>
+          <div class="market-card-body">
+            <p style="color: var(--text-secondary); text-align: center; padding: 2rem;">
+              🔧 截圖待補<br>
+              <small>瀏覽器恢復後補上</small>
+            </p>
           </div>
         </div>
 
-      </div>
-
-      <div class="last-updated">
-        <p>📌 資料來源：TradingView | 即時更新</p>
-        <p>💡 提示：點擊圖表可互動，切換不同時間週期</p>
       </div>
 
     </div>
@@ -184,104 +251,5 @@
       <p style="margin-top: 0.5rem; color: var(--accent);">🌲 曦照著樹 · AI 與金融的完美結合</p>
     </div>
   </footer>
-
-  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-  <script type="text/javascript">
-    // WTI Crude Oil
-    new TradingView.widget({
-      "width": "100%",
-      "height": 350,
-      "symbol": "NYMEX:CL1!",
-      "interval": "D",
-      "theme": "dark",
-      "style": "1",
-      "locale": "zh_TW",
-      "toolbar_bg": "#0d1b2a",
-      "enable_publishing": false,
-      "hide_side_toolbar": false,
-      "allow_symbol_change": true,
-      "container_id": "tradingview_cl"
-    });
-
-    // Gold
-    new TradingView.widget({
-      "width": "100%",
-      "height": 350,
-      "symbol": "FX:XAUUSD",
-      "interval": "D",
-      "theme": "dark",
-      "style": "1",
-      "locale": "zh_TW",
-      "toolbar_bg": "#0d1b2a",
-      "enable_publishing": false,
-      "hide_side_toolbar": false,
-      "allow_symbol_change": true,
-      "container_id": "tradingview_gold"
-    });
-
-    // Bitcoin
-    new TradingView.widget({
-      "width": "100%",
-      "height": 350,
-      "symbol": "BITSTAMP:BTCUSD",
-      "interval": "D",
-      "theme": "dark",
-      "style": "1",
-      "locale": "zh_TW",
-      "toolbar_bg": "#0d1b2a",
-      "enable_publishing": false,
-      "hide_side_toolbar": false,
-      "allow_symbol_change": true,
-      "container_id": "tradingview_btc"
-    });
-
-    // Taiwan Futures
-    new TradingView.widget({
-      "width": "100%",
-      "height": 350,
-      "symbol": "TAIFEX:TXF1!",
-      "interval": "D",
-      "theme": "dark",
-      "style": "1",
-      "locale": "zh_TW",
-      "toolbar_bg": "#0d1b2a",
-      "enable_publishing": false,
-      "hide_side_toolbar": false,
-      "allow_symbol_change": true,
-      "container_id": "tradingview_tx"
-    });
-
-    // TSM
-    new TradingView.widget({
-      "width": "100%",
-      "height": 350,
-      "symbol": "NYSE:TSM",
-      "interval": "D",
-      "theme": "dark",
-      "style": "1",
-      "locale": "zh_TW",
-      "toolbar_bg": "#0d1b2a",
-      "enable_publishing": false,
-      "hide_side_toolbar": false,
-      "allow_symbol_change": true,
-      "container_id": "tradingview_tsm"
-    });
-
-    // NVDA
-    new TradingView.widget({
-      "width": "100%",
-      "height": 350,
-      "symbol": "NASDAQ:NVDA",
-      "interval": "D",
-      "theme": "dark",
-      "style": "1",
-      "locale": "zh_TW",
-      "toolbar_bg": "#0d1b2a",
-      "enable_publishing": false,
-      "hide_side_toolbar": false,
-      "allow_symbol_change": true,
-      "container_id": "tradingview_nvda"
-    });
-  </script>
 </body>
 </html>
