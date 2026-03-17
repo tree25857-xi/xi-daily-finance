@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>網站設計參考模板 | Reference Template</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* ====== 參考模板樣式 ====== */
+    :root {
+      --bg: #020617;
+      --bg-elevated: #0f172a;
+      --border-subtle: #1f2937;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --primary: #22d3ee;
+      --accent: #6366f1;
+      --success: #22c55e;
+      --warning: #eab308;
+      --danger: #f97316;
+      --radius-lg: 16px;
+      --radius-md: 10px;
+      --shadow-card: 0 18px 40px rgba(15, 23, 42, 0.9);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at top left, #0f172a 0, #020617 45%, #000 100%);
+      color: var(--text-main);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Noto Sans TC", "Segoe UI", sans-serif;
+      min-height: 100vh;
+    }
+
+    .template-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 32px 20px;
+    }
+
+    /* ====== Section ====== */
+    .section {
+      margin-bottom: 32px;
+      padding: 24px;
+      background: radial-gradient(circle at top left, #020617 0, #020617 45%, #020617 100%);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(31, 41, 55, 0.95);
+      box-shadow: var(--shadow-card);
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title .tag {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--primary);
+      border: 1px solid rgba(34, 211, 238, 0.6);
+    }
+
+    .section-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    /* ====== Card ====== */
+    .card {
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(31, 41, 55, 0.95);
+      background: rgba(15, 23, 42, 0.9);
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+
+    .card h4 {
+      margin: 0 0 8px;
+      font-size: 14px;
+      color: var(--text-main);
+    }
+
+    .card p, .card ul {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    .card ul {
+      padding-left: 16px;
+    }
+
+    .card li {
+      margin-bottom: 4px;
+    }
+
+    /* ====== Tags ====== */
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .tag {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(31, 41, 55, 0.95);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text-muted);
+    }
+
+    .tag.success {
+      border-color: rgba(34, 197, 94, 0.7);
+      color: #bbf7d0;
+    }
+
+    .tag.warning {
+      border-color: rgba(234, 179, 8, 0.7);
+      color: #fef9c3;
+    }
+
+    .tag.danger {
+      border-color: rgba(248, 113, 113, 0.8);
+      color: #fee2e2;
+    }
+
+    /* ====== Table ====== */
+    .table-wrapper {
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(31, 41, 55, 0.95);
+      overflow: hidden;
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    th, td {
+      padding: 8px 12px;
+      border-bottom: 1px solid rgba(31, 41, 55, 0.95);
+      text-align: left;
+    }
+
+    th {
+      background: rgba(15, 23, 42, 0.98);
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+
+    /* ====== Color Swatches ====== */
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .color-swatch {
+      border-radius: var(--radius-md);
+      padding: 12px;
+      text-align: center;
+    }
+
+    .color-swatch .color-box {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      margin: 0 auto 8px;
+    }
+
+    .color-swatch .color-name {
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .color-swatch .color-code {
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    /* ====== Preview Box ====== */
+    .preview-box {
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-top: 12px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .preview-box h5 {
+      margin: 0 0 8px;
+      font-size: 13px;
+    }
+
+    .preview-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      border: 1px solid rgba(55, 65, 81, 0.95);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text-muted);
+    }
+
+    .preview-pill.easy {
+      border-color: rgba(34, 197, 94, 0.9);
+      color: #bbf7d0;
+    }
+
+    .preview-pill.mid {
+      border-color: rgba(234, 179, 8, 0.9);
+      color: #fef9c3;
+    }
+
+    .preview-pill.high {
+      border-color: rgba(248, 113, 113, 0.9);
+      color: #fee2e2;
+    }
+
+    /* ====== Hero ====== */
+    .hero {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .hero h1 {
+      font-size: 28px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: 14px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid rgba(31, 41, 55, 0.95);
+      margin: 24px 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="logo">
+        <span class="logo-icon">🌸</span>
+        <div>
+          <h1>DAILY FINANCE AI</h1>
+          <div class="subtitle">網站設計參考模板</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <ul>
+        <li><a href="../index.html">🏠 首頁</a></li>
+        <li><a href="../daily/2026-03-12.html">📅 今日快報</a></li>
+        <li><a href="../market/market-tracker.html">📊 市場儀表板</a></li>
+        <li><a href="../market/global-dashboard.html">🌐 全球金融儀表板</a></li>
+        <li><a href="template.html">📐 設計模板</a></li>
+        <li><a href="../archive.html">📚 歷史檔案</a></li>
+        <li><a href="../about.html">ℹ️ 關於我們</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    <div class="template-container">
+      
+      <!-- Hero Section -->
+      <div class="section">
+        <div class="hero">
+          <h1>🌸 網站設計參考模板</h1>
+          <p>這是參考 OpenClaw Skills 學習中心的設計風格，以後我們的網站將採用這種深色專業主題。</p>
+        </div>
+      </div>
+
+      <!-- 色彩系統 -->
+      <div class="section">
+        <div class="section-title">
+          🎨 色彩系統 <span class="tag">Colors</span>
+        </div>
+        <div class="section-desc">
+          深色主題的專業配色，適合金融與技術類網站。
+        </div>
+        
+        <div class="color-grid">
+          <div class="color-swatch" style="background: #020617; padding: 12px; border-radius: 10px;">
+            <div class="color-box" style="background: #020617; border: 1px solid #1f2937;"></div>
+            <div class="color-name">--bg</div>
+            <div class="color-code">#020617</div>
+          </div>
+          <div class="color-swatch" style="background: #0f172a; padding: 12px; border-radius: 10px;">
+            <div class="color-box" style="background: #0f172a; border: 1px solid #1f2937;"></div>
+            <div class="color-name">--bg-elevated</div>
+            <div class="color-code">#0f172a</div>
+          </div>
+          <div class="color-swatch" style="background: #0f172a; padding: 12px; border-radius: 10px;">
+            <div class="color-box" style="background: #22d3ee;"></div>
+            <div class="color-name">--primary</div>
+            <div class="color-code">#22d3ee</div>
+          </div>
+          <div class="color-swatch" style="background: #0f172a; padding: 12px; border-radius: 10px;">
+            <div class="color-box" style="background: #6366f1;"></div>
+            <div class="color-name">--accent</div>
+            <div class="color-code">#6366f1</div>
+          </div>
+          <div class="color-swatch" style="background: #0f172a; padding: 12px; border-radius: 10px;">
+            <div class="color-box" style="background: #22c55e;"></div>
+            <div class="color-name">--success</div>
+            <div class="color-code">#22c55e</div>
+          </div>
+          <div class="color-swatch" style="background: #0f172a; padding: 12px; border-radius: 10px;">
+            <div class="color-box" style="background: #eab308;"></div>
+            <div class="color-name">--warning</div>
+            <div class="color-code">#eab308</div>
+          </div>
+          <div class="color-swatch" style="background: #0f172a; padding: 12px; border-radius: 10px;">
+            <div class="color-box" style="background: #f97316;"></div>
+            <div class="color-name">--danger</div>
+            <div class="color-code">#f97316</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 標籤樣式 -->
+      <div class="section">
+        <div class="section-title">
+          🏷️ 標籤樣式 <span class="tag">Tags & Pills</span>
+        </div>
+        <div class="section-desc">
+          用於顯示難度、風險、等級的標籤樣式。
+        </div>
+        
+        <div class="preview-box">
+          <h5>難度標籤</h5>
+          <span class="preview-pill easy">★☆☆☆☆ 簡單</span>
+          <span class="preview-pill mid">★★★☆☆ 中等</span>
+          <span class="preview-pill high">★★★★☆ 困難</span>
+        </div>
+
+        <div class="preview-box" style="margin-top: 12px;">
+          <h5>風險標籤</h5>
+          <span class="tag success">🟢 低風險</span>
+          <span class="tag warning">🟡 中風險</span>
+          <span class="tag danger">🟠 高風險</span>
+        </div>
+      </div>
+
+      <!-- 卡片元件 -->
+      <div class="section">
+        <div class="section-title">
+          📦 卡片元件 <span class="tag">Cards</span>
+        </div>
+        
+        <div class="card">
+          <h4>💡 設計原則</h4>
+          <ul>
+            <li>卡片式佈局，整潔美觀</li>
+            <li>圓角邊界，視覺柔和</li>
+            <li>微妙陰影，層次分明</li>
+            <li>深色背景，護眼舒適</li>
+          </ul>
+          <div class="tag-row">
+            <span class="tag success">深色主題</span>
+            <span class="tag">響應式</span>
+            <span class="tag">現代風格</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h4>📐 適用場景</h4>
+          <ul>
+            <li>晨曦日報</li>
+            <li>市場報告</li>
+            <li>研究分析</li>
+            <li>知識庫頁面</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 表格元件 -->
+      <div class="section">
+        <div class="section-title">
+          📊 表格元件 <span class="tag">Tables</span>
+        </div>
+        
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>類型</th>
+                <th>難度</th>
+                <th>風險</th>
+                <th>說明</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>晨曦日報</td>
+                <td><span class="preview-pill easy">★☆☆☆☆</span></td>
+                <td><span class="tag success">🟢 低</span></td>
+                <td>每日市場快報</td>
+              </tr>
+              <tr>
+                <td>研究報告</td>
+                <td><span class="preview-pill mid">★★★☆☆</span></td>
+                <td><span class="tag warning">🟡 中</span></td>
+                <td>深度分析文章</td>
+              </tr>
+              <tr>
+                <td>交易系統</td>
+                <td><span class="preview-pill high">★★★★☆</span></td>
+                <td><span class="tag danger">🟠 高</span></td>
+                <td>自動化交易模組</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 總結 -->
+      <div class="section">
+        <div class="section-title">
+          📝 總結 <span class="tag">Summary</span>
+        </div>
+        <div class="card">
+          <p>這個設計模板將應用於我們未來的所有網站內容，包括：</p>
+          <ul>
+            <li>☀️ 晨曦日報 - 每日市場快報</li>
+            <li>📈 研究報告 - 深度市場分析</li>
+            <li>🧠 知識庫 - 學習筆記與框架</li>
+            <li>💡 交易系統 - 自動化工具介面</li>
+          </ul>
+          <div class="tag-row">
+            <span class="tag success">專業水準</span>
+            <span class="tag success">統一風格</span>
+            <span class="tag success">持續優化</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>🌸 晨曦照著樹 | 網站設計參考模板</p>
+      <p class="copyright">© 2026 Daily Finance AI | Powered by Xi</p>
+    </div>
+  </footer>
+</body>
+</html>
