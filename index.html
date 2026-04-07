@@ -1,84 +1,311 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>每日金融 AI 新聞快報 | Daily Finance AI News</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌸 晨曦金融網 - 全球熱錢流向第一平台</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- TradingView Widget -->
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <div class="container">
-      <div class="logo">
-        <span class="logo-icon">📈</span>
-        <div>
-          <h1>DAILY FINANCE AI</h1>
-          <div class="subtitle">全球金融 × AI 趨勢每日精華</div>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">🌸</span>
+                <span class="logo-text">晨曦金融網</span>
+            </div>
+            <nav>
+                <a href="#" class="active">首頁</a>
+                <a href="#quotes">即時報價</a>
+                <a href="#hot-money">熱錢追蹤</a>
+                <a href="#daily-report">晨曦日報</a>
+            </nav>
         </div>
-      </div>
-    </div>
-  </header>
+    </header>
 
-  <!-- Navigation -->
-  <nav>
-    <div class="container">
-      <ul>
-        <li><a href="index.html">🏠 首頁</a></li>
-        <li><a href="daily/2026-03-12.html">📅 今日快報</a></li>
-        <li><a href="market/market-tracker.html">📊 市場儀表板</a></li>
-        <li><a href="market/global-dashboard.html">🌐 全球金融儀表板</a></li>
-        <li><a href="reference/template.html">📐 設計模板</a></li>
-        <li><a href="archive.html">📚 歷史檔案</a></li>
-        <li><a href="about.html">ℹ️ 關於我們</a></li>
-      </ul>
-    </div>
-  </nav>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>全球熱錢流向第一平台</h1>
+            <p>掌握市場脈動、追蹤資金流向、專業金融分析</p>
+            <div class="hero-buttons">
+                <a href="#quotes" class="btn btn-primary">查看報價</a>
+                <a href="#hot-money" class="btn btn-secondary">熱錢追蹤</a>
+            </div>
+        </div>
+    </section>
 
-  <!-- Main Content -->
-  <main>
-    <div class="container">
-      <!-- 今日標題 -->
-      <div class="daily-header">
-        <h2>📰 2026年3月12日 星期三</h2>
-        <p class="date">Daily Finance AI News · 每日金融 AI 新聞精華</p>
-      </div>
+    <!-- Hot Money Tracker -->
+    <section id="hot-money" class="section">
+        <div class="container">
+            <h2 class="section-title">🌡️ 熱錢溫度計</h2>
+            
+            <div class="risk-meter">
+                <span class="risk-label">風險偏好</span>
+                <div class="risk-bar">
+                    <div class="risk-indicator"></div>
+                </div>
+                <div class="risk-labels">
+                    <span>Risk-On</span>
+                    <span>Risk-Off</span>
+                </div>
+            </div>
 
-      <!-- 重點新聞 -->
-      <h3 style="color: var(--primary); margin-bottom: 1rem;">🔶 今日頭條</h3>
-      <div class="news-grid" id="headline-news">
-        <!-- Headline news will be inserted here -->
-      </div>
+            <div class="hot-money-grid">
+                <!-- DXY -->
+                <div class="hot-money-card">
+                    <div class="card-header">
+                        <span class="card-title">美元指數 DXY</span>
+                        <span class="card-change up">▲</span>
+                    </div>
+                    <div class="card-value">102.45</div>
+                    <div class="card-subtitle">偏強</div>
+                </div>
 
-      <!-- 市場趨勢 -->
-      <h3 style="color: var(--primary); margin: 2rem 0 1rem;">📊 市場趨勢</h3>
-      <div class="news-grid" id="market-news">
-        <!-- Market news will be inserted here -->
-      </div>
+                <!-- VIX -->
+                <div class="hot-money-card">
+                    <div class="card-header">
+                        <span class="card-title">VIX 恐慌指數</span>
+                        <span class="card-change down">▼</span>
+                    </div>
+                    <div class="card-value">18.2</div>
+                    <div class="card-subtitle">市場穩定</div>
+                </div>
 
-      <!-- AI 科技 -->
-      <h3 style="color: var(--primary); margin: 2rem 0 1rem;">🤖 AI 科技</h3>
-      <div class="news-grid" id="tech-news">
-        <!-- Tech news will be inserted here -->
-      </div>
+                <!-- Gold -->
+                <div class="hot-money-card">
+                    <div class="card-header">
+                        <span class="card-title">黃金 XAU/USD</span>
+                        <span class="card-change up">▲</span>
+                    </div>
+                    <div class="card-value">$2,982</div>
+                    <div class="card-subtitle">避險需求</div>
+                </div>
 
-      <!-- 全球金融 -->
-      <h3 style="color: var(--primary); margin: 2rem 0 1rem;">🌏 全球金融</h3>
-      <div class="news-grid" id="global-news">
-        <!-- Global news will be inserted here -->
-      </div>
-    </div>
-  </main>
+                <!-- Bitcoin ETF -->
+                <div class="hot-money-card">
+                    <div class="card-header">
+                        <span class="card-title">比特幣現貨 ETF</span>
+                        <span class="card-change up">▲</span>
+                    </div>
+                    <div class="card-value">+$156M</div>
+                    <div class="card-subtitle">淨流入</div>
+                </div>
 
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <p>© 2026 Daily Finance AI · 每日金融 AI 新聞快報</p>
-      <p style="margin-top: 0.5rem; color: var(--accent);">🌲 曦照著樹 · AI 與金融的完美結合</p>
-    </div>
-  </footer>
+                <!-- Emerging Markets -->
+                <div class="hot-money-card">
+                    <div class="card-header">
+                        <span class="card-title">新興市場資金</span>
+                        <span class="card-change up">▲</span>
+                    </div>
+                    <div class="card-value">+$2.3B</div>
+                    <div class="card-subtitle">資金流入</div>
+                </div>
 
-  <script src="js/main.js"></script>
+                <!-- Futures Position -->
+                <div class="hot-money-card">
+                    <div class="card-header">
+                        <span class="card-title">機構期貨持倉</span>
+                        <span class="card-change up">▲</span>
+                    </div>
+                    <div class="card-value">偏多</div>
+                    <div class="card-subtitle">多頭訊號</div>
+                </div>
+            </div>
+
+            <!-- Xi Observation -->
+            <div class="observation">
+                <h3>💡 曦曦觀察</h3>
+                <p>目前市場偏向 <strong>Risk-On</strong>，資金持續流入風險資產。比特幣 ETF 淨流入增加，顯示機構資金對加密貨幣市場保持樂觀。建議關注本週 Fed 利率決策會議。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Real-time Quotes -->
+    <section id="quotes" class="section dark">
+        <div class="container">
+            <h2 class="section-title">📊 即時報價</h2>
+            
+            <!-- Crypto Quotes -->
+            <div class="quotes-category">
+                <h3>₿ 加密貨幣</h3>
+                <div class="quotes-grid">
+                    <div class="quote-card">
+                        <div class="quote-header">
+                            <span class="quote-symbol">BTC</span>
+                            <span class="quote-name">比特幣</span>
+                        </div>
+                        <div class="quote-price">$66,620</div>
+                        <div class="quote-change down">-2.2% ▼</div>
+                    </div>
+                    <div class="quote-card">
+                        <div class="quote-header">
+                            <span class="quote-symbol">ETH</span>
+                            <span class="quote-name">以太坊</span>
+                        </div>
+                        <div class="quote-price">$2,048</div>
+                        <div class="quote-change down">-4.2% ▼</div>
+                    </div>
+                    <div class="quote-card">
+                        <div class="quote-header">
+                            <span class="quote-symbol">SOL</span>
+                            <span class="quote-name">Solana</span>
+                        </div>
+                        <div class="quote-price">$79.11</div>
+                        <div class="quote-change down">-4.1% ▼</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Taiwan Stocks -->
+            <div class="quotes-category">
+                <h3>🇹🇼 台灣股市</h3>
+                <div class="quotes-grid">
+                    <div class="quote-card">
+                        <div class="quote-header">
+                            <span class="quote-symbol">2330</span>
+                            <span class="quote-name">台積電</span>
+                        </div>
+                        <div class="quote-price">¥985</div>
+                        <div class="quote-change up">+1.8% ▲</div>
+                    </div>
+                    <div class="quote-card">
+                        <div class="quote-header">
+                            <span class="quote-symbol">TSM</span>
+                            <span class="quote-name">台積電 ADR</span>
+                        </div>
+                        <div class="quote-price">$185.23</div>
+                        <div class="quote-change up">+1.5% ▲</div>
+                    </div>
+                    <div class="quote-card">
+                        <div class="quote-header">
+                            <span class="quote-symbol">TXF</span>
+                            <span class="quote-name">台指期</span>
+                        </div>
+                        <div class="quote-price">23,456</div>
+                        <div class="quote-change up">+0.5% ▲</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Stocks -->
+            <div class="quotes-category">
+                <h3>🤖 AI 科技股</h3>
+                <div class="quotes-grid">
+                    <div class="quote-card">
+                        <div class="quote-header">
+                            <span class="quote-symbol">NVDA</span>
+                            <span class="quote-name">NVIDIA</span>
+                        </div>
+                        <div class="quote-price">$875.23</div>
+                        <div class="quote-change up">+2.5% ▲</div>
+                    </div>
+                    <div class="quote-card">
+                        <div class="quote-header">
+                            <span class="quote-symbol">MSFT</span>
+                            <span class="quote-name">Microsoft</span>
+                        </div>
+                        <div class="quote-price">$415.12</div>
+                        <div class="quote-change up">+1.2% ▲</div>
+                    </div>
+                    <div class="quote-card">
+                        <div class="quote-header">
+                            <span class="quote-symbol">AMD</span>
+                            <span class="quote-name">AMD</span>
+                        </div>
+                        <div class="quote-price">$162.34</div>
+                        <div class="quote-change up">+3.1% ▲</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Forex -->
+            <div class="quotes-category">
+                <h3>💱 主要匯率</h3>
+                <div class="quotes-grid quotes-forex">
+                    <div class="quote-card">
+                        <div class="quote-header">
+                            <span class="quote-symbol">USD/JPY</span>
+                        </div>
+                        <div class="quote-price">149.85</div>
+                        <div class="quote-change down">-0.3% ▼</div>
+                    </div>
+                    <div class="quote-card">
+                        <div class="quote-header">
+                            <span class="quote-symbol">EUR/USD</span>
+                        </div>
+                        <div class="quote-price">1.0845</div>
+                        <div class="quote-change up">+0.2% ▲</div>
+                    </div>
+                    <div class="quote-card">
+                        <div class="quote-header">
+                            <span class="quote-symbol">USD/TWD</span>
+                        </div>
+                        <div class="quote-price">31.45</div>
+                        <div class="quote-change neutral">0.0%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Daily Report -->
+    <section id="daily-report" class="section">
+        <div class="container">
+            <h2 class="section-title">🌸 晨曦日照</h2>
+            
+            <div class="daily-report-card">
+                <div class="report-header">
+                    <span class="report-date">2026年4月7日</span>
+                    <span class="report-day">星期二</span>
+                </div>
+                
+                <div class="report-weather">
+                    <span>☀️</span>
+                    <span>台北 27°C 晴</span>
+                </div>
+
+                <div class="report-section">
+                    <h3>📊 市場概況</h3>
+                    <p>BTC $66,620 (-2.2%) | ETH $2,048 (-4.2%) | SOL $79.11 (-4.1%)</p>
+                    <p>市場今日持續回調，耐心等待進場機會。</p>
+                </div>
+
+                <div class="report-section">
+                    <h3>📰 今日焦點</h3>
+                    <ul>
+                        <li>伊朗戰爭有望數週內結束，地緣政治風險降低</li>
+                        <li>BNB 被視為 2026 年 4 月最被低估的主流幣</li>
+                        <li>ETH 若跌破 $2,000 可能回測 $1,910 支撐</li>
+                    </ul>
+                </div>
+
+                <div class="report-section observation-box">
+                    <h3>💡 曦曦觀察</h3>
+                    <p>市場持續回調中，建議保持觀望，等待明確的進場訊號。熱錢持續流入風險資產，但需關注本週 Fed 會議結果。</p>
+                </div>
+
+                <div class="report-footer">
+                    <p class="goodnight-quote">🌙 「慢慢來，比較快」—— 曦曦</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>🌸 晨曦金融網 | 全球熱錢流向第一平台</p>
+            <p class="copyright">© 2026 晨曦照著樹 | Made with 💛 by Xi</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
 </body>
 </html>
