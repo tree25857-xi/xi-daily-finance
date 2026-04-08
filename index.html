@@ -521,10 +521,11 @@ let priceCache = {
 
 // 從 Binance API 獲取價格
 async function fetchPrices() {
+  console.log('正在獲取價格...');
   try {
     const symbols = ['BTCUSDT', 'ETHUSDT', 'SOLUSDT'];
     const prices = await Promise.all(
-      symbols.map(s => fetch(`https://api.binance.com/api/v3/ticker/24hr?symbol=${s}`).then(r => r.json()))
+      symbols.map(s => fetch(`https://api.binance.com/api/v3/ticker/24hr?symbol=${s}&_=${Date.now()}`).then(r => r.json()))
     );
     
     prices.forEach((data, i) => {
@@ -588,13 +589,12 @@ function updateHotMoneyTracker() {
 function init() {
   console.log('初始化價格系統...');
   fetchPrices();
+  // 每 30 秒更新一次
+  setInterval(fetchPrices, 30000);
 }
 
-// 立即執行
-init();
-
-// 每 30 秒更新一次
-setInterval(fetchPrices, 30000);
+// 頁面載入後執行
+window.onload = init;
 </script>
 
 </body></html>
