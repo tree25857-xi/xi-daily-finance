@@ -208,6 +208,7 @@
 <div class="flex items-center justify-between">
 <h2 class="font-headline text-2xl font-bold tracking-tight">即時報價</h2>
 <div class="flex gap-2">
+<button onclick="manualUpdate()" class="px-3 py-1 bg-green-600 text-white text-[10px] font-bold uppercase rounded-full">🔄 更新</button>
 <button class="px-3 py-1 bg-primary-container text-primary text-[10px] font-bold uppercase rounded-full">加密貨幣</button>
 <button class="px-3 py-1 hover:bg-surface-container-high text-on-surface-variant text-[10px] font-bold uppercase rounded-full transition-colors">台股</button>
 <button class="px-3 py-1 hover:bg-surface-container-high text-on-surface-variant text-[10px] font-bold uppercase rounded-full transition-colors">AI股</button>
@@ -585,16 +586,18 @@ function updateHotMoneyTracker() {
   }
 }
 
-// 初始化 - 確保 DOM 載入後執行
-function init() {
-  console.log('初始化價格系統...');
+// 測試按鈕 - 手動更新
+function manualUpdate() {
+  console.log('手動更新價格...');
   fetchPrices();
-  // 每 30 秒更新一次
-  setInterval(fetchPrices, 30000);
 }
 
-// 頁面載入後執行
-window.onload = init;
+// 初始化
+console.log('初始化價格系統...');
+fetchPrices();
+
+// 每 30 秒更新一次
+setInterval(fetchPrices, 30000);
 </script>
 
 </body></html>
