@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html class="dark" lang="zh-TW">
 <head>
 <meta charset="utf-8"/>
@@ -7,313 +8,453 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Manrope:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<style>
-  /* ====== 樹的模板特色元素 ====== */
-  :root {
-    --bg: #020617;
-    --bg-elevated: #0f172a;
-    --primary: #22d3ee;
-    --secondary: #D4AF37;
-    --text-main: #e5e7eb;
-    --text-muted: #9ca3af;
-    --radius-lg: 16px;
-    --radius-md: 10px;
-    --radius-pill: 999px;
-    --shadow-card: 0 18px 40px rgba(15, 23, 42, 0.9);
-    --transition-normal: 180ms ease-out;
-  }
-  
-  /* 毛玻璃效果 */
-  .glass-panel {
-    background: rgba(53, 53, 52, 0.6);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-  }
-  
-  /* 徑向漸變背景 */
-  .gradient-bg {
-    background: radial-gradient(circle at top left, #0f172a 0, #020617 45%, #000 100%);
-  }
-  
-  /* 品牌標誌漸變 */
-  .brand-gradient {
-    background: conic-gradient(from 180deg, #D4AF37, #22d3ee, #6366f1, #D4AF37);
-    box-shadow: 0 0 40px rgba(212, 175, 55, 0.55);
-  }
-  
-  /* 導航欄毛玻璃 */
-  .nav-glass {
-    backdrop-filter: blur(16px);
-    background: linear-gradient(to bottom, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.65), transparent);
-  }
-  
-  /* 卡片懸停效果 */
-  .card-hover {
-    transition: all var(--transition-normal);
-  }
-  .card-hover:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-card);
-  }
-  
-  /* 進度條動畫 */
-  .roadmap-bar-fill {
-    transform: translateX(-100%);
-    transition: transform 1200ms cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .roadmap-bar-fill.active {
-    transform: translateX(0);
-  }
-  
-  /* 隱藏滾動條 */
-  .no-scrollbar::-webkit-scrollbar { display: none; }
-  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-  
-  .material-symbols-outlined {
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-  }
-</style>
 <script id="tailwind-config">
  tailwind.config = {
-  darkMode: "class",
-  theme: {
-    extend: {
-      colors: {
-        "secondary-fixed": "#D4AF37",
-        "on-surface-variant": "#c4c6cf",
-        "surface-container-lowest": "#0e0e0e",
-        "on-primary": "#133057",
-        "surface-container": "#201f1f",
-        "primary-fixed": "#d6e3ff",
-        "secondary-fixed-dim": "#D4AF37",
-        "surface-dim": "#131313",
-        "tertiary": "#D4AF37",
-        "secondary": "#D4AF37",
-        "surface-bright": "#393939",
-        "surface-container-high": "#2a2a2a",
-        "surface-container-low": "#1c1b1b",
-        "surface-variant": "#353534",
-        "outline": "#8e9099",
-        "primary": "#adc7f7",
-        "background": "#0D1117",
-        "on-surface": "#e5e2e1",
-        "primary-container": "#1A365D",
-      },
-      borderRadius: {
-        lg: "16px",
-        md: "10px",
-        pill: "999px",
-      },
-      fontFamily: {
-        headline: ["Manrope", "Noto Sans TC"],
-        body: ["Inter", "Noto Sans TC"],
-        label: ["Inter", "Noto Sans TC"],
-        mono: ["JetBrains Mono"]
-      }
-    }
-  }
-}
+ darkMode: "class",
+ theme: {
+  extend: {
+   "colors": {
+    "secondary-fixed": "#D4AF37",
+    "on-surface-variant": "#c4c6cf",
+    "inverse-surface": "#e5e2e1",
+    "on-error": "#690005",
+    "surface-container-lowest": "#0e0e0e",
+    "on-primary": "#133057",
+    "inverse-on-surface": "#313030",
+    "on-secondary-container": "#342800",
+    "tertiary-container": "#cba72f",
+    "surface-container": "#201f1f",
+    "primary-fixed": "#d6e3ff",
+    "secondary-fixed-dim": "#D4AF37",
+    "error-container": "#93000a",
+    "on-tertiary-fixed": "#241a00",
+    "surface-dim": "#131313",
+    "tertiary": "#D4AF37",
+    "inverse-primary": "#455f88",
+    "secondary": "#D4AF37",
+    "tertiary-fixed": "#D4AF37",
+    "tertiary-fixed-dim": "#D4AF37",
+    "surface-bright": "#393939",
+    "on-primary-fixed": "#001b3c",
+    "on-error-container": "#ffdad6",
+    "surface-container-high": "#2a2a2a",
+    "on-primary-container": "#86a0cd",
+    "surface-container-low": "#1c1b1b",
+    "on-tertiary-fixed-variant": "#574500",
+    "outline-variant": "#43474e",
+    "on-secondary": "#3c2f00",
+    "on-tertiary": "#3c2f00",
+    "surface-variant": "#353534",
+    "outline": "#8e9099",
+    "primary": "#adc7f7",
+    "on-tertiary-container": "#4e3d00",
+    "secondary-container": "#8B7355",
+    "on-background": "#e5e2e1",
+    "on-secondary-fixed": "#241a00",
+    "primary-container": "#1A365D",
+    "on-surface": "#e5e2e1",
+    "on-secondary-fixed-variant": "#574500",
+    "surface-container-highest": "#353534",
+    "surface": "#131313",
+    "on-primary-fixed-variant": "#2d476f",
+    "error": "#ffb4ab",
+    "background": "#0D1117",
+    "surface-tint": "#adc7f7",
+    "primary-fixed-dim": "#adc7f7"
+   },
+   "borderRadius": {
+    "DEFAULT": "0.125rem",
+    "lg": "0.25rem",
+    "xl": "0.5rem",
+    "full": "0.75rem"
+   },
+   "fontFamily": {
+    "headline": ["Manrope", "Noto Sans TC"],
+    "body": ["Inter", "Noto Sans TC"],
+    "label": ["Inter", "Noto Sans TC"],
+    "mono": ["JetBrains Mono"]
+   }
+  },
+ }
+ }
 </script>
+<style>
+ .no-scrollbar::-webkit-scrollbar { display: none; }
+ .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+ .glass-panel {
+  background: rgba(53, 53, 52, 0.6);
+  backdrop-filter: blur(20px);
+ }
+ .material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+ }
+</style>
 </head>
-<body class="bg-[#020617] text-[#e5e7eb] font-body gradient-bg">
-<!-- 導航欄 - 毛玻璃效果 -->
-<header class="fixed top-0 left-0 right-0 z-50 nav-glass border-b border-[#1f2937]/90">
-<div class="max-w-[1400px] mx-auto px-6 py-4 flex justify-between items-center">
-  <div class="flex items-center gap-4">
-    <!-- 品牌標誌 - 漸變效果 -->
-    <div class="w-10 h-10 rounded-full brand-gradient flex items-center justify-center">
-      <div class="w-8 h-8 rounded-full bg-[#0f172a] flex items-center justify-center">
-        <span class="text-xl">🌸</span>
-      </div>
-    </div>
-    <div>
-      <div class="font-bold text-lg tracking-wide">晨曦金融網</div>
-      <div class="text-xs text-[#9ca3af]">全球熱錢流向第一平台</div>
-    </div>
-  </div>
-  <nav class="hidden md:flex items-center gap-4">
-    <a href="#" class="px-4 py-2 rounded-full text-[#D4AF37] border border-[#D4AF37]/50 bg-[#D4AF37]/10">儀表板</a>
-    <a href="#quotes" class="px-4 py-2 rounded-full text-[#9ca3af] hover:text-[#adc7f7] hover:bg-[#1A365D]/20 transition-all">即時報價</a>
-    <a href="#hot-money" class="px-4 py-2 rounded-full text-[#9ca3af] hover:text-[#adc7f7] hover:bg-[#1A365D]/20 transition-all">熱錢追蹤</a>
-    <a href="#daily" class="px-4 py-2 rounded-full text-[#9ca3af] hover:text-[#adc7f7] hover:bg-[#1A365D]/20 transition-all">晨曦日照</a>
-  </nav>
-  <div class="flex items-center gap-4">
-    <span class="text-[#adc7f7] text-sm font-mono" id="current-time"></span>
-  </div>
+<body class="bg-background text-on-surface font-body selection:bg-secondary selection:text-on-secondary">
+<!-- TopNavBar -->
+<header class="bg-[#0D1117] dark:bg-[#0D1117] docked full-width top-0 z-50 sticky">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-[1920px] mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-bold tracking-tighter text-[#D4AF37] font-headline">🌸 晨曦金融網</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="font-manrope tracking-tighter text-sm uppercase text-[#D4AF37] border-b-2 border-[#D4AF37] pb-1" href="#">儀表板</a>
+<a class="font-manrope tracking-tighter text-sm uppercase text-[#ADC7F7]/70 hover:text-[#ADC7F7] transition-colors duration-300" href="#">市場</a>
+<a class="font-manrope tracking-tighter text-sm uppercase text-[#ADC7F7]/70 hover:text-[#ADC7F7] transition-colors duration-300" href="#">報價</a>
+<a class="font-manrope tracking-tighter text-sm uppercase text-[#ADC7F7]/70 hover:text-[#ADC7F7] transition-colors duration-300" href="#">晨曦日照</a>
+</nav>
 </div>
+<div class="flex items-center gap-4">
+<span class="text-[#ADC7F7] text-sm font-mono" id="current-time"></span>
+</div>
+</div>
+<div class="bg-[#1A365D] h-[1px] w-full opacity-20"></div>
 </header>
-
-<!-- 主內容區 -->
-<main class="pt-24 pb-12 px-6 max-w-[1400px] mx-auto">
-  
-  <!-- Hero 區塊 -->
-  <section class="mb-12">
-    <div class="glass-panel rounded-2xl p-8 border border-[#1f2937]/50">
-      <div class="flex flex-col md:flex-row gap-8 items-center">
-        <div class="flex-1">
-          <h1 class="text-4xl font-bold mb-4 bg-gradient-to-r from-[#D4AF37] to-[#22d3ee] bg-clip-text text-transparent">
-            全球熱錢流向第一平台
-          </h1>
-          <p class="text-lg text-[#9ca3af] mb-6">
-            掌握市場脈動、追蹤資金流向、專業金融分析
-          </p>
-          <div class="flex gap-4">
-            <a href="#quotes" class="px-6 py-3 rounded-full bg-[#D4AF37] text-[#020617] font-bold hover:opacity-90 transition-opacity">
-              查看報價
-            </a>
-            <a href="#hot-money" class="px-6 py-3 rounded-full border border-[#1f2937] text-[#e5e7eb] hover:bg-[#1A365D]/30 transition-all">
-              熱錢追蹤
-            </a>
-          </div>
-        </div>
-        <!-- 熱錢溫度計 -->
-        <div class="w-full md:w-80 p-6 bg-[#0f172a]/80 rounded-xl border border-[#1f2937]/50">
-          <div class="text-sm text-[#9ca3af] mb-2">熱錢溫度</div>
-          <div class="flex items-center gap-4">
-            <div class="text-3xl font-bold text-[#22c55e]">Risk-On</div>
-            <div class="flex-1 h-3 bg-[#1f2937] rounded-full overflow-hidden">
-              <div class="h-full w-3/4 bg-gradient-to-r from-[#22c55e] to-[#D4AF37] rounded-full"></div>
-            </div>
-          </div>
-          <div class="mt-4 text-xs text-[#9ca3af]">市場風險偏好偏向上漲</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 熱錢追蹤 -->
-  <section id="hot-money" class="mb-12">
-    <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
-      <span class="text-[#D4AF37]">🔥</span> 熱錢追蹤
-    </h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <!-- DXY -->
-      <div class="p-4 bg-[#0f172a]/80 rounded-xl border border-[#D4AF37]/20 card-hover">
-        <div class="flex justify-between items-start mb-2">
-          <span class="font-bold text-lg">DXY</span>
-          <span class="text-[#22c55e] text-sm font-bold">+0.3%</span>
-        </div>
-        <p class="text-xs text-[#9ca3af] uppercase">美元指數</p>
-        <div class="mt-2 text-sm text-[#9ca3af]">偏強</div>
-      </div>
-      <!-- VIX -->
-      <div class="p-4 bg-[#0f172a]/80 rounded-xl border border-[#adc7f7]/20 card-hover">
-        <div class="flex justify-between items-start mb-2">
-          <span class="font-bold text-lg">VIX</span>
-          <span class="text-red-400 text-sm font-bold">-1.2%</span>
-        </div>
-        <p class="text-xs text-[#9ca3af] uppercase">恐慌指數</p>
-        <div class="mt-2 text-sm text-[#9ca3af]">市場穩定</div>
-      </div>
-      <!-- BTC ETF -->
-      <div class="p-4 bg-[#0f172a]/80 rounded-xl border border-[#D4AF37]/20 card-hover">
-        <div class="flex justify-between items-start mb-2">
-          <span class="font-bold text-lg">BTC ETF</span>
-          <span class="text-[#22c55e] text-sm font-bold">+$156M</span>
-        </div>
-        <p class="text-xs text-[#9ca3af] uppercase">比特幣現貨ETF</p>
-        <div class="mt-2 text-sm text-[#9ca3af]">淨流入</div>
-      </div>
-      <!-- EM Flow -->
-      <div class="p-4 bg-[#0f172a]/80 rounded-xl border border-[#D4AF37]/20 card-hover">
-        <div class="flex justify-between items-start mb-2">
-          <span class="font-bold text-lg">EM</span>
-          <span class="text-[#22c55e] text-sm font-bold">+$2.3B</span>
-        </div>
-        <p class="text-xs text-[#9ca3af] uppercase">新興市場資金</p>
-        <div class="mt-2 text-sm text-[#9ca3af]">資金流入</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 即時報價 -->
-  <section id="quotes" class="mb-12">
-    <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
-      <span class="text-[#D4AF37]">📈</span> 即時報價
-    </h2>
-    
-    <!-- 標籤切換 -->
-    <div class="flex gap-2 mb-4">
-      <button class="px-4 py-2 bg-[#D4AF37]/20 text-[#D4AF37] rounded-full text-sm font-bold">加密貨幣</button>
-      <button class="px-4 py-2 bg-[#1f2937] text-[#9ca3af] rounded-full text-sm hover:bg-[#1A365D]/30 transition-all">台灣股市</button>
-      <button class="px-4 py-2 bg-[#1f2937] text-[#9ca3af] rounded-full text-sm hover:bg-[#1A365D]/30 transition-all">AI 科技股</button>
-    </div>
-    
-    <!-- 加密貨幣 -->
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-      <!-- BTC -->
-      <div class="p-4 bg-[#0f172a]/80 rounded-xl border border-[#D4AF37]/20 card-hover">
-        <div class="flex justify-between items-start mb-2">
-          <span class="font-bold text-lg text-[#D4AF37]">BTC</span>
-          <span class="text-red-400 text-sm font-bold">-2.2%</span>
-        </div>
-        <p class="text-2xl font-mono font-bold">$66,620</p>
-        <p class="text-xs text-[#9ca3af] uppercase">比特幣</p>
-      </div>
-      <!-- ETH -->
-      <div class="p-4 bg-[#0f172a]/80 rounded-xl border border-[#D4AF37]/20 card-hover">
-        <div class="flex justify-between items-start mb-2">
-          <span class="font-bold text-lg text-[#D4AF37]">ETH</span>
-          <span class="text-red-400 text-sm font-bold">-4.2%</span>
-        </div>
-        <p class="text-2xl font-mono font-bold">$2,048</p>
-        <p class="text-xs text-[#9ca3af] uppercase">以太坊</p>
-      </div>
-      <!-- SOL -->
-      <div class="p-4 bg-[#0f172a]/80 rounded-xl border border-[#D4AF37]/20 card-hover">
-        <div class="flex justify-between items-start mb-2">
-          <span class="font-bold text-lg text-[#D4AF37]">SOL</span>
-          <span class="text-red-400 text-sm font-bold">-4.1%</span>
-        </div>
-        <p class="text-2xl font-mono font-bold">$79.11</p>
-        <p class="text-xs text-[#9ca3af] uppercase">Solana</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 晨曦日照 -->
-  <section id="daily" class="mb-12">
-    <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
-      <span class="text-[#D4AF37]">🌅</span> 晨曦日照
-    </h2>
-    <div class="glass-panel rounded-2xl p-8 border border-[#1f2937]/50">
-      <div class="text-sm text-[#9ca3af] mb-4">2026年4月8日 星期三</div>
-      <h3 class="text-xl font-bold mb-4">早安！新的一天開始了</h3>
-      <p class="text-[#9ca3af] mb-4">
-        今日市場持續回調，但長期趨勢仍看好。建議關注美元走勢與科技股表現。
-      </p>
-      <div class="flex flex-wrap gap-2">
-        <span class="px-3 py-1 bg-[#D4AF37]/20 text-[#D4AF37] rounded-full text-sm">💰 熱錢追蹤</span>
-        <span class="px-3 py-1 bg-[#22d3ee]/20 text-[#22d3ee] rounded-full text-sm">📊 即時報價</span>
-        <span class="px-3 py-1 bg-[#6366f1]/20 text-[#6366f1] rounded-full text-sm">🔍 市場分析</span>
-      </div>
-    </div>
-  </section>
-
+<div class="flex min-h-screen relative">
+<!-- SideNavBar -->
+<aside class="hidden md:flex fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 flex-col bg-[#0D1117] dark:bg-[#0D1117] border-r border-[#1A365D]/20 z-40">
+<div class="p-6">
+<div class="flex items-center gap-3 mb-8">
+<div class="h-10 w-10 bg-gradient-to-br from-secondary-container to-secondary rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary" data-icon="shield" style="font-variation-settings: 'FILL' 1;">shield</span>
+</div>
+<div>
+<h3 class="text-[#D4AF37] font-manrope font-bold text-sm">專業金融資訊</h3>
+<p class="text-slate-400 text-[10px] uppercase tracking-widest">全球熱錢流向</p>
+</div>
+</div>
+<nav class="space-y-1">
+<div class="px-3 py-2 text-slate-400 hover:text-[#ADC7F7] hover:bg-[#1A365D]/10 transition-all duration-200 cursor-pointer flex items-center gap-3 rounded group">
+<span class="material-symbols-outlined text-xl" data-icon="insights">insights</span>
+<span class="font-inter text-xs font-medium tracking-wide">熱錢追蹤</span>
+</div>
+<div class="px-3 py-2 text-[#D4AF37] bg-[#1A365D]/30 border-r-2 border-[#D4AF37] transition-all duration-200 cursor-pointer flex items-center gap-3 rounded">
+<span class="material-symbols-outlined text-xl" data-icon="show_chart" style="font-variation-settings: 'FILL' 1;">show_chart</span>
+<span class="font-inter text-xs font-medium tracking-wide">即時報價</span>
+</div>
+<div class="px-3 py-2 text-slate-400 hover:text-[#ADC7F7] hover:bg-[#1A365D]/10 transition-all duration-200 cursor-pointer flex items-center gap-3 rounded group">
+<span class="material-symbols-outlined text-xl" data-icon="newspaper">newspaper</span>
+<span class="font-inter text-xs font-medium tracking-wide">晨曦日照</span>
+</div>
+<div class="px-3 py-2 text-slate-400 hover:text-[#ADC7F7] hover:bg-[#1A365D]/10 transition-all duration-200 cursor-pointer flex items-center gap-3 rounded group">
+<span class="material-symbols-outlined text-xl" data-icon="history">history</span>
+<span class="font-inter text-xs font-medium tracking-wide">歷史紀錄</span>
+</div>
+<div class="px-3 py-2 text-slate-400 hover:text-[#ADC7F7] hover:bg-[#1A365D]/10 transition-all duration-200 cursor-pointer flex items-center gap-3 rounded group">
+<span class="material-symbols-outlined text-xl" data-icon="settings">settings</span>
+<span class="font-inter text-xs font-medium tracking-wide">設定</span>
+</div>
+</nav>
+</div>
+<div class="mt-auto p-6 space-y-1">
+<div class="px-3 py-2 text-slate-500 hover:text-[#ADC7F7] transition-all duration-200 cursor-pointer flex items-center gap-3">
+<span class="material-symbols-outlined text-xl" data-icon="help_outline">help_outline</span>
+<span class="font-inter text-xs font-medium tracking-wide">說明</span>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 md:ml-64 p-6 md:p-12 space-y-12">
+<!-- Hot Money Tracker -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-headline text-2xl font-bold tracking-tight text-on-surface flex items-center gap-2">
+<span class="text-secondary material-symbols-outlined" data-icon="local_fire_department" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+ 熱錢溫度計
+ </h2>
+<span class="text-[10px] tracking-widest uppercase opacity-40 font-label">即時熱錢流向</span>
+</div>
+<div class="flex gap-4 overflow-x-auto no-scrollbar pb-2">
+<!-- Ticker Card - DXY -->
+<div class="min-w-[200px] p-4 bg-surface-container-low rounded-lg border-l-2 border-secondary group hover:bg-surface-container transition-colors duration-300">
+<div class="flex justify-between items-start mb-2">
+<span class="font-headline font-bold text-lg">DXY</span>
+<span class="text-secondary text-xs font-bold">+0.3%</span>
+</div>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">美元指數</p>
+<div class="mt-2 text-xs text-slate-400">偏強</div>
+</div>
+<!-- Ticker Card - VIX -->
+<div class="min-w-[200px] p-4 bg-surface-container-low rounded-lg border-l-2 border-primary group hover:bg-surface-container transition-colors duration-300">
+<div class="flex justify-between items-start mb-2">
+<span class="font-headline font-bold text-lg">VIX</span>
+<span class="text-primary text-xs font-bold">-1.2%</span>
+</div>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">恐慌指數</p>
+<div class="mt-2 text-xs text-slate-400">市場穩定</div>
+</div>
+<!-- Ticker Card - BTC ETF -->
+<div class="min-w-[200px] p-4 bg-surface-container-low rounded-lg border-l-2 border-secondary group hover:bg-surface-container transition-colors duration-300">
+<div class="flex justify-between items-start mb-2">
+<span class="font-headline font-bold text-lg">BTC ETF</span>
+<span class="text-secondary text-xs font-bold">+$156M</span>
+</div>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">比特幣現貨ETF</p>
+<div class="mt-2 text-xs text-slate-400">淨流入</div>
+</div>
+<!-- Ticker Card - EM Flow -->
+<div class="min-w-[200px] p-4 bg-surface-container-low rounded-lg border-l-2 border-secondary group hover:bg-surface-container transition-colors duration-300">
+<div class="flex justify-between items-start mb-2">
+<span class="font-headline font-bold text-lg">EM</span>
+<span class="text-secondary text-xs font-bold">+$2.3B</span>
+</div>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">新興市場資金</p>
+<div class="mt-2 text-xs text-slate-400">資金流入</div>
+</div>
+</div>
+</section>
+<!-- Real-time Quotes & Charts -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 space-y-6">
+<div class="flex items-center justify-between">
+<h2 class="font-headline text-2xl font-bold tracking-tight">即時報價</h2>
+<div class="flex gap-2">
+<button class="px-3 py-1 bg-primary-container text-primary text-[10px] font-bold uppercase rounded-full">加密貨幣</button>
+<button class="px-3 py-1 hover:bg-surface-container-high text-on-surface-variant text-[10px] font-bold uppercase rounded-full transition-colors">台股</button>
+<button class="px-3 py-1 hover:bg-surface-container-high text-on-surface-variant text-[10px] font-bold uppercase rounded-full transition-colors">AI股</button>
+</div>
+</div>
+<!-- Crypto Quotes -->
+<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+<!-- BTC -->
+<div class="p-4 bg-surface-container-low rounded-lg border border-[#D4AF37]/20">
+<div class="flex justify-between items-start mb-2">
+<span class="font-headline font-bold text-lg text-[#D4AF37]">BTC</span>
+<span class="text-red-400 text-xs font-bold">-2.2%</span>
+</div>
+<p class="text-2xl font-mono font-bold">$66,620</p>
+<p class="text-[10px] text-on-surface-variant uppercase">比特幣</p>
+</div>
+<!-- ETH -->
+<div class="p-4 bg-surface-container-low rounded-lg border border-[#D4AF37]/20">
+<div class="flex justify-between items-start mb-2">
+<span class="font-headline font-bold text-lg text-[#D4AF37]">ETH</span>
+<span class="text-red-400 text-xs font-bold">-4.2%</span>
+</div>
+<p class="text-2xl font-mono font-bold">$2,048</p>
+<p class="text-[10px] text-on-surface-variant uppercase">以太坊</p>
+</div>
+<!-- SOL -->
+<div class="p-4 bg-surface-container-low rounded-lg border border-[#D4AF37]/20">
+<div class="flex justify-between items-start mb-2">
+<span class="font-headline font-bold text-lg text-[#D4AF37]">SOL</span>
+<span class="text-red-400 text-xs font-bold">-4.1%</span>
+</div>
+<p class="text-2xl font-mono font-bold">$79.11</p>
+<p class="text-[10px] text-on-surface-variant uppercase">Solana</p>
+</div>
+</div>
+<!-- Taiwan Stocks -->
+<div class="mt-6">
+<h3 class="font-bold text-lg mb-4 text-[#D4AF37]">🇹🇼 台灣股市</h3>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+<div class="p-4 bg-surface-container-low rounded-lg">
+<div class="flex justify-between items-start mb-2">
+<span class="font-headline font-bold text-lg">2330</span>
+<span class="text-green-400 text-xs font-bold">+1.8%</span>
+</div>
+<p class="text-xl font-mono font-bold">¥985</p>
+<p class="text-[10px] text-on-surface-variant">台積電</p>
+</div>
+<div class="p-4 bg-surface-container-low rounded-lg">
+<div class="flex justify-between items-start mb-2">
+<span class="font-headline font-bold text-lg">TSM</span>
+<span class="text-green-400 text-xs font-bold">+1.5%</span>
+</div>
+<p class="text-xl font-mono font-bold">$185.23</p>
+<p class="text-[10px] text-on-surface-variant">台積電 ADR</p>
+</div>
+<div class="p-4 bg-surface-container-low rounded-lg">
+<div class="flex justify-between items-start mb-2">
+<span class="font-headline font-bold text-lg">TXF</span>
+<span class="text-green-400 text-xs font-bold">+0.5%</span>
+</div>
+<p class="text-xl font-mono font-bold">23,456</p>
+<p class="text-[10px] text-on-surface-variant">台指期</p>
+</div>
+</div>
+</div>
+<!-- AI Stocks -->
+<div class="mt-6">
+<h3 class="font-bold text-lg mb-4 text-[#D4AF37]">🤖 AI 科技股</h3>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+<div class="p-4 bg-surface-container-low rounded-lg">
+<div class="flex justify-between items-start mb-2">
+<span class="font-headline font-bold text-lg">NVDA</span>
+<span class="text-green-400 text-xs font-bold">+2.5%</span>
+</div>
+<p class="text-xl font-mono font-bold">$875.23</p>
+<p class="text-[10px] text-on-surface-variant">NVIDIA</p>
+</div>
+<div class="p-4 bg-surface-container-low rounded-lg">
+<div class="flex justify-between items-start mb-2">
+<span class="font-headline font-bold text-lg">MSFT</span>
+<span class="text-green-400 text-xs font-bold">+1.2%</span>
+</div>
+<p class="text-xl font-mono font-bold">$415.12</p>
+<p class="text-[10px] text-on-surface-variant">Microsoft</p>
+</div>
+<div class="p-4 bg-surface-container-low rounded-lg">
+<div class="flex justify-between items-start mb-2">
+<span class="font-headline font-bold text-lg">AMD</span>
+<span class="text-green-400 text-xs font-bold">+3.1%</span>
+</div>
+<p class="text-xl font-mono font-bold">$162.34</p>
+<p class="text-[10px] text-on-surface-variant">AMD</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Daily Report Card -->
+<div class="lg:col-span-1">
+<div class="h-full bg-[#1A365D]/10 rounded-xl p-8 border border-[#1A365D]/20 flex flex-col">
+<div class="mb-4">
+<span class="text-[11px] tracking-wider uppercase text-[#D4AF37] font-bold">🌸 晨曦日照</span>
+<h3 class="font-headline text-xl font-bold leading-tight mt-2">2026/04/08</h3>
+<p class="text-[#9ca3af] text-xs mt-1">☀️ 台北 26°C 晴</p>
+</div>
+<div class="space-y-3 flex-1">
+<div class="flex gap-3 items-center">
+<div class="h-8 w-8 shrink-0 bg-[#1f2937] rounded-lg flex items-center justify-center text-[#D4AF37]">
+<span class="material-symbols-outlined text-sm" data-icon="trending_up">trending_up</span>
+</div>
+<div>
+<h4 class="text-xs font-bold">📊 市場概況</h4>
+<p class="text-[10px] text-[#9ca3af]">BTC $66,620 | ETH $2,048</p>
+</div>
+</div>
+<div class="flex gap-3 items-center">
+<div class="h-8 w-8 shrink-0 bg-[#1f2937] rounded-lg flex items-center justify-center text-[#22d3ee]">
+<span class="material-symbols-outlined text-sm" data-icon="newspaper">newspaper</span>
+</div>
+<div>
+<h4 class="text-xs font-bold">📰 今日焦點</h4>
+<p class="text-[10px] text-[#9ca3af]">市場持續回調</p>
+</div>
+</div>
+<div class="p-3 bg-[#0f172a] rounded-lg border-l-2 border-[#D4AF37]">
+<h4 class="text-xs font-bold mb-1">💡 曦曦觀察</h4>
+<p class="text-[10px] text-[#9ca3af]">耐心等待進場機會</p>
+</div>
+</div>
+<div class="mt-4 p-3 bg-gradient-to-r from-[#D4AF37]/10 to-transparent rounded-lg border border-[#D4AF37]/20">
+<p class="text-[#D4AF37] text-center text-xs font-bold">「慢慢來，比較快」</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Market Overview Table -->
+<section class="bg-surface-container-low rounded-2xl overflow-hidden shadow-2xl">
+<div class="p-8 border-b border-outline-variant/10 flex justify-between items-end">
+<div>
+<h2 class="font-headline text-2xl font-bold tracking-tight mb-1">市場總覽</h2>
+<p class="text-xs text-on-surface-variant">即時專業報價數據</p>
+</div>
+<div class="flex gap-6 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">
+<button class="text-secondary border-b border-secondary pb-1">全部</button>
+<button class="hover:text-on-surface transition-colors">加密貨幣</button>
+<button class="hover:text-on-surface transition-colors">股票</button>
+<button class="hover:text-on-surface transition-colors">外匯</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-high/50 text-on-surface-variant text-[10px] font-bold uppercase tracking-widest">
+<th class="px-8 py-4">資產</th>
+<th class="px-8 py-4 text-right">價格</th>
+<th class="px-8 py-4 text-right">24小時漲跌</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/5">
+<tr class="hover:bg-surface-container-highest/30 transition-colors cursor-pointer">
+<td class="px-8 py-6">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-[#F7931A]/20 flex items-center justify-center">
+<span class="text-[#F7931A] font-bold">₿</span>
+</div>
+<div>
+<p class="font-bold text-sm">比特幣</p>
+<p class="text-[10px] text-on-surface-variant">BTC</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-6 text-right font-mono font-bold text-sm">$66,620</td>
+<td class="px-8 py-6 text-right text-red-400 font-bold text-sm">-2.2%</td>
+</tr>
+<tr class="hover:bg-surface-container-highest/30 transition-colors cursor-pointer">
+<td class="px-8 py-6">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-[#627EEA]/20 flex items-center justify-center">
+<span class="text-[#627EEA] font-bold">Ξ</span>
+</div>
+<div>
+<p class="font-bold text-sm">以太坊</p>
+<p class="text-[10px] text-on-surface-variant">ETH</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-6 text-right font-mono font-bold text-sm">$2,048</td>
+<td class="px-8 py-6 text-right text-red-400 font-bold text-sm">-4.2%</td>
+</tr>
+<tr class="hover:bg-surface-container-highest/30 transition-colors cursor-pointer">
+<td class="px-8 py-6">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-[#9945FF]/20 flex items-center justify-center">
+<span class="text-[#9945FF] font-bold">◎</span>
+</div>
+<div>
+<p class="font-bold text-sm">Solana</p>
+<p class="text-[10px] text-on-surface-variant">SOL</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-6 text-right font-mono font-bold text-sm">$79.11</td>
+<td class="px-8 py-6 text-right text-red-400 font-bold text-sm">-4.1%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
 </main>
-
+</div>
 <!-- Footer -->
-<footer class="border-t border-[#1f2937]/50 py-8 px-6">
-  <div class="max-w-[1400px] mx-auto text-center text-sm text-[#9ca3af]">
-    <p>🌸 晨曦金融網 - 全球熱錢流向第一平台</p>
-    <p class="mt-2">每天進步一點點，做出精緻的作品</p>
-  </div>
+<footer class="bg-[#0D1117] dark:bg-[#0D1117] w-full py-6 mt-auto border-t border-[#1A365D]/20">
+<div class="flex justify-between items-center px-12 w-full">
+<p class="font-inter text-[10px] tracking-widest uppercase opacity-60 text-slate-500">© 2026 晨曦金融網 | 全球熱錢流向第一平台</p>
+<div class="flex gap-8">
+<span class="font-inter text-[10px] tracking-widest uppercase text-[#D4AF37]">🌸 晨曦照著樹</span>
+</div>
+</div>
 </footer>
-
+<!-- Mobile Navigation -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-[#0D1117] border-t border-[#1A365D]/20 px-6 py-4 flex justify-between items-center z-50">
+<button class="flex flex-col items-center gap-1 text-[#D4AF37]">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-[8px] uppercase font-bold">首頁</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined" data-icon="show_chart">show_chart</span>
+<span class="text-[8px] uppercase font-bold">報價</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined" data-icon="newspaper">newspaper</span>
+<span class="text-[8px] uppercase font-bold">日照</span>
+</button>
+</nav>
 <script>
-// 顯示當前時間
+// 更新時間
 function updateTime() {
   const now = new Date();
-  const options = { 
+  const taiwanTime = now.toLocaleString('zh-TW', { 
     timeZone: 'Asia/Taipei',
-    hour: '2-digit', 
+    hour: '2-digit',
     minute: '2-digit',
-    weekday: 'short'
-  };
-  document.getElementById('current-time').textContent = now.toLocaleTimeString('zh-TW', options);
+    second: '2-digit'
+  });
+  const timeEl = document.getElementById('current-time');
+  if (timeEl) timeEl.textContent = taiwanTime;
 }
 updateTime();
-setInterval(updateTime, 60000);
+setInterval(updateTime, 1000);
 </script>
-</body>
-</html>
+</body></html>
