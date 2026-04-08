@@ -520,40 +520,32 @@ let priceCache = {
   SOL: { price: 0, change: 0 }
 };
 
-// 從 Binance API 獲取價格
+// 從 CoinGecko API 獲取價格
 function fetchPrices() {
   console.log('正在獲取價格...');
   
-  // BTC
-  fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT')
+  fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd&include_24hr_change=true')
     .then(function(r) { return r.json(); })
     .then(function(data) {
-      priceCache.BTC = { price: parseFloat(data.lastPrice), change: parseFloat(data.priceChangePercent) };
-      console.log('BTC:', priceCache.BTC);
+      console.log('價格數據:', data);
+      
+      priceCache.BTC = { 
+        price: data.bitcoin.usd, 
+        change: data.bitcoin.usd_24h_change 
+      };
+      priceCache.ETH = { 
+        price: data.ethereum.usd, 
+        change: data.ethereum.usd_24h_change 
+      };
+      priceCache.SOL = { 
+        price: data.solana.usd, 
+        change: data.solana.usd_24h_change 
+      };
+      
       updatePriceDisplay();
       updateHotMoneyTracker();
     })
-    .catch(function(e) { console.log('BTC錯誤', e); });
-  
-  // ETH
-  fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=ETHUSDT')
-    .then(function(r) { return r.json(); })
-    .then(function(data) {
-      priceCache.ETH = { price: parseFloat(data.lastPrice), change: parseFloat(data.priceChangePercent) };
-      console.log('ETH:', priceCache.ETH);
-      updatePriceDisplay();
-    })
-    .catch(function(e) { console.log('ETH錯誤', e); });
-  
-  // SOL
-  fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=SOLUSDT')
-    .then(function(r) { return r.json(); })
-    .then(function(data) {
-      priceCache.SOL = { price: parseFloat(data.lastPrice), change: parseFloat(data.priceChangePercent) };
-      console.log('SOL:', priceCache.SOL);
-      updatePriceDisplay();
-    })
-    .catch(function(e) { console.log('SOL錯誤', e); });
+    .catch(function(e) { console.log('價格獲取失敗', e); });
 }
 
 // 更新報價顯示
