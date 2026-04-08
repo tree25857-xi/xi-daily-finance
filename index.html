@@ -584,8 +584,15 @@ function updateHotMoneyTracker() {
   }
 }
 
-// 初始化
-fetchPrices();
+// 初始化 - 確保 DOM 載入後執行
+function init() {
+  console.log('初始化價格系統...');
+  fetchPrices();
+}
+
+// 立即執行
+init();
+
 // 每 30 秒更新一次
 setInterval(fetchPrices, 30000);
 </script>
