@@ -185,8 +185,8 @@
 <!-- Ticker Card - BTC ETF -->
 <div class="min-w-[200px] p-4 bg-surface-container-low rounded-lg border-l-2 border-secondary group hover:bg-surface-container transition-colors duration-300">
 <div class="flex justify-between items-start mb-2">
-<span class="font-headline font-bold text-lg">BTC ETF</span>
-<span class="text-secondary text-xs font-bold">+$156M</span>
+<span class="font-headline font-bold text-lg">BTC</span>
+<span id="btc-flow" class="text-secondary text-xs font-bold">+$156M</span>
 </div>
 <p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">比特幣現貨ETF</p>
 <div class="mt-2 text-xs text-slate-400">淨流入</div>
@@ -219,27 +219,27 @@
 <div class="p-4 bg-surface-container-low rounded-lg border border-[#D4AF37]/20">
 <div class="flex justify-between items-start mb-2">
 <span class="font-headline font-bold text-lg text-[#D4AF37]">BTC</span>
-<span class="text-red-400 text-xs font-bold">-2.2%</span>
+<span id="btc-change" class="text-red-400 text-xs font-bold">-2.2%</span>
 </div>
-<p class="text-2xl font-mono font-bold">$66,620</p>
+<p id="btc-price" class="text-2xl font-mono font-bold">$66,620</p>
 <p class="text-[10px] text-on-surface-variant uppercase">比特幣</p>
 </div>
 <!-- ETH -->
 <div class="p-4 bg-surface-container-low rounded-lg border border-[#D4AF37]/20">
 <div class="flex justify-between items-start mb-2">
 <span class="font-headline font-bold text-lg text-[#D4AF37]">ETH</span>
-<span class="text-red-400 text-xs font-bold">-4.2%</span>
+<span id="eth-change" class="text-red-400 text-xs font-bold">-4.2%</span>
 </div>
-<p class="text-2xl font-mono font-bold">$2,048</p>
+<p id="eth-price" class="text-2xl font-mono font-bold">$2,048</p>
 <p class="text-[10px] text-on-surface-variant uppercase">以太坊</p>
 </div>
 <!-- SOL -->
 <div class="p-4 bg-surface-container-low rounded-lg border border-[#D4AF37]/20">
 <div class="flex justify-between items-start mb-2">
 <span class="font-headline font-bold text-lg text-[#D4AF37]">SOL</span>
-<span class="text-red-400 text-xs font-bold">-4.1%</span>
+<span id="sol-change" class="text-red-400 text-xs font-bold">-4.1%</span>
 </div>
-<p class="text-2xl font-mono font-bold">$79.11</p>
+<p id="sol-price" class="text-2xl font-mono font-bold">$79.11</p>
 <p class="text-[10px] text-on-surface-variant uppercase">Solana</p>
 </div>
 </div>
@@ -385,11 +385,11 @@ new TradingView.widget({
 </div>
 <div class="p-4 bg-surface-container-highest/50 rounded-lg border-l-2 border-[#D4AF37]">
 <h4 class="text-sm font-bold mb-2">💡 曦曦觀察</h4>
-<p class="text-xs text-on-surface-variant">市場持續回調中，耐心等待進場機會。熱錢持續流入風險資產。</p>
+<p class="text-xs text-on-surface-variant">市場持續回調中,耐心等待進場機會。熱錢持續流入風險資產。</p>
 </div>
 </div>
 <div class="mt-8 p-4 bg-gradient-to-r from-[#D4AF37]/20 to-transparent rounded-lg border border-[#D4AF37]/30">
-<p class="text-[#D4AF37] text-center font-bold">「慢慢來，比較快」—— 曦曦</p>
+<p class="text-[#D4AF37] text-center font-bold">「慢慢來,比較快」-- 曦曦</p>
 </div>
 </div>
 </div>
@@ -499,7 +499,7 @@ function updateTime() {
   const now = new Date();
   const taiwanTime = now.toLocaleString('zh-TW', { 
     timeZone: 'Asia/Taipei',
-    hour: '2-digit',
+    hour: '2-digit', 
     minute: '2-digit',
     second: '2-digit'
   });
@@ -509,4 +509,85 @@ function updateTime() {
 updateTime();
 setInterval(updateTime, 1000);
 </script>
+
+<!-- 即時報價系統 -->
+<script>
+// 價格快取
+let priceCache = {
+  BTC: { price: 0, change: 0 },
+  ETH: { price: 0, change: 0 },
+  SOL: { price: 0, change: 0 }
+};
+
+// 從 Binance API 獲取價格
+async function fetchPrices() {
+  try {
+    const symbols = ['BTCUSDT', 'ETHUSDT', 'SOLUSDT'];
+    const prices = await Promise.all(
+      symbols.map(s => fetch(`https://api.binance.com/api/v3/ticker/24hr?symbol=${s}`).then(r => r.json()))
+    );
+    
+    prices.forEach((data, i) => {
+      const coins = ['BTC', 'ETH', 'SOL'];
+      const coin = coins[i];
+      priceCache[coin] = {
+        price: parseFloat(data.lastPrice),
+        change: parseFloat(data.priceChangePercent)
+      };
+    });
+    
+    updatePriceDisplay();
+    updateHotMoneyTracker();
+  } catch (e) {
+    console.log('價格獲取失敗', e);
+  }
+}
+
+// 更新報價顯示
+function updatePriceDisplay() {
+  // BTC
+  const btcPrice = document.getElementById('btc-price');
+  const btcChange = document.getElementById('btc-change');
+  if (btcPrice && priceCache.BTC.price) {
+    btcPrice.textContent = '$' + priceCache.BTC.price.toLocaleString();
+    btcChange.textContent = (priceCache.BTC.change >= 0 ? '+' : '') + priceCache.BTC.change.toFixed(2) + '%';
+    btcChange.className = priceCache.BTC.change >= 0 ? 'text-green-400 text-xs font-bold' : 'text-red-400 text-xs font-bold';
+  }
+  
+  // ETH
+  const ethPrice = document.getElementById('eth-price');
+  const ethChange = document.getElementById('eth-change');
+  if (ethPrice && priceCache.ETH.price) {
+    ethPrice.textContent = '$' + priceCache.ETH.price.toLocaleString();
+    ethChange.textContent = (priceCache.ETH.change >= 0 ? '+' : '') + priceCache.ETH.change.toFixed(2) + '%';
+    ethChange.className = priceCache.ETH.change >= 0 ? 'text-green-400 text-xs font-bold' : 'text-red-400 text-xs font-bold';
+  }
+  
+  // SOL
+  const solPrice = document.getElementById('sol-price');
+  const solChange = document.getElementById('sol-change');
+  if (solPrice && priceCache.SOL.price) {
+    solPrice.textContent = '$' + priceCache.SOL.price.toLocaleString();
+    solChange.textContent = (priceCache.SOL.change >= 0 ? '+' : '') + priceCache.SOL.change.toFixed(2) + '%';
+    solChange.className = priceCache.SOL.change >= 0 ? 'text-green-400 text-xs font-bold' : 'text-red-400 text-xs font-bold';
+  }
+}
+
+// 更新熱錢追蹤卡片
+function updateHotMoneyTracker() {
+  // BTC ETF 卡片更新
+  const btcFlow = document.getElementById('btc-flow');
+  if (btcFlow && priceCache.BTC.change) {
+    const sign = priceCache.BTC.change >= 0 ? '+' : '';
+    btcFlow.textContent = sign + priceCache.BTC.change.toFixed(1) + '%';
+    btcFlow.className = priceCache.BTC.change >= 0 ? 'text-secondary text-xs font-bold' : 'text-red-400 text-xs font-bold';
+  }
+}
+
+// 初始化
+fetchPrices();
+// 每 30 秒更新一次
+setInterval(fetchPrices, 30000);
+</script>
+
 </body></html>
