@@ -227,95 +227,45 @@ new TradingView.widget({"width":"100%","height":50,"symbol":"BINANCE:ETHUSDT","l
 new TradingView.widget({"width":"100%","height":50,"symbol":"BINANCE:SOLUSDT","locale":"zh_TW","colorTheme":"dark","isTransparent":true});
 </script>
 
-<!-- Crypto Quotes -->
-<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-<!-- BTC -->
-<div class="p-4 bg-surface-container-low rounded-lg border border-[#D4AF37]/20">
-<div class="flex justify-between items-start mb-2">
-<span class="font-headline font-bold text-lg text-[#D4AF37]">BTC</span>
-<span id="btc-change" class="text-red-400 text-xs font-bold">-2.2%</span>
+<!-- TradingView 加密貨幣即時報價 -->
+<div class="grid grid-cols-3 gap-3">
+<div class="tradingview-widget-container" style="height:60px;width:100%"></div>
+<div class="tradingview-widget-container" style="height:60px;width:100%"></div>
+<div class="tradingview-widget-container" style="height:60px;width:100%"></div>
 </div>
-<p id="btc-price" class="text-2xl font-mono font-bold">$66,620</p>
-<p class="text-[10px] text-on-surface-variant uppercase">比特幣</p>
-</div>
-<!-- ETH -->
-<div class="p-4 bg-surface-container-low rounded-lg border border-[#D4AF37]/20">
-<div class="flex justify-between items-start mb-2">
-<span class="font-headline font-bold text-lg text-[#D4AF37]">ETH</span>
-<span id="eth-change" class="text-red-400 text-xs font-bold">-4.2%</span>
-</div>
-<p id="eth-price" class="text-2xl font-mono font-bold">$2,048</p>
-<p class="text-[10px] text-on-surface-variant uppercase">以太坊</p>
-</div>
-<!-- SOL -->
-<div class="p-4 bg-surface-container-low rounded-lg border border-[#D4AF37]/20">
-<div class="flex justify-between items-start mb-2">
-<span class="font-headline font-bold text-lg text-[#D4AF37]">SOL</span>
-<span id="sol-change" class="text-red-400 text-xs font-bold">-4.1%</span>
-</div>
-<p id="sol-price" class="text-2xl font-mono font-bold">$79.11</p>
-<p class="text-[10px] text-on-surface-variant uppercase">Solana</p>
-</div>
-</div>
-<!-- Taiwan Stocks -->
+<script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js"></script>
+<script type="text/javascript">
+new TradingView.widget({"width":"100%","height":60,"symbol":"BINANCE:BTCUSDT","locale":"zh_TW","colorTheme":"dark","isTransparent":true});
+new TradingView.widget({"width":"100%","height":60,"symbol":"BINANCE:ETHUSDT","locale":"zh_TW","colorTheme":"dark","isTransparent":true});
+new TradingView.widget({"width":"100%","height":60,"symbol":"BINANCE:SOLUSDT","locale":"zh_TW","colorTheme":"dark","isTransparent":true});
+</script>
+<!-- TradingView 台灣股市即時報價 -->
 <div class="mt-6">
 <h3 class="font-bold text-lg mb-4 text-[#D4AF37]">🇹🇼 台灣股市</h3>
-<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-<div class="p-4 bg-surface-container-low rounded-lg">
-<div class="flex justify-between items-start mb-2">
-<span class="font-headline font-bold text-lg">2330</span>
-<span class="text-green-400 text-xs font-bold">+1.8%</span>
+<div class="grid grid-cols-3 gap-3">
+<div class="tradingview-widget-container" style="height:60px;width:100%"></div>
+<div class="tradingview-widget-container" style="height:60px;width:100%"></div>
+<div class="tradingview-widget-container" style="height:60px;width:100%"></div>
 </div>
-<p class="text-xl font-mono font-bold">¥985</p>
-<p class="text-[10px] text-on-surface-variant">台積電</p>
+<script type="text/javascript">
+new TradingView.widget({"width":"100%","height":60,"symbol":"TWSE:2330","locale":"zh_TW","colorTheme":"dark","isTransparent":true});
+new TradingView.widget({"width":"100%","height":60,"symbol":"NYSE:TSM","locale":"zh_TW","colorTheme":"dark","isTransparent":true});
+new TradingView.widget({"width":"100%","height":60,"symbol":"TAIFEX:TXF1!","locale":"zh_TW","colorTheme":"dark","isTransparent":true});
+</script>
 </div>
-<div class="p-4 bg-surface-container-low rounded-lg">
-<div class="flex justify-between items-start mb-2">
-<span class="font-headline font-bold text-lg">TSM</span>
-<span class="text-green-400 text-xs font-bold">+1.5%</span>
-</div>
-<p class="text-xl font-mono font-bold">$185.23</p>
-<p class="text-[10px] text-on-surface-variant">台積電 ADR</p>
-</div>
-<div class="p-4 bg-surface-container-low rounded-lg">
-<div class="flex justify-between items-start mb-2">
-<span class="font-headline font-bold text-lg">TXF</span>
-<span class="text-green-400 text-xs font-bold">+0.5%</span>
-</div>
-<p class="text-xl font-mono font-bold">23,456</p>
-<p class="text-[10px] text-on-surface-variant">台指期</p>
-</div>
-</div>
-</div>
-<!-- AI Stocks -->
+<!-- TradingView AI 科技股即時報價 -->
 <div class="mt-6">
 <h3 class="font-bold text-lg mb-4 text-[#D4AF37]">🤖 AI 科技股</h3>
-<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-<div class="p-4 bg-surface-container-low rounded-lg">
-<div class="flex justify-between items-start mb-2">
-<span class="font-headline font-bold text-lg">NVDA</span>
-<span class="text-green-400 text-xs font-bold">+2.5%</span>
+<div class="grid grid-cols-3 gap-3">
+<div class="tradingview-widget-container" style="height:60px;width:100%"></div>
+<div class="tradingview-widget-container" style="height:60px;width:100%"></div>
+<div class="tradingview-widget-container" style="height:60px;width:100%"></div>
 </div>
-<p class="text-xl font-mono font-bold">$875.23</p>
-<p class="text-[10px] text-on-surface-variant">NVIDIA</p>
-</div>
-<div class="p-4 bg-surface-container-low rounded-lg">
-<div class="flex justify-between items-start mb-2">
-<span class="font-headline font-bold text-lg">MSFT</span>
-<span class="text-green-400 text-xs font-bold">+1.2%</span>
-</div>
-<p class="text-xl font-mono font-bold">$415.12</p>
-<p class="text-[10px] text-on-surface-variant">Microsoft</p>
-</div>
-<div class="p-4 bg-surface-container-low rounded-lg">
-<div class="flex justify-between items-start mb-2">
-<span class="font-headline font-bold text-lg">AMD</span>
-<span class="text-green-400 text-xs font-bold">+3.1%</span>
-</div>
-<p class="text-xl font-mono font-bold">$162.34</p>
-<p class="text-[10px] text-on-surface-variant">AMD</p>
-</div>
-</div>
+<script type="text/javascript">
+new TradingView.widget({"width":"100%","height":60,"symbol":"NASDAQ:NVDA","locale":"zh_TW","colorTheme":"dark","isTransparent":true});
+new TradingView.widget({"width":"100%","height":60,"symbol":"NASDAQ:MSFT","locale":"zh_TW","colorTheme":"dark","isTransparent":true});
+new TradingView.widget({"width":"100%","height":60,"symbol":"NASDAQ:AMD","locale":"zh_TW","colorTheme":"dark","isTransparent":true});
+</script>
 </div>
 </div>
 
