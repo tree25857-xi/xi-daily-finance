@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>🌸 晨曦金融網 - 全球熱錢流向</title>
 <meta name="description" content="晨曦金融網：每日金融市場分析、AI 選股建議、熱錢流向追蹤">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
 :root {
 --bg: #020617;
@@ -91,22 +90,21 @@ border: 1px solid rgba(212,175,55,0.6);
 }
 hr { border: none; border-top: 1px solid rgba(31,41,55,0.95); margin: 12px 0 18px; }
 
-/* Price Cards */
-.price-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
-.price-card {
+/* Price Widget Grid - TradingView */
+.price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.price-widget {
 background: rgba(15,23,42,0.9); border: 1px solid rgba(31,41,55,0.95);
-border-radius: 12px; padding: 14px;
+border-radius: 12px; overflow: hidden;
 transition: transform var(--transition-normal), border-color var(--transition-normal);
 }
-.price-card:hover { transform: translateY(-2px); border-color: rgba(212,175,55,0.4); }
-.price-card-symbol { width: 6px; height: 6px; border-radius: 50%; display: inline-block; margin-right: 6px; }
-.price-card-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 4px; }
-.price-card-value { font-size: 18px; font-weight: 700; }
-.price-card-change { font-size: 12px; margin-top: 4px; font-weight: 500; }
-.positive { color: var(--success); }
-.negative { color: var(--danger); }
-.price-card-meta { font-size: 10px; color: var(--text-muted); margin-top: 4px; }
-.price-refresh { font-size: 10px; color: var(--text-muted); margin-top: 8px; opacity: 0.7; }
+.price-widget:hover { transform: translateY(-2px); border-color: rgba(212,175,55,0.4); }
+.price-widget-header {
+padding: 10px 12px 6px;
+border-bottom: 1px solid rgba(31,41,55,0.95);
+}
+.price-widget-title { font-size: 12px; font-weight: 600; color: var(--text-main); }
+.price-widget-sub { font-size: 10px; color: var(--text-muted); margin-top: 1px; }
+.price-widget-chart { height: 150px; }
 
 /* Chart Card */
 .chart-card {
@@ -154,9 +152,8 @@ font-size: 11px; color: var(--text-muted);
 .footer-inner { max-width: var(--max-width); margin: 0 auto; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
 
 /* Responsive */
-@media (max-width: 1100px) { .price-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 768px) { .price-grid { grid-template-columns: repeat(2, 1fr); } .two-col { grid-template-columns: 1fr; } .report-grid { grid-template-columns: 1fr; } .nav-links { display: none; } }
-@media (max-width: 480px) { .price-grid { grid-template-columns: 1fr; } }
+@media (max-width: 900px) { .price-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 768px) { .price-grid { grid-template-columns: 1fr; } .two-col { grid-template-columns: 1fr; } .report-grid { grid-template-columns: 1fr; } .nav-links { display: none; } }
 </style>
 </head>
 <body>
@@ -185,52 +182,75 @@ font-size: 11px; color: var(--text-muted);
 <main>
 <div class="page-container">
 
-<!-- ====== Live Prices ====== -->
+<!-- ====== Live Prices - TradingView Widgets ====== -->
 <section id="prices" class="section">
 <div class="section-header">
 <div class="section-title">📊 即時行情<span class="section-title-tag">Live</span></div>
-<div class="live-badge"><span class="live-dot"></span> Binance API</div>
+<div class="live-badge"><span class="live-dot"></span> TradingView Real-Time</div>
 </div>
 <hr>
 <div class="price-grid">
-<div class="price-card">
-<div class="price-card-label"><span class="price-card-symbol" style="background:#f7931a"></span> Bitcoin</div>
-<div class="price-card-value" id="price-btc">--</div>
-<div class="price-card-change positive" id="change-btc">--</div>
-<div class="price-card-meta">BTC/USDT</div>
+<!-- BTC -->
+<div class="price-widget">
+<div class="price-widget-header">
+<div class="price-widget-title">BTC / USD</div>
+<div class="price-widget-sub">Binance · Bitcoin</div>
 </div>
-<div class="price-card">
-<div class="price-card-label"><span class="price-card-symbol" style="background:#627eea"></span> Ethereum</div>
-<div class="price-card-value" id="price-eth">--</div>
-<div class="price-card-change positive" id="change-eth">--</div>
-<div class="price-card-meta">ETH/USDT</div>
-</div>
-<div class="price-card">
-<div class="price-card-label"><span class="price-card-symbol" style="background:#9945FF"></span> Solana</div>
-<div class="price-card-value" id="price-sol">--</div>
-<div class="price-card-change positive" id="change-sol">--</div>
-<div class="price-card-meta">SOL/USDT</div>
-</div>
-<div class="price-card">
-<div class="price-card-label"><span class="price-card-symbol" style="background:#D4AF37"></span> Gold</div>
-<div class="price-card-value" id="price-xau">--</div>
-<div class="price-card-change positive" id="change-xau">--</div>
-<div class="price-card-meta">XAU/USD</div>
-</div>
-<div class="price-card">
-<div class="price-card-label"><span class="price-card-symbol" style="background:#22d3ee"></span> NDX</div>
-<div class="price-card-value" id="price-ndx">--</div>
-<div class="price-card-change positive" id="change-ndx">--</div>
-<div class="price-card-meta">NASDAQ 100</div>
-</div>
-<div class="price-card">
-<div class="price-card-label"><span class="price-card-symbol" style="background:#22c55e"></span> USOIL</div>
-<div class="price-card-value" id="price-oil">--</div>
-<div class="price-card-change positive" id="change-oil">--</div>
-<div class="price-card-meta">WTI原油</div>
+<div class="price-widget-chart">
+<iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tv-btc&symbol=BINANCE:BTCUSDT&interval=1&hidesidetoolbar=true&hide_topbar=true&theme=dark&style=1&timezone=Etc%2FUTC&locale=zh" width="100%" height="150" frameborder="0" scrolling="no"></iframe>
 </div>
 </div>
-<div class="price-refresh">📡 即時更新 · 數據來源：Binance</div>
+<!-- ETH -->
+<div class="price-widget">
+<div class="price-widget-header">
+<div class="price-widget-title">ETH / USD</div>
+<div class="price-widget-sub">Binance · Ethereum</div>
+</div>
+<div class="price-widget-chart">
+<iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tv-eth&symbol=BINANCE:ETHUSDT&interval=1&hidesidetoolbar=true&hide_topbar=true&theme=dark&style=1&timezone=Etc%2FUTC&locale=zh" width="100%" height="150" frameborder="0" scrolling="no"></iframe>
+</div>
+</div>
+<!-- SOL -->
+<div class="price-widget">
+<div class="price-widget-header">
+<div class="price-widget-title">SOL / USD</div>
+<div class="price-widget-sub">Binance · Solana</div>
+</div>
+<div class="price-widget-chart">
+<iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tv-sol&symbol=BINANCE:SOLUSDT&interval=1&hidesidetoolbar=true&hide_topbar=true&theme=dark&style=1&timezone=Etc%2FUTC&locale=zh" width="100%" height="150" frameborder="0" scrolling="no"></iframe>
+</div>
+</div>
+<!-- Gold -->
+<div class="price-widget">
+<div class="price-widget-header">
+<div class="price-widget-title">XAU / USD</div>
+<div class="price-widget-sub">Gold Spot · 黃金</div>
+</div>
+<div class="price-widget-chart">
+<iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tv-gold&symbol=OANDA:XAUUSD&interval=1&hidesidetoolbar=true&hide_topbar=true&theme=dark&style=1&timezone=Etc%2FUTC&locale=zh" width="100%" height="150" frameborder="0" scrolling="no"></iframe>
+</div>
+</div>
+<!-- NDX -->
+<div class="price-widget">
+<div class="price-widget-header">
+<div class="price-widget-title">NDX</div>
+<div class="price-widget-sub">NASDAQ 100</div>
+</div>
+<div class="price-widget-chart">
+<iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tv-ndx&symbol=TVC:NDX&interval=1&hidesidetoolbar=true&hide_topbar=true&theme=dark&style=1&timezone=Etc%2FUTC&locale=zh" width="100%" height="150" frameborder="0" scrolling="no"></iframe>
+</div>
+</div>
+<!-- USOIL -->
+<div class="price-widget">
+<div class="price-widget-header">
+<div class="price-widget-title">USOIL</div>
+<div class="price-widget-sub">WTI 原油</div>
+</div>
+<div class="price-widget-chart">
+<iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tv-oil&symbol=TVC:USOIL&interval=1&hidesidetoolbar=true&hide_topbar=true&theme=dark&style=1&timezone=Etc%2FUTC&locale=zh" width="100%" height="150" frameborder="0" scrolling="no"></iframe>
+</div>
+</div>
+</div>
 </section>
 
 <!-- ====== TradingView Charts ====== -->
@@ -363,48 +383,5 @@ font-size: 11px; color: var(--text-muted);
 </div>
 </footer>
 </div>
-
-<script>
-// ====== Binance API 即時價格 ======
-async function fetchPrice(symbol, elementId, changeElementId) {
-  try {
-    const response = await fetch(`https://api.binance.com/api/v3/ticker/price?symbol=${symbol}`);
-    const data = await response.json();
-    const price = parseFloat(data.price);
-    
-    // 格式化價格
-    let displayPrice;
-    if (price >= 1000) {
-      displayPrice = '$' + price.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
-    } else if (price >= 1) {
-      displayPrice = '$' + price.toFixed(2);
-    } else {
-      displayPrice = '$' + price.toFixed(4);
-    }
-    document.getElementById(elementId).textContent = displayPrice;
-  } catch (error) {
-    document.getElementById(elementId).textContent = 'Error';
-  }
-}
-
-// 載入所有價格
-async function loadAllPrices() {
-  await fetchPrice('BTCUSDT', 'price-btc', 'change-btc');
-  await fetchPrice('ETHUSDT', 'price-eth', 'change-eth');
-  await fetchPrice('SOLUSDT', 'price-sol', 'change-sol');
-  // 黃金需要其他API，這裡用靜態顯示
-  document.getElementById('price-xau').textContent = '$2,341';
-  document.getElementById('change-xau').textContent = '+0.68%';
-  // NDX 和 USOIL 需要其他API，這裡用TradingView數據
-  document.getElementById('price-ndx').textContent = 'Live TV';
-  document.getElementById('change-ndx').textContent = 'See Chart';
-  document.getElementById('price-oil').textContent = 'Live TV';
-  document.getElementById('change-oil').textContent = 'See Chart';
-}
-
-// 每10秒更新一次
-loadAllPrices();
-setInterval(loadAllPrices, 10000);
-</script>
 </body>
 </html>
