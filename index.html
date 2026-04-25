@@ -217,16 +217,22 @@ font-size: 11px; color: var(--text-muted);
 <div class="price-card-meta">Binance</div>
 </div>
 <div class="price-card">
-<div class="price-card-label"><span class="price-card-symbol sol-color"></span> Solana</div>
-<div class="price-card-value">$142.85</div>
-<div class="price-card-change positive">+3.21%</div>
-<div class="price-card-meta">Binance</div>
+<div class="price-card-label"><span class="price-card-symbol sol-color"></span> SOL 原油</div>
+<div class="price-card-value">$78.35</div>
+<div class="price-card-change negative">-0.87%</div>
+<div class="price-card-meta">WTI Spot</div>
 </div>
 <div class="price-card">
-<div class="price-card-label"><span class="price-card-symbol tsm-color"></span> TSM</div>
-<div class="price-card-value">$176.89</div>
-<div class="price-card-change negative">-0.42%</div>
-<div class="price-card-meta">台灣50</div>
+<div class="price-card-label"><span class="price-card-symbol gold-color"></span> USOIL 原油</div>
+<div class="price-card-value">$68.42</div>
+<div class="price-card-change negative">-1.23%</div>
+<div class="price-card-meta">NYMEX</div>
+</div>
+<div class="price-card">
+<div class="price-card-label"><span class="price-card-symbol tsm-color"></span> VIX 恐慌指數</div>
+<div class="price-card-value">$18.24</div>
+<div class="price-card-change positive">+2.14%</div>
+<div class="price-card-meta">CBOE</div>
 </div>
 <div class="price-card">
 <div class="price-card-label"><span class="price-card-symbol gold-color"></span> 黃金現貨</div>
@@ -278,12 +284,25 @@ font-size: 11px; color: var(--text-muted);
 <div class="chart-card">
 <div class="chart-header">
 <div>
-<div class="chart-title">TSM 台積電</div>
-<div class="chart-sub">Taiwan · 1D</div>
+<div class="chart-title">VIX 恐慌指數</div>
+<div class="chart-sub">CBOE · 1D</div>
 </div>
 </div>
-<iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tradingview_tsm&symbol=TWSE:2330&interval=D&hidesidetoolbar=false&theme=dark&style=1&timezone=Etc%2FUTC&locale=zh" width="100%" height="240" frameborder="0" scrolling="no"></iframe>
+<iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tradingview_vix&symbol=CBOE:VIX&interval=D&hidesidetoolbar=false&theme=dark&style=1&timezone=Etc%2FUTC&locale=zh" width="100%" height="240" frameborder="0" scrolling="no"></iframe>
 </div>
+<div class="chart-card">
+<div class="chart-header">
+<div>
+<div class="chart-title">USOIL 原油</div>
+<div class="chart-sub">NYMEX · 1D</div>
+</div>
+</div>
+<iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tradingview_usd&symbol=TVC:USOIL&interval=D&hidesidetoolbar=false&theme=dark&style=1&timezone=Etc%2FUTC&locale=zh" width="100%" height="240" frameborder="0" scrolling="no"></iframe>
+</div>
+</div>
+
+<!-- Row 3: SOL + NVDA -->
+<div class="two-col">
 <div class="chart-card">
 <div class="chart-header">
 <div>
@@ -293,10 +312,6 @@ font-size: 11px; color: var(--text-muted);
 </div>
 <iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tradingview_gold&symbol=OANDA:XAUUSD&interval=D&hidesidetoolbar=false&theme=dark&style=1&timezone=Etc%2FUTC&locale=zh" width="100%" height="240" frameborder="0" scrolling="no"></iframe>
 </div>
-</div>
-
-<!-- Row 3: SOL + NVDA -->
-<div class="two-col">
 <div class="chart-card">
 <div class="chart-header">
 <div>
@@ -305,15 +320,6 @@ font-size: 11px; color: var(--text-muted);
 </div>
 </div>
 <iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tradingview_sol&symbol=BINANCE:SOLUSDT&interval=D&hidesidetoolbar=false&theme=dark&style=1&timezone=Etc%2FUTC&locale=zh" width="100%" height="240" frameborder="0" scrolling="no"></iframe>
-</div>
-<div class="chart-card">
-<div class="chart-header">
-<div>
-<div class="chart-title">NVDA 英特爾</div>
-<div class="chart-sub">NASDAQ · 1D</div>
-</div>
-</div>
-<iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tradingview_nvda&symbol=NASDAQ:NVDA&interval=D&hidesidetoolbar=false&theme=dark&style=1&timezone=Etc%2FUTC&locale=zh" width="100%" height="240" frameborder="0" scrolling="no"></iframe>
 </div>
 </div>
 </section>
