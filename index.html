@@ -6,11 +6,6 @@
 <title>🌸 晨曦金融網 - 全球熱錢流向</title>
 <meta name="description" content="晨曦金融網：每日金融市場分析、AI 選股建議、熱錢流向追蹤">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-// ====== API Token 設定 ======
-// ⚠️ Token 請設定在 config.js 中，不要寫在這裡！
-// const API_TOKEN = 'YOUR_TOKEN_HERE';
-</script>
 <style>
 :root {
 --bg: #020617;
@@ -39,7 +34,7 @@ min-height: 100vh;
 }
 .site-shell { min-height: 100vh; display: flex; flex-direction: column; }
 
-/* ====== Header ====== */
+/* Header */
 .site-header {
 position: sticky; top: 0; z-index: 50;
 backdrop-filter: blur(16px);
@@ -77,7 +72,7 @@ box-shadow: 0 0 25px rgba(212,175,55,0.55);
 }
 .nav-link-primary:hover { background: linear-gradient(135deg, #e5c44a, #818cf8); color: #020617; }
 
-/* ====== Main ====== */
+/* Main */
 main { flex: 1; }
 .page-container { max-width: var(--max-width); margin: 0 auto; padding: 32px 20px 56px; }
 
@@ -96,29 +91,20 @@ border: 1px solid rgba(212,175,55,0.6);
 }
 hr { border: none; border-top: 1px solid rgba(31,41,55,0.95); margin: 12px 0 18px; }
 
-/* ====== Price Cards ====== */
-.price-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
-.price-card {
+/* Price Widgets - TradingView Embeds */
+.price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.price-widget {
 background: rgba(15,23,42,0.9); border: 1px solid rgba(31,41,55,0.95);
-border-radius: 12px; padding: 14px;
-transition: transform var(--transition-normal), border-color var(--transition-normal);
+border-radius: 12px; overflow: hidden;
 }
-.price-card:hover { transform: translateY(-2px); border-color: rgba(212,175,55,0.4); }
-.price-card-label { font-size: 10px; color: var(--text-muted); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.8px; display: flex; align-items: center; gap: 5px; }
-.price-card-symbol { width: 6px; height: 6px; border-radius: 50%; }
-.btc-color { background: #f7931a; }
-.eth-color { background: #627eea; }
-.tsm-color { background: #22c55e; }
-.nvda-color { background: #22d3ee; }
-.gold-color { background: #D4AF37; }
-.sol-color { background: #9945FF; }
-.price-card-value { font-size: 18px; font-weight: 700; }
-.price-card-change { font-size: 12px; margin-top: 3px; font-weight: 500; }
-.positive { color: var(--success); }
-.negative { color: var(--danger); }
-.price-card-meta { font-size: 10px; color: var(--text-muted); margin-top: 3px; }
+.price-widget-header {
+padding: 12px 14px 8px; border-bottom: 1px solid rgba(31,41,55,0.95);
+}
+.price-widget-title { font-size: 13px; font-weight: 600; }
+.price-widget-sub { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+.price-widget-chart { height: 180px; }
 
-/* ====== Chart Card ====== */
+/* Chart Card */
 .chart-card {
 background: rgba(15,23,42,0.9); border: 1px solid rgba(31,41,55,0.95);
 border-radius: 12px; padding: 16px; margin-bottom: 14px;
@@ -128,10 +114,10 @@ border-radius: 12px; padding: 16px; margin-bottom: 14px;
 .chart-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
 .chart-container { height: 240px; position: relative; }
 
-/* ====== 2 Col Grid ====== */
+/* 2 Col Grid */
 .two-col { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
 
-/* ====== Report Card ====== */
+/* Report Card */
 .report-card {
 background: rgba(15,23,42,0.9); border: 1px solid rgba(31,41,55,0.95);
 border-radius: 12px; padding: 16px; cursor: pointer;
@@ -144,7 +130,7 @@ transition: all var(--transition-normal);
 .report-card-desc { font-size: 12px; color: var(--text-muted); margin-top: 8px; }
 .report-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 
-/* ====== Live Badge ====== */
+/* Live Badge */
 .live-badge {
 display: inline-flex; align-items: center; gap: 6px;
 padding: 3px 10px; border-radius: 999px; font-size: 11px;
@@ -157,22 +143,21 @@ box-shadow: 0 0 8px rgba(34,197,94,0.8); animation: pulse 2s infinite;
 }
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
 
-/* ====== Footer ====== */
+/* Footer */
 .site-footer {
 border-top: 1px solid rgba(31,41,55,0.95); padding: 16px 20px;
 font-size: 11px; color: var(--text-muted);
 }
 .footer-inner { max-width: var(--max-width); margin: 0 auto; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
 
-/* ====== Responsive ====== */
-@media (max-width: 1100px) { .price-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 768px) { .price-grid { grid-template-columns: repeat(2, 1fr); } .two-col { grid-template-columns: 1fr; } .report-grid { grid-template-columns: 1fr; } .nav-links { display: none; } }
-@media (max-width: 480px) { .price-grid { grid-template-columns: 1fr; } }
+/* Responsive */
+@media (max-width: 900px) { .price-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 768px) { .price-grid { grid-template-columns: 1fr; } .two-col { grid-template-columns: 1fr; } .report-grid { grid-template-columns: 1fr; } .nav-links { display: none; } }
 </style>
 </head>
 <body>
 <div class="site-shell">
-<!-- ====== Header ====== -->
+<!-- Header -->
 <header class="site-header">
 <div class="nav-inner">
 <div class="brand">
@@ -192,59 +177,77 @@ font-size: 11px; color: var(--text-muted);
 </div>
 </header>
 
-<!-- ====== Main ====== -->
+<!-- Main -->
 <main>
 <div class="page-container">
 
-<!-- ====== Live Prices ====== -->
+<!-- ====== Live Prices - TradingView Widgets ====== -->
 <section id="prices" class="section">
 <div class="section-header">
 <div class="section-title">📊 即時行情<span class="section-title-tag">Live</span></div>
-<div class="live-badge"><span class="live-dot"></span> Live</div>
+<div class="live-badge"><span class="live-dot"></span> TradingView Real-Time</div>
 </div>
 <hr>
 <div class="price-grid">
-<div class="price-card">
-<div class="price-card-label"><span class="price-card-symbol btc-color"></span> Bitcoin</div>
-<div class="price-card-value">$87,234</div>
-<div class="price-card-change positive">+2.34%</div>
-<div class="price-card-meta">Binance</div>
+<!-- BTC -->
+<div class="price-widget">
+<div class="price-widget-header">
+<div class="price-widget-title">BTC / USD</div>
+<div class="price-widget-sub">Binance · Bitcoin</div>
 </div>
-<div class="price-card">
-<div class="price-card-label"><span class="price-card-symbol eth-color"></span> Ethereum</div>
-<div class="price-card-value">$2,156</div>
-<div class="price-card-change positive">+1.87%</div>
-<div class="price-card-meta">Binance</div>
+<div class="price-widget-chart">
+<iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tv-btc&symbol=BINANCE:BTCUSDT&interval=60&hidesidetoolbar=true&theme=dark&style=1&timezone=Etc%2FUTC&locale=zh" width="100%" height="180" frameborder="0" scrolling="no"></iframe>
 </div>
-<div class="price-card">
-<div class="price-card-label"><span class="price-card-symbol sol-color"></span> SOL 原油</div>
-<div class="price-card-value">$78.35</div>
-<div class="price-card-change negative">-0.87%</div>
-<div class="price-card-meta">WTI Spot</div>
 </div>
-<div class="price-card">
-<div class="price-card-label"><span class="price-card-symbol gold-color"></span> USOIL 原油</div>
-<div class="price-card-value">$68.42</div>
-<div class="price-card-change negative">-1.23%</div>
-<div class="price-card-meta">NYMEX</div>
+<!-- ETH -->
+<div class="price-widget">
+<div class="price-widget-header">
+<div class="price-widget-title">ETH / USD</div>
+<div class="price-widget-sub">Binance · Ethereum</div>
 </div>
-<div class="price-card">
-<div class="price-card-label"><span class="price-card-symbol tsm-color"></span> VIX 恐慌指數</div>
-<div class="price-card-value">$18.24</div>
-<div class="price-card-change positive">+2.14%</div>
-<div class="price-card-meta">CBOE</div>
+<div class="price-widget-chart">
+<iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tv-eth&symbol=BINANCE:ETHUSDT&interval=60&hidesidetoolbar=true&theme=dark&style=1&timezone=Etc%2FUTC&locale=zh" width="100%" height="180" frameborder="0" scrolling="no"></iframe>
 </div>
-<div class="price-card">
-<div class="price-card-label"><span class="price-card-symbol gold-color"></span> 黃金現貨</div>
-<div class="price-card-value">$2,341</div>
-<div class="price-card-change positive">+0.68%</div>
-<div class="price-card-meta">Gold Spot</div>
 </div>
-<div class="price-card">
-<div class="price-card-label"><span class="price-card-symbol nvda-color"></span> NVDA</div>
-<div class="price-card-value">$208.27</div>
-<div class="price-card-change positive">+2.85%</div>
-<div class="price-card-meta">NASDAQ</div>
+<!-- NDX -->
+<div class="price-widget">
+<div class="price-widget-header">
+<div class="price-widget-title">NDX / USD</div>
+<div class="price-widget-sub">NASDAQ 100 · 納斯達克100</div>
+</div>
+<div class="price-widget-chart">
+<iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tv-ndx&symbol=TVC:NDX&interval=60&hidesidetoolbar=true&theme=dark&style=1&timezone=Etc%2FUTC&locale=zh" width="100%" height="180" frameborder="0" scrolling="no"></iframe>
+</div>
+</div>
+<!-- USOIL -->
+<div class="price-widget">
+<div class="price-widget-header">
+<div class="price-widget-title">USOIL</div>
+<div class="price-widget-sub">NYMEX · WTI原油</div>
+</div>
+<div class="price-widget-chart">
+<iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tv-oil&symbol=TVC:USOIL&interval=60&hidesidetoolbar=true&theme=dark&style=1&timezone=Etc%2FUTC&locale=zh" width="100%" height="180" frameborder="0" scrolling="no"></iframe>
+</div>
+</div>
+<!-- Gold -->
+<div class="price-widget">
+<div class="price-widget-header">
+<div class="price-widget-title">XAU / USD</div>
+<div class="price-widget-sub">Gold Spot · 黃金現貨</div>
+</div>
+<div class="price-widget-chart">
+<iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tv-gold&symbol=OANDA:XAUUSD&interval=60&hidesidetoolbar=true&theme=dark&style=1&timezone=Etc%2FUTC&locale=zh" width="100%" height="180" frameborder="0" scrolling="no"></iframe>
+</div>
+</div>
+<!-- NVDA -->
+<div class="price-widget">
+<div class="price-widget-header">
+<div class="price-widget-title">NVDA</div>
+<div class="price-widget-sub">NASDAQ · 英偉達</div>
+</div>
+<div class="price-widget-chart">
+<iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tv-nvda&symbol=NASDAQ:NVDA&interval=60&hidesidetoolbar=true&theme=dark&style=1&timezone=Etc%2FUTC&locale=zh" width="100%" height="180" frameborder="0" scrolling="no"></iframe>
+</div>
 </div>
 </div>
 </section>
@@ -279,16 +282,16 @@ font-size: 11px; color: var(--text-muted);
 </div>
 </div>
 
-<!-- Row 2: TSM + Gold -->
+<!-- Row 2: NDX + USOIL -->
 <div class="two-col">
 <div class="chart-card">
 <div class="chart-header">
 <div>
-<div class="chart-title">VIX 恐慌指數</div>
-<div class="chart-sub">CBOE · 1D</div>
+<div class="chart-title">NDX 納斯達克100</div>
+<div class="chart-sub">NASDAQ · 1D</div>
 </div>
 </div>
-<iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tradingview_vix&symbol=CBOE:VIX&interval=D&hidesidetoolbar=false&theme=dark&style=1&timezone=Etc%2FUTC&locale=zh" width="100%" height="240" frameborder="0" scrolling="no"></iframe>
+<iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tradingview_ndx&symbol=TVC:NDX&interval=D&hidesidetoolbar=false&theme=dark&style=1&timezone=Etc%2FUTC&locale=zh" width="100%" height="240" frameborder="0" scrolling="no"></iframe>
 </div>
 <div class="chart-card">
 <div class="chart-header">
@@ -297,11 +300,11 @@ font-size: 11px; color: var(--text-muted);
 <div class="chart-sub">NYMEX · 1D</div>
 </div>
 </div>
-<iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tradingview_usd&symbol=TVC:USOIL&interval=D&hidesidetoolbar=false&theme=dark&style=1&timezone=Etc%2FUTC&locale=zh" width="100%" height="240" frameborder="0" scrolling="no"></iframe>
+<iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tradingview_oil&symbol=TVC:USOIL&interval=D&hidesidetoolbar=false&theme=dark&style=1&timezone=Etc%2FUTC&locale=zh" width="100%" height="240" frameborder="0" scrolling="no"></iframe>
 </div>
 </div>
 
-<!-- Row 3: SOL + NVDA -->
+<!-- Row 3: Gold + NVDA -->
 <div class="two-col">
 <div class="chart-card">
 <div class="chart-header">
@@ -315,11 +318,11 @@ font-size: 11px; color: var(--text-muted);
 <div class="chart-card">
 <div class="chart-header">
 <div>
-<div class="chart-title">SOL / USD</div>
-<div class="chart-sub">Solana · 1D</div>
+<div class="chart-title">NVDA 英偉達</div>
+<div class="chart-sub">NASDAQ · 1D</div>
 </div>
 </div>
-<iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tradingview_sol&symbol=BINANCE:SOLUSDT&interval=D&hidesidetoolbar=false&theme=dark&style=1&timezone=Etc%2FUTC&locale=zh" width="100%" height="240" frameborder="0" scrolling="no"></iframe>
+<iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tradingview_nvda&symbol=NASDAQ:NVDA&interval=D&hidesidetoolbar=false&theme=dark&style=1&timezone=Etc%2FUTC&locale=zh" width="100%" height="240" frameborder="0" scrolling="no"></iframe>
 </div>
 </div>
 </section>
@@ -369,7 +372,7 @@ font-size: 11px; color: var(--text-muted);
 </a>
 <a href="#" class="report-card">
 <div class="report-card-title">💰 資產比較</div>
-<div class="report-card-date">五年走势</div>
+<div class="report-card-date">五年走勢</div>
 <div class="report-card-desc">TSM vs 黃金 vs 比特幣</div>
 </a>
 </div>
@@ -378,7 +381,7 @@ font-size: 11px; color: var(--text-muted);
 </div>
 </main>
 
-<!-- ====== Footer ====== -->
+<!-- Footer -->
 <footer class="site-footer">
 <div class="footer-inner">
 <div>🌸 晨曦金融網 · 晨曦照著樹 · 慢慢來，比較快</div>
@@ -388,7 +391,7 @@ font-size: 11px; color: var(--text-muted);
 </div>
 
 <script>
-// ====== 圖表數據 ======
+// Chart Data
 const nvdaLabels = ['Mar 27','Mar 30','Mar 31','Apr 1','Apr 2','Apr 6','Apr 7','Apr 8','Apr 9','Apr 10','Apr 13','Apr 14','Apr 15','Apr 16','Apr 17','Apr 20','Apr 21','Apr 22','Apr 23','Apr 24'];
 const nvdaPrices = [167.52,165.17,174.40,175.75,177.39,177.64,178.10,182.08,183.91,188.63,189.31,196.51,198.87,198.35,201.68,202.06,199.88,202.50,199.64,208.27];
 const rsiValues = [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,45.2,38.7,7.2];
@@ -397,7 +400,7 @@ Chart.defaults.color = '#9ca3af';
 Chart.defaults.borderColor = '#1f2937';
 Chart.defaults.font.family = "'Segoe UI', system-ui, sans-serif";
 
-// NVDA 圖表
+// NVDA Chart
 new Chart(document.getElementById('nvdaChart'), {
 type: 'line',
 data: {
@@ -427,7 +430,7 @@ y: { grid: { color: '#1f2937' }, ticks: { font: { size: 10 }, callback: (v) => '
 }
 });
 
-// RSI 圖表
+// RSI Chart
 new Chart(document.getElementById('rsiChart'), {
 type: 'line',
 data: {
