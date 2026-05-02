@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌸 晨曦日報 | 曦光微語</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --dawn-gradient: linear-gradient(135deg, #ffecd2 0%, #fcb69f 50%, #ff9a9e 100%);
+      --gold: #d4a574;
+      --gold-dark: #b8956a;
+      --text-primary: #2d2d2d;
+      --text-secondary: #666666;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --shadow: 0 20px 60px rgba(0,0,0,0.1);
+      --radius: 24px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: var(--dawn-gradient);
+      min-height: 100vh;
+      padding: 40px 20px;
+      color: var(--text-primary);
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .header .date {
+      font-family: 'Playfair Display', serif;
+      font-size: 14px;
+      letter-spacing: 3px;
+      color: rgba(255,255,255,0.9);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .header .greeting {
+      font-size: 32px;
+      font-weight: 300;
+      color: white;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.15);
+    }
+
+    .header .greeting strong {
+      font-weight: 700;
+    }
+
+    .header .divider {
+      width: 60px;
+      height: 2px;
+      background: rgba(255,255,255,0.6);
+      margin: 20px auto;
+      border-radius: 2px;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--dawn-gradient);
+    }
+
+    .card-icon {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+    }
+
+    /* Market Cards */
+    .market-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .market-item {
+      background: linear-gradient(135deg, #fefefe 0%, #f8f8f8 100%);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .market-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    }
+
+    .market-item.gold { border: 2px solid #d4a574; }
+    .market-item.btc { border: 2px solid #f7931a; }
+    .market-item.eth { border: 2px solid #627eea; }
+    .market-item.sol { border: 2px solid #9945ff; }
+
+    .market-symbol {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+
+    .market-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .market-change {
+      font-size: 13px;
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    .market-change.up { color: #22c55e; }
+    .market-change.down { color: #ef4444; }
+
+    /* Analysis Card */
+    .analysis-text {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--text-secondary);
+    }
+
+    .analysis-text .highlight {
+      color: var(--gold-dark);
+      font-weight: 500;
+    }
+
+    .analysis-text .bullish { color: #22c55e; font-weight: 500; }
+    .analysis-text .bearish { color: #ef4444; font-weight: 500; }
+
+    /* Events Timeline */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .timeline-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 16px;
+      background: linear-gradient(135deg, #fefefe 0%, #fafafa 100%);
+      border-radius: 12px;
+      border-left: 3px solid var(--gold);
+    }
+
+    .timeline-date {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gold-dark);
+      background: rgba(212,165,116,0.15);
+      padding: 4px 10px;
+      border-radius: 8px;
+      white-space: nowrap;
+    }
+
+    .timeline-event {
+      font-size: 14px;
+      color: var(--text-primary);
+    }
+
+    /* Focus Card */
+    .focus-card {
+      background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+      color: white;
+    }
+
+    .focus-card::before {
+      background: linear-gradient(90deg, #ffecd2, #fcb69f, #ff9a9e);
+    }
+
+    .focus-card .card-title {
+      color: rgba(255,255,255,0.7);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .focus-text {
+      font-size: 18px;
+      line-height: 1.7;
+      color: white;
+      font-weight: 300;
+    }
+
+    .focus-emoji {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      margin-top: 32px;
+      color: rgba(255,255,255,0.8);
+      font-size: 13px;
+    }
+
+    .footer .brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .market-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .market-item { padding: 16px; }
+      .market-price { font-size: 18px; }
+      .card { padding: 20px; }
+      .header .greeting { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="date">Saturday, May 2, 2026</div>
+    <div class="greeting">早安，<strong>樹</strong> 🌸</div>
+    <div class="divider"></div>
+  </div>
+
+  <!-- Market Snapshot -->
+  <div class="card">
+    <div class="card-icon">📊</div>
+    <div class="card-title">金融市場快照</div>
+    <div class="market-grid">
+      <div class="market-item gold">
+        <div class="market-symbol">🥇 黃金 XAUUSD</div>
+        <div class="market-price">$4,612.50</div>
+        <div class="market-change down">▼ -0.22%</div>
+      </div>
+      <div class="market-item btc">
+        <div class="market-symbol">₿ Bitcoin BTC</div>
+        <div class="market-price">$78,244</div>
+        <div class="market-change up">▲ +0.42%</div>
+      </div>
+      <div class="market-item eth">
+        <div class="market-symbol">Ξ Ethereum ETH</div>
+        <div class="market-price">$2,295.40</div>
+        <div class="market-change up">▲ +0.40%</div>
+      </div>
+      <div class="market-item sol">
+        <div class="market-symbol">◎ Solana SOL</div>
+        <div class="market-price">$83.74</div>
+        <div class="market-change up">▲ +0.33%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gold Analysis -->
+  <div class="card">
+    <div class="card-icon">💡</div>
+    <div class="card-title">黃金深度分析</div>
+    <div class="analysis-text">
+      <p><strong>昨日走勢：</strong>$4,612.50/盎司，小跌 0.22%，但前一交易日曾反彈近 2%</p>
+      <br>
+      <p><strong>關鍵背景：</strong></p>
+      <p>・ 美元指數降至兩個月低點（日幣干預風險）</p>
+      <p>・ 石油價格大跌 3%（中東和平預期）</p>
+      <p>・ 央行 Q1 黃金儲備持續增加（World Gold Council 數據）</p>
+      <br>
+      <p><strong>結構性觀點：</strong></p>
+      <p>・ <span class="bearish">🔴 從歷史高點 $5,608 回調約 -18%</span></p>
+      <p>・ 📉 月線級別回調中，1個月跌 -1.39%</p>
+      <p>・ <span class="bullish">🟢 12個月仍維持 +42.39% 的驚人漲幅</span></p>
+      <p>・ 🎯 專家預測：Q2 目標 $4,783 / 年底 $5,129</p>
+      <br>
+      <p><strong>曦曦觀點：</strong>黃金現在是高檔整理格局，中長期上升趨勢未變。如果有回調至 <span class="highlight">$4,400 以下</span>，可能是很好的進場機會。 🚀</p>
+    </div>
+  </div>
+
+  <!-- Important Events -->
+  <div class="card">
+    <div class="card-icon">📅</div>
+    <div class="card-title">近期重要數據</div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-date">05/03</div>
+        <div class="timeline-event">美國非農就業數據</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">05/07</div>
+        <div class="timeline-event">Fed 利率決議</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">05/12</div>
+        <div class="timeline-event">CPI 通脹數據</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Focus Card -->
+  <div class="card focus-card">
+    <div class="focus-emoji">🎯</div>
+    <div class="card-title">今日 Focus</div>
+    <div class="focus-text">
+      休息日不用盯盤，但記得：<br>
+      「市場永遠有機會，修復體力更重要 🌸」
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="brand">🌸 晨曦照著樹</div>
+    <div>曦曦出品 · 每日 07:30 自動更新</div>
+  </div>
+
+</div>
+
+</body>
+</html>
