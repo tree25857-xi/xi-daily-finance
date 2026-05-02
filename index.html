@@ -1,490 +1,234 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>🌸 晨曦金融網 - 全球熱錢流向</title>
-<meta name="description" content="晨曦金融網：每日金融市場分析、AI 選股建議、熱錢流向追蹤">
-<style>
-:root {
---bg: #020617;
---bg-elevated: #0f172a;
---border-subtle: #1f2937;
---text-main: #e5e7eb;
---text-muted: #9ca3af;
---gold: #D4AF37;
---danger: #f97316;
---success: #22c55e;
---radius-lg: 16px;
---radius-md: 10px;
---radius-pill: 999px;
---shadow-card: 0 18px 40px rgba(15, 23, 42, 0.9);
---transition-normal: 180ms ease-out;
---max-width: 1120px;
---font-main: system-ui, -apple-system, BlinkMacSystemFont, "Noto Sans TC", "Segoe UI", sans-serif;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html, body {
-margin: 0; padding: 0;
-background: radial-gradient(circle at top left, #0f172a 0, #020617 45%, #000 100%);
-color: var(--text-main);
-font-family: var(--font-main);
-min-height: 100vh;
-}
-.site-shell { min-height: 100vh; display: flex; flex-direction: column; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌸 晨曦日報 | 曦光微語</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --dawn-gradient: linear-gradient(135deg, #ffecd2 0%, #fcb69f 50%, #ff9a9e 100%);
+      --gold: #d4a574;
+      --gold-dark: #b8956a;
+      --text-primary: #2d2d2d;
+      --text-secondary: #666666;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --shadow: 0 20px 60px rgba(0,0,0,0.1);
+      --radius: 24px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: var(--dawn-gradient);
+      min-height: 100vh;
+      padding: 40px 20px;
+      color: var(--text-primary);
+    }
+    .container { max-width: 680px; margin: 0 auto; }
 
-/* Header */
-.site-header {
-position: sticky; top: 0; z-index: 50;
-backdrop-filter: blur(16px);
-background: linear-gradient(to bottom, rgba(15,23,42,0.9), rgba(15,23,42,0.65), transparent);
-border-bottom: 1px solid rgba(31,41,55,0.9);
-}
-.nav-inner {
-max-width: var(--max-width); margin: 0 auto; padding: 8px 20px;
-display: flex; align-items: center; justify-content: space-between; gap: 16px;
-}
-.brand { display: flex; align-items: center; gap: 10px; }
-.brand-mark {
-width: 32px; height: 32px; border-radius: 40%;
-background: conic-gradient(from 180deg, #D4AF37, #6366f1, #22c55e, #D4AF37);
-position: relative; box-shadow: 0 0 40px rgba(212,175,55,0.55); overflow: hidden;
-}
-.brand-mark::after {
-content: ""; position: absolute; inset: 3px; border-radius: 40%;
-background: radial-gradient(circle at 20% 0%, #0f172a 0, #020617 45%, #000 100%);
-}
-.brand-text-main { font-weight: 600; letter-spacing: 0.04em; font-size: 15px; }
-.brand-text-sub { font-size: 11px; color: var(--text-muted); }
-.nav-links { display: flex; gap: 12px; align-items: center; font-size: 13px; }
-.nav-link {
-padding: 6px 12px; border-radius: 999px; color: var(--text-muted);
-text-decoration: none; border: 1px solid transparent;
-transition: all var(--transition-normal); white-space: nowrap;
-}
-.nav-link:hover { color: var(--text-main); background: rgba(15,23,42,0.85); border-color: rgba(55,65,81,0.9); }
-.nav-link-primary {
-padding: 6px 14px; border-radius: var(--radius-pill);
-background: linear-gradient(135deg, #D4AF37, #6366f1);
-color: #0b1120; font-weight: 600; border: none;
-box-shadow: 0 0 25px rgba(212,175,55,0.55);
-}
-.nav-link-primary:hover { background: linear-gradient(135deg, #e5c44a, #818cf8); color: #020617; }
+    /* Header */
+    .header { text-align: center; margin-bottom: 32px; }
+    .header .date {
+      font-family: 'Playfair Display', serif;
+      font-size: 14px;
+      letter-spacing: 3px;
+      color: rgba(255,255,255,0.9);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .header .greeting { font-size: 32px; font-weight: 300; color: white; text-shadow: 0 2px 20px rgba(0,0,0,0.15); }
+    .header .greeting strong { font-weight: 700; }
+    .header .divider { width: 60px; height: 2px; background: rgba(255,255,255,0.6); margin: 20px auto; border-radius: 2px; }
+    .header .tagline { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 300; letter-spacing: 2px; }
 
-/* Main */
-main { flex: 1; }
-.page-container { max-width: var(--max-width); margin: 0 auto; padding: 32px 20px 56px; }
+    /* Cards */
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--dawn-gradient);
+    }
+    .card-icon { font-size: 24px; margin-bottom: 12px; }
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px; font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
 
-.section {
-margin-bottom: 28px; padding: 20px;
-background: radial-gradient(circle at top left, #020617 0, #020617 45%, #020617 100%);
-border-radius: var(--radius-lg); border: 1px solid rgba(31,41,55,0.95);
-box-shadow: var(--shadow-card);
-}
-.section-header { margin-bottom: 16px; display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-.section-title { font-size: 20px; font-weight: 600; letter-spacing: 0.04em; display: flex; align-items: center; gap: 10px; }
-.section-title-tag {
-font-size: 11px; padding: 2px 8px; border-radius: 999px;
-background: rgba(15,23,42,0.9); color: var(--gold);
-border: 1px solid rgba(212,175,55,0.6);
-}
-hr { border: none; border-top: 1px solid rgba(31,41,55,0.95); margin: 12px 0 18px; }
+    /* Market Grid */
+    .market-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .market-item {
+      background: linear-gradient(135deg, #fefefe 0%, #f8f8f8 100%);
+      border-radius: 16px; padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 2px solid transparent;
+    }
+    .market-item:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
+    .market-item.gold { border-color: #d4a574; }
+    .market-item.btc { border-color: #f7931a; }
+    .market-item.eth { border-color: #627eea; }
+    .market-item.sol { border-color: #9945ff; }
+    .market-symbol { font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; font-weight: 500; }
+    .market-price { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--text-primary); }
+    .market-change { font-size: 13px; margin-top: 4px; font-weight: 500; }
+    .market-change.up { color: #22c55e; }
+    .market-change.down { color: #ef4444; }
+    .market-highlow { font-size: 11px; color: #888; margin-top: 4px; }
 
-/* Price List */
-.price-list {
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 10px;
-}
-.price-item {
-display: flex;
-align-items: center;
-justify-content: space-between;
-padding: 12px 14px;
-background: rgba(15,23,42,0.9);
-border: 1px solid rgba(31,41,55,0.95);
-border-radius: 10px;
-transition: all var(--transition-normal);
-cursor: pointer;
-}
-.price-item:hover {
-border-color: rgba(212,175,55,0.4);
-transform: translateY(-1px);
-}
-.price-item-left {
-display: flex;
-align-items: center;
-gap: 10px;
-}
-.price-symbol-dot {
-width: 8px;
-height: 8px;
-border-radius: 50%;
-flex-shrink: 0;
-}
-.price-item-name {
-font-size: 12px;
-font-weight: 600;
-}
-.price-item-pair {
-font-size: 10px;
-color: var(--text-muted);
-}
-.price-item-right {
-text-align: right;
-}
-.price-item-price {
-font-size: 14px;
-font-weight: 700;
-}
-.price-item-change {
-font-size: 11px;
-font-weight: 500;
-}
-.positive { color: var(--success); }
-.negative { color: var(--danger); }
+    /* Timestamp */
+    .update-time { text-align: right; font-size: 12px; color: var(--text-secondary); margin-top: 16px; }
 
-/* Chart Card */
-.chart-card {
-background: rgba(15,23,42,0.9); border: 1px solid rgba(31,41,55,0.95);
-border-radius: 12px; padding: 16px; margin-bottom: 14px;
-}
-.chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-.chart-title { font-size: 14px; font-weight: 500; color: var(--text-main); }
-.chart-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+    /* Analysis */
+    .analysis-text { font-size: 15px; line-height: 1.8; color: var(--text-secondary); }
+    .analysis-text strong { color: var(--text-primary); }
+    .analysis-text .bullish { color: #22c55e; font-weight: 500; }
+    .analysis-text .bearish { color: #ef4444; font-weight: 500; }
+    .analysis-text .highlight { color: var(--gold-dark); font-weight: 500; }
 
-/* 2 Col Grid */
-.two-col { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    /* Timeline */
+    .timeline { display: flex; flex-direction: column; gap: 12px; }
+    .timeline-item {
+      display: flex; align-items: center; gap: 16px;
+      padding: 12px 16px;
+      background: linear-gradient(135deg, #fefefe 0%, #fafafa 100%);
+      border-radius: 12px;
+      border-left: 3px solid var(--gold);
+    }
+    .timeline-date { font-size: 12px; font-weight: 700; color: var(--gold-dark); background: rgba(212,165,116,0.15); padding: 4px 10px; border-radius: 8px; white-space: nowrap; }
+    .timeline-event { font-size: 14px; color: var(--text-primary); }
 
-/* Report Card */
-.report-card {
-background: rgba(15,23,42,0.9); border: 1px solid rgba(31,41,55,0.95);
-border-radius: 12px; padding: 16px; cursor: pointer;
-text-decoration: none; color: inherit;
-transition: all var(--transition-normal);
-}
-.report-card:hover { border-color: rgba(212,175,55,0.4); transform: translateY(-2px); }
-.report-card-title { font-size: 14px; font-weight: 500; margin-bottom: 6px; }
-.report-card-date { font-size: 11px; color: var(--text-muted); }
-.report-card-desc { font-size: 12px; color: var(--text-muted); margin-top: 8px; }
-.report-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    /* Focus Card */
+    .focus-card { background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%); color: white; }
+    .focus-card::before { background: linear-gradient(90deg, #ffecd2, #fcb69f, #ff9a9e); }
+    .focus-card .card-title { color: rgba(255,255,255,0.7); font-size: 12px; text-transform: uppercase; letter-spacing: 2px; }
+    .focus-text { font-size: 18px; line-height: 1.7; color: white; font-weight: 300; }
+    .focus-emoji { font-size: 32px; margin-bottom: 16px; }
 
-/* Live Badge */
-.live-badge {
-display: inline-flex; align-items: center; gap: 6px;
-padding: 3px 10px; border-radius: 999px; font-size: 11px;
-background: rgba(15,23,42,0.9); border: 1px solid rgba(34,197,94,0.6);
-color: var(--success);
-}
-.live-dot {
-width: 6px; height: 6px; border-radius: 50%; background: var(--success);
-box-shadow: 0 0 8px rgba(34,197,94,0.8); animation: pulse 2s infinite;
-}
-@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+    /* Footer */
+    .footer { text-align: center; margin-top: 32px; color: rgba(255,255,255,0.8); font-size: 13px; }
+    .footer .brand { font-family: 'Playfair Display', serif; font-size: 16px; margin-bottom: 4px; }
 
-/* Footer */
-.site-footer {
-border-top: 1px solid rgba(31,41,55,0.95); padding: 16px 20px;
-font-size: 11px; color: var(--text-muted);
-}
-.footer-inner { max-width: var(--max-width); margin: 0 auto; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+    /* Xi Xi Tag */
+    .xixi-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,0.2);
+      padding: 8px 16px; border-radius: 20px;
+      font-size: 13px; color: rgba(255,255,255,0.9);
+      margin-top: 12px;
+    }
 
-/* Responsive */
-@media (max-width: 900px) { .price-list { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 768px) { .price-list { grid-template-columns: 1fr; } .two-col { grid-template-columns: 1fr; } .report-grid { grid-template-columns: 1fr; } .nav-links { display: none; } }
-</style>
+    @media (max-width: 480px) {
+      .market-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .market-item { padding: 16px; }
+      .market-price { font-size: 18px; }
+      .card { padding: 20px; }
+      .header .greeting { font-size: 26px; }
+    }
+  </style>
 </head>
 <body>
-<div class="site-shell">
-<!-- Header -->
-<header class="site-header">
-<div class="nav-inner">
-<div class="brand">
-<div class="brand-mark"></div>
-<div>
-<div class="brand-text-main">🌸 晨曦金融網</div>
-<div class="brand-text-sub">全球熱錢流向追蹤</div>
-</div>
-</div>
-<nav class="nav-links">
-<a href="#prices" class="nav-link">報價</a>
-<a href="#charts" class="nav-link">圖表</a>
-<a href="#analysis" class="nav-link">分析</a>
-<a href="#reports" class="nav-link">報告</a>
-<a href="#" class="nav-link nav-link-primary">🌸 晨曦照著樹</a>
-</nav>
-</div>
-</header>
+<div class="container">
+  <!-- Header -->
+  <div class="header">
+    <div class="date">Saturday, 2026年5月2日</div>
+    <div class="greeting">早安，<strong>樹</strong> 🌸</div>
+    <div class="divider"></div>
+    <div class="tagline">「慢慢來，比較快」</div>
+  </div>
 
-<!-- Main -->
-<main>
-<div class="page-container">
+  <!-- Market Snapshot -->
+  <div class="card">
+    <div class="card-icon">📊</div>
+    <div class="card-title">金融市場快照</div>
+    <div class="market-grid">
+      <div class="market-item gold">
+        <div class="market-symbol">🥇 黃金 XAUUSD</div>
+        <div class="market-price">$4,627.91</div>
+        <div class="market-change up">▲ 0.03%</div>
+        <div class="market-highlow">日高 $4,636.07 / 日低 $4,614.03</div>
+      </div>
+      <div class="market-item btc">
+        <div class="market-symbol">₿ 比特幣 BTC</div>
+        <div class="market-price">$78,315.27</div>
+        <div class="market-change up">▲ 1.56%</div>
+        <div class="market-highlow">日高 $78,939.48 / 日低 $77,030.41</div>
+      </div>
+      <div class="market-item eth">
+        <div class="market-symbol">Ξ 以太坊 ETH</div>
+        <div class="market-price">$2,304.47</div>
+        <div class="market-change up">▲ 1.10%</div>
+        <div class="market-highlow">日高 $2,326.44 / 日低 $2,277.01</div>
+      </div>
+      <div class="market-item sol">
+        <div class="market-symbol">◎ Solana SOL</div>
+        <div class="market-price">$83.77</div>
+        <div class="market-change down">▼ 0.19%</div>
+        <div class="market-highlow">日高 $84.85 / 日低 $83.32</div>
+      </div>
+    </div>
+    <div class="update-time">數據更新：2026/5/2 下午3:12:05 (UTC+8)</div>
+  </div>
 
-<!-- ====== Live Prices - List Format ====== -->
-<section id="prices" class="section">
-<div class="section-header">
-<div class="section-title">📊 即時行情<span class="section-title-tag">Live</span></div>
-<div class="live-badge"><span class="live-dot"></span> Binance Real-Time</div>
-</div>
-<hr>
-<div class="price-list">
-<div class="price-item">
-<div class="price-item-left">
-<span class="price-symbol-dot" style="background:#f7931a"></span>
-<div>
-<div class="price-item-name">Bitcoin</div>
-<div class="price-item-pair">BTC/USDT</div>
-</div>
-</div>
-<div class="price-item-right">
-<div class="price-item-price" id="price-btc">Loading...</div>
-<div class="price-item-change positive" id="change-btc">--</div>
-</div>
-</div>
+  <!-- Gold Analysis -->
+  <div class="card">
+    <div class="card-icon">💡</div>
+    <div class="card-title">黃金深度分析</div>
+    <div class="analysis-text">
+      <p>📅 <strong>昨日收盤：</strong>$4,627.91，▲ 1.31 (+0.03%)</p>
+      <br>
+      <p>🔍 <strong>日內波幅：</strong>$4,614.03 → $4,636.07，區間幅度约 0.48%</p>
+      <br>
+      <p>📊 <strong>結構性觀點：</strong></p>
+      <p>・ 歷史高點 $5,608（2026年1月），當前回落約 <span class="">-17.5%</span></p>
+      <p>・ 月線級別高位整理，中長期上升趨勢未破壞</p>
+      <p>・ <span class="bullish">12個月仍維持 +42% 的驚人漲幅</span></p>
+      <p>・ 央行持續增持黃金儲備（Q1 數據）</p>
+      <br>
+      <p>💡 <strong>曦曦觀點：</strong>黃金目前呈現<strong>整理</strong>，日內波幅不大。從歷史高點 $5,608 回落後進入高檔整理，長期上升趨勢未變。</p>
+    </div>
+  </div>
 
-<div class="price-item">
-<div class="price-item-left">
-<span class="price-symbol-dot" style="background:#627eea"></span>
-<div>
-<div class="price-item-name">Ethereum</div>
-<div class="price-item-pair">ETH/USDT</div>
-</div>
-</div>
-<div class="price-item-right">
-<div class="price-item-price" id="price-eth">Loading...</div>
-<div class="price-item-change positive" id="change-eth">--</div>
-</div>
-</div>
+  <!-- Upcoming Events -->
+  <div class="card">
+    <div class="card-icon">📅</div>
+    <div class="card-title">近期重要數據</div>
+    <div class="timeline">
+      <div class="timeline-item"><div class="timeline-date">05/03</div><div class="timeline-event">美國非農就業數據 🇺🇸</div></div>
+      <div class="timeline-item"><div class="timeline-date">05/07</div><div class="timeline-event">Fed 利率決議 🏦</div></div>
+      <div class="timeline-item"><div class="timeline-date">05/12</div><div class="timeline-event">CPI 通脹數據 📊</div></div>
+    </div>
+  </div>
 
-<div class="price-item">
-<div class="price-item-left">
-<span class="price-symbol-dot" style="background:#9945FF"></span>
-<div>
-<div class="price-item-name">Solana</div>
-<div class="price-item-pair">SOL/USDT</div>
-</div>
-</div>
-<div class="price-item-right">
-<div class="price-item-price" id="price-sol">Loading...</div>
-<div class="price-item-change positive" id="change-sol">--</div>
-</div>
-</div>
+  <!-- Focus Card -->
+  <div class="card focus-card">
+    <div class="focus-emoji">🎯</div>
+    <div class="card-title">今日 Focus</div>
+    <div class="focus-text">
+      休息日不用盯盤，但記得：<br>
+      「市場永遠有機會，修復體力更重要 🌸」
+    </div>
+  </div>
 
-<div class="price-item">
-<div class="price-item-left">
-<span class="price-symbol-dot" style="background:#D4AF37"></span>
-<div>
-<div class="price-item-name">Gold</div>
-<div class="price-item-pair">XAU/USD</div>
+  <!-- Footer -->
+  <div class="footer">
+    <div class="brand">🌸 晨曦照著樹</div>
+    <div>曦曦出品 · 每日自動更新</div>
+    <div class="xixi-tag">🌸 made with love by Xi Xi</div>
+  </div>
 </div>
-</div>
-<div class="price-item-right">
-<div class="price-item-price" id="price-xau">Loading...</div>
-<div class="price-item-change positive" id="change-xau">--</div>
-</div>
-</div>
-
-<div class="price-item">
-<div class="price-item-left">
-<span class="price-symbol-dot" style="background:#22d3ee"></span>
-<div>
-<div class="price-item-name">NASDAQ 100</div>
-<div class="price-item-pair">NDX/USD</div>
-</div>
-</div>
-<div class="price-item-right">
-<div class="price-item-price" id="price-ndx">Loading...</div>
-<div class="price-item-change positive" id="change-ndx">--</div>
-</div>
-</div>
-
-<div class="price-item">
-<div class="price-item-left">
-<span class="price-symbol-dot" style="background:#22c55e"></span>
-<div>
-<div class="price-item-name">WTI原油</div>
-<div class="price-item-pair">USOIL/USD</div>
-</div>
-</div>
-<div class="price-item-right">
-<div class="price-item-price" id="price-oil">Loading...</div>
-<div class="price-item-change positive" id="change-oil">--</div>
-</div>
-</div>
-</div>
-</section>
-
-<!-- ====== TradingView Charts ====== -->
-<section id="charts" class="section">
-<div class="section-header">
-<div class="section-title">📈 即時圖表</div>
-<div class="section-title-tag">TradingView Widgets</div>
-</div>
-<hr>
-
-<div class="two-col">
-<div class="chart-card">
-<div class="chart-header">
-<div>
-<div class="chart-title">BTC / USD</div>
-<div class="chart-sub">Binance · 1D</div>
-</div>
-</div>
-<iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tradingview_btc&symbol=BINANCE:BTCUSDT&interval=D&hidesidetoolbar=false&theme=dark&style=1&timezone=Etc%2FUTC&locale=zh" width="100%" height="240" frameborder="0" scrolling="no"></iframe>
-</div>
-<div class="chart-card">
-<div class="chart-header">
-<div>
-<div class="chart-title">ETH / USD</div>
-<div class="chart-sub">Binance · 1D</div>
-</div>
-</div>
-<iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tradingview_eth&symbol=BINANCE:ETHUSDT&interval=D&hidesidetoolbar=false&theme=dark&style=1&timezone=Etc%2FUTC&locale=zh" width="100%" height="240" frameborder="0" scrolling="no"></iframe>
-</div>
-</div>
-
-<div class="two-col">
-<div class="chart-card">
-<div class="chart-header">
-<div>
-<div class="chart-title">NDX 納斯達克100</div>
-<div class="chart-sub">NASDAQ · 1D</div>
-</div>
-</div>
-<iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tradingview_ndx&symbol=TVC:NDX&interval=D&hidesidetoolbar=false&theme=dark&style=1&timezone=Etc%2FUTC&locale=zh" width="100%" height="240" frameborder="0" scrolling="no"></iframe>
-</div>
-<div class="chart-card">
-<div class="chart-header">
-<div>
-<div class="chart-title">USOIL 原油</div>
-<div class="chart-sub">NYMEX · 1D</div>
-</div>
-</div>
-<iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tradingview_oil&symbol=TVC:USOIL&interval=D&hidesidetoolbar=false&theme=dark&style=1&timezone=Etc%2FUTC&locale=zh" width="100%" height="240" frameborder="0" scrolling="no"></iframe>
-</div>
-</div>
-
-<div class="two-col">
-<div class="chart-card">
-<div class="chart-header">
-<div>
-<div class="chart-title">黃金現貨 XAU/USD</div>
-<div class="chart-sub">Gold Spot · 1D</div>
-</div>
-</div>
-<iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tradingview_gold&symbol=OANDA:XAUUSD&interval=D&hidesidetoolbar=false&theme=dark&style=1&timezone=Etc%2FUTC&locale=zh" width="100%" height="240" frameborder="0" scrolling="no"></iframe>
-</div>
-<div class="chart-card">
-<div class="chart-header">
-<div>
-<div class="chart-title">NVDA 英偉達</div>
-<div class="chart-sub">NASDAQ · 1D</div>
-</div>
-</div>
-<iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tradingview_nvda&symbol=NASDAQ:NVDA&interval=D&hidesidetoolbar=false&theme=dark&style=1&timezone=Etc%2FUTC&locale=zh" width="100%" height="240" frameborder="0" scrolling="no"></iframe>
-</div>
-</div>
-</section>
-
-<!-- ====== Analysis ====== -->
-<section id="analysis" class="section">
-<div class="section-header">
-<div class="section-title">📈 市場分析</div>
-<div class="section-title-tag">每日更新</div>
-</div>
-<hr>
-<div class="two-col">
-<div class="chart-card">
-<div class="chart-title">NVDA 技術分析</div>
-<div class="chart-sub">60分鐘 · RSI 超賣區域</div>
-<div style="height:200px; display:flex; align-items:center; justify-content:center; color:var(--text-muted);">📊 圖表載入中...</div>
-</div>
-<div class="chart-card">
-<div class="chart-title">RSI (14) 指標</div>
-<div class="chart-sub">14週期 · 30/70 參考線</div>
-<div style="height:200px; display:flex; align-items:center; justify-content:center; color:var(--text-muted);">📊 圖表載入中...</div>
-</div>
-</div>
-</section>
-
-<!-- ====== Reports ====== -->
-<section id="reports" class="section">
-<div class="section-header">
-<div class="section-title">📰 晨曦報告</div>
-<div class="section-title-tag">每日出刊</div>
-</div>
-<hr>
-<div class="report-grid">
-<a href="#" class="report-card">
-<div class="report-card-title">🌸 晨曦日報</div>
-<div class="report-card-date">Apr 25, 2026</div>
-<div class="report-card-desc">市場重點 + 熱錢流向 + 今日關注標的</div>
-</a>
-<a href="#" class="report-card">
-<div class="report-card-title">📊 NVDA 分析</div>
-<div class="report-card-date">Apr 22–24, 2026</div>
-<div class="report-card-desc">技術分析 + RSI + 關鍵價位</div>
-</a>
-<a href="#" class="report-card">
-<div class="report-card-title">💰 資產比較</div>
-<div class="report-card-date">五年走勢</div>
-<div class="report-card-desc">TSM vs 黃金 vs 比特幣</div>
-</a>
-</div>
-</section>
-
-</div>
-</main>
-
-<!-- Footer -->
-<footer class="site-footer">
-<div class="footer-inner">
-<div>🌸 晨曦金融網 · 晨曦照著樹 · 慢慢來，比較快</div>
-<div>Powered by Alpha Vantage & TradingView</div>
-</div>
-</footer>
-</div>
-
-<script>
-// ====== Binance API via CORS Proxy ======
-async function fetchPrice(symbol, priceId, changeId) {
-  try {
-    const response = await fetch(`https://api.binance.com/api/v3/ticker/price?symbol=${symbol}`);
-    const data = await response.json();
-    const price = parseFloat(data.price);
-    
-    // 格式化價格
-    let displayPrice;
-    if (price >= 1000) {
-      displayPrice = '$' + price.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
-    } else if (price >= 1) {
-      displayPrice = '$' + price.toFixed(2);
-    } else {
-      displayPrice = '$' + price.toFixed(4);
-    }
-    document.getElementById(priceId).textContent = displayPrice;
-  } catch (error) {
-    document.getElementById(priceId).textContent = 'Error';
-  }
-}
-
-async function loadAllPrices() {
-  await fetchPrice('BTCUSDT', 'price-btc', 'change-btc');
-  await fetchPrice('ETHUSDT', 'price-eth', 'change-eth');
-  await fetchPrice('SOLUSDT', 'price-sol', 'change-sol');
-  // 黃金、NDX、原油需要其他API，這裡顯示提示
-  document.getElementById('price-xau').textContent = 'See Chart';
-  document.getElementById('change-xau').textContent = 'XAU/USD';
-  document.getElementById('price-ndx').textContent = 'See Chart';
-  document.getElementById('change-ndx').textContent = 'NDX/USD';
-  document.getElementById('price-oil').textContent = 'See Chart';
-  document.getElementById('change-oil').textContent = 'USOIL';
-}
-
-// 初始載入
-loadAllPrices();
-// 每5秒更新
-setInterval(loadAllPrices, 5000);
-</script>
 </body>
 </html>
