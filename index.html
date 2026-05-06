@@ -1,369 +1,263 @@
 <!DOCTYPE html>
-<html class="dark" lang="zh-TW">
+<html lang="zh-TW">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>🌸 晨曦金融網 - 全球熱錢流向第一平台</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Manrope:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<style>
-  /* ====== 樹的模板特色元素 ====== */
-  :root {
-    --bg: #020617;
-    --bg-elevated: #0f172a;
-    --primary: #22d3ee;
-    --secondary: #D4AF37;
-    --text-main: #e5e7eb;
-    --text-muted: #9ca3af;
-    --radius-lg: 16px;
-    --radius-md: 10px;
-    --radius-pill: 999px;
-    --shadow-card: 0 18px 40px rgba(15, 23, 42, 0.9);
-    --transition-normal: 180ms ease-out;
-  }
-  
-  /* 毛玻璃效果 */
-  .glass-panel {
-    background: rgba(53, 53, 52, 0.6);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-  }
-  
-  /* 徑向漸變背景 */
-  .gradient-bg {
-    background: radial-gradient(circle at top left, #0f172a 0, #020617 45%, #000 100%);
-  }
-  
-  /* 品牌標誌漸變 */
-  .brand-gradient {
-    background: conic-gradient(from 180deg, #D4AF37, #22d3ee, #6366f1, #D4AF37);
-    box-shadow: 0 0 40px rgba(212, 175, 55, 0.55);
-  }
-  
-  /* 導航欄毛玻璃 */
-  .nav-glass {
-    backdrop-filter: blur(16px);
-    background: linear-gradient(to bottom, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.65), transparent);
-  }
-  
-  /* 卡片懸停效果 */
-  .card-hover {
-    transition: all var(--transition-normal);
-  }
-  .card-hover:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-card);
-  }
-  
-  /* 進度條動畫 */
-  .roadmap-bar-fill {
-    transform: translateX(-100%);
-    transition: transform 1200ms cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .roadmap-bar-fill.active {
-    transform: translateX(0);
-  }
-  
-  /* 隱藏滾動條 */
-  .no-scrollbar::-webkit-scrollbar { display: none; }
-  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-  
-  .material-symbols-outlined {
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-  }
-</style>
-<script id="tailwind-config">
- tailwind.config = {
-  darkMode: "class",
-  theme: {
-    extend: {
-      colors: {
-        "secondary-fixed": "#D4AF37",
-        "on-surface-variant": "#c4c6cf",
-        "surface-container-lowest": "#0e0e0e",
-        "on-primary": "#133057",
-        "surface-container": "#201f1f",
-        "primary-fixed": "#d6e3ff",
-        "secondary-fixed-dim": "#D4AF37",
-        "surface-dim": "#131313",
-        "tertiary": "#D4AF37",
-        "secondary": "#D4AF37",
-        "surface-bright": "#393939",
-        "surface-container-high": "#2a2a2a",
-        "surface-container-low": "#1c1b1b",
-        "surface-variant": "#353534",
-        "outline": "#8e9099",
-        "primary": "#adc7f7",
-        "background": "#0D1117",
-        "on-surface": "#e5e2e1",
-        "primary-container": "#1A365D",
-      },
-      borderRadius: {
-        lg: "16px",
-        md: "10px",
-        pill: "999px",
-      },
-      fontFamily: {
-        headline: ["Manrope", "Noto Sans TC"],
-        body: ["Inter", "Noto Sans TC"],
-        label: ["Inter", "Noto Sans TC"],
-        mono: ["JetBrains Mono"]
-      }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌸 晨曦日報 | 曦光微語</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --dawn-gradient: linear-gradient(135deg, #ffecd2 0%, #fcb69f 50%, #ff9a9e 100%);
+      --gold: #d4a574;
+      --gold-dark: #b8956a;
+      --text-primary: #2d2d2d;
+      --text-secondary: #666666;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --shadow: 0 20px 60px rgba(0,0,0,0.1);
+      --radius: 24px;
     }
-  }
-}
-</script>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: var(--dawn-gradient);
+      min-height: 100vh;
+      padding: 40px 20px;
+      color: var(--text-primary);
+    }
+    .container { max-width: 680px; margin: 0 auto; }
+
+    /* Header */
+    .header { text-align: center; margin-bottom: 32px; }
+    .header .date {
+      font-family: 'Playfair Display', serif;
+      font-size: 14px;
+      letter-spacing: 3px;
+      color: rgba(255,255,255,0.9);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .header .greeting { font-size: 32px; font-weight: 300; color: white; text-shadow: 0 2px 20px rgba(0,0,0,0.15); }
+    .header .greeting strong { font-weight: 700; }
+    .header .divider { width: 60px; height: 2px; background: rgba(255,255,255,0.6); margin: 20px auto; border-radius: 2px; }
+    .header .tagline { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 300; letter-spacing: 2px; }
+
+    /* Cards */
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--dawn-gradient);
+    }
+    .card-icon { font-size: 24px; margin-bottom: 12px; }
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px; font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+
+    /* Market Grid */
+    .market-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .market-item {
+      background: linear-gradient(135deg, #fefefe 0%, #f8f8f8 100%);
+      border-radius: 16px; padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 2px solid transparent;
+    }
+    .market-item:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
+    .market-item.gold { border-color: #d4a574; }
+    .market-item.btc { border-color: #f7931a; }
+    .market-item.eth { border-color: #627eea; }
+    .market-item.sol { border-color: #9945ff; }
+    .market-symbol { font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; font-weight: 500; }
+    .market-price { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--text-primary); }
+    .market-change { font-size: 13px; margin-top: 4px; font-weight: 500; }
+    .market-change.up { color: #22c55e; }
+    .market-change.down { color: #ef4444; }
+    .market-highlow { font-size: 11px; color: #888; margin-top: 4px; }
+
+    /* Timestamp */
+    .update-time { text-align: right; font-size: 12px; color: var(--text-secondary); margin-top: 16px; }
+
+    /* Analysis */
+    .analysis-text { font-size: 15px; line-height: 1.8; color: var(--text-secondary); }
+    .analysis-text strong { color: var(--text-primary); }
+    .analysis-text .bullish { color: #22c55e; font-weight: 500; }
+    .analysis-text .bearish { color: #ef4444; font-weight: 500; }
+    .analysis-text .highlight { color: var(--gold-dark); font-weight: 500; }
+
+    /* Timeline */
+    .timeline { display: flex; flex-direction: column; gap: 12px; }
+    .timeline-item {
+      display: flex; align-items: center; gap: 16px;
+      padding: 12px 16px;
+      background: linear-gradient(135deg, #fefefe 0%, #fafafa 100%);
+      border-radius: 12px;
+      border-left: 3px solid var(--gold);
+    }
+    .timeline-date { font-size: 12px; font-weight: 700; color: var(--gold-dark); background: rgba(212,165,116,0.15); padding: 4px 10px; border-radius: 8px; white-space: nowrap; }
+    .timeline-event { font-size: 14px; color: var(--text-primary); }
+
+    /* Focus Card */
+    .focus-card { background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%); color: white; }
+    .focus-card::before { background: linear-gradient(90deg, #ffecd2, #fcb69f, #ff9a9e); }
+    .focus-card .card-title { color: rgba(255,255,255,0.7); font-size: 12px; text-transform: uppercase; letter-spacing: 2px; }
+    .focus-text { font-size: 18px; line-height: 1.7; color: white; font-weight: 300; }
+    .focus-emoji { font-size: 32px; margin-bottom: 16px; }
+
+    /* Footer */
+    .footer { text-align: center; margin-top: 32px; color: rgba(255,255,255,0.8); font-size: 13px; }
+    .footer .brand { font-family: 'Playfair Display', serif; font-size: 16px; margin-bottom: 4px; }
+
+    /* Xi Xi Tag */
+    .xixi-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,0.2);
+      padding: 8px 16px; border-radius: 20px;
+      font-size: 13px; color: rgba(255,255,255,0.9);
+      margin-top: 12px;
+    }
+
+    @media (max-width: 480px) {
+      .market-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .market-item { padding: 16px; }
+      .market-price { font-size: 18px; }
+      .card { padding: 20px; }
+      .header .greeting { font-size: 26px; }
+    }
+  </style>
 </head>
-<body class="bg-[#020617] text-[#e5e7eb] font-body gradient-bg">
-<!-- 導航欄 - 毛玻璃效果 -->
-<header class="fixed top-0 left-0 right-0 z-50 nav-glass border-b border-[#1f2937]/90">
-<div class="max-w-[1400px] mx-auto px-6 py-4 flex justify-between items-center">
-  <div class="flex items-center gap-4">
-    <!-- 品牌標誌 - 漸變效果 -->
-    <div class="w-10 h-10 rounded-full brand-gradient flex items-center justify-center">
-      <div class="w-8 h-8 rounded-full bg-[#0f172a] flex items-center justify-center">
-        <span class="text-xl">🌸</span>
+<body>
+<div class="container">
+  <!-- Header -->
+  <div class="header">
+    <div class="date">Saturday, 2026年5月2日</div>
+    <div class="greeting">早安，<strong>樹</strong> 🌸</div>
+    <div class="divider"></div>
+    <div class="tagline">「慢慢來，比較快」</div>
+  </div>
+
+  <!-- Market Snapshot -->
+  <div class="card">
+    <div class="card-icon">📊</div>
+    <div class="card-title">金融市場快照</div>
+    <div class="market-grid">
+      <div class="market-item gold">
+        <div class="market-symbol">🥇 黃金 XAUUSD</div>
+        <div class="market-price">$4,627.91</div>
+        <div class="market-change up">▲ 0.03%</div>
+        <div class="market-highlow">日高 $4,636.07 / 日低 $4,614.03</div>
+      </div>
+      <div class="market-item btc">
+        <div class="market-symbol">₿ 比特幣 BTC</div>
+        <div class="market-price">$78,315.27</div>
+        <div class="market-change up">▲ 1.56%</div>
+        <div class="market-highlow">日高 $78,939.48 / 日低 $77,030.41</div>
+      </div>
+      <div class="market-item eth">
+        <div class="market-symbol">Ξ 以太坊 ETH</div>
+        <div class="market-price">$2,304.47</div>
+        <div class="market-change up">▲ 1.10%</div>
+        <div class="market-highlow">日高 $2,326.44 / 日低 $2,277.01</div>
+      </div>
+      <div class="market-item sol">
+        <div class="market-symbol">◎ Solana SOL</div>
+        <div class="market-price">$83.77</div>
+        <div class="market-change down">▼ 0.19%</div>
+        <div class="market-highlow">日高 $84.85 / 日低 $83.32</div>
       </div>
     </div>
-    <div>
-      <div class="font-bold text-lg tracking-wide">晨曦金融網</div>
-      <div class="text-xs text-[#9ca3af]">全球熱錢流向第一平台</div>
+    <div class="update-time">數據更新：2026/5/2 下午3:12:05 (UTC+8)</div>
+  </div>
+
+  <!-- Gold Analysis -->
+  <div class="card">
+    <div class="card-icon">💡</div>
+    <div class="card-title">黃金深度分析</div>
+    <div class="analysis-text">
+      <p>📅 <strong>昨日收盤：</strong>$4,627.91，▲ 1.31 (+0.03%)</p>
+      <br>
+      <p>🔍 <strong>日內波幅：</strong>$4,614.03 → $4,636.07，區間幅度约 0.48%</p>
+      <br>
+      <p>📊 <strong>結構性觀點：</strong></p>
+      <p>・ 歷史高點 $5,608（2026年1月），當前回落約 <span class="">-17.5%</span></p>
+      <p>・ 月線級別高位整理，中長期上升趨勢未破壞</p>
+      <p>・ <span class="bullish">12個月仍維持 +42% 的驚人漲幅</span></p>
+      <p>・ 央行持續增持黃金儲備（Q1 數據）</p>
+      <br>
+      <p>💡 <strong>曦曦觀點：</strong>黃金目前呈現<strong>整理</strong>，日內波幅不大。從歷史高點 $5,608 回落後進入高檔整理，長期上升趨勢未變。</p>
     </div>
   </div>
-  <nav class="hidden md:flex items-center gap-4">
-    <a href="#" class="px-4 py-2 rounded-full text-[#D4AF37] border border-[#D4AF37]/50 bg-[#D4AF37]/10">儀表板</a>
-    <a href="#quotes" class="px-4 py-2 rounded-full text-[#9ca3af] hover:text-[#adc7f7] hover:bg-[#1A365D]/20 transition-all">即時報價</a>
-    <a href="#hot-money" class="px-4 py-2 rounded-full text-[#9ca3af] hover:text-[#adc7f7] hover:bg-[#1A365D]/20 transition-all">熱錢追蹤</a>
-    <a href="#tools" class="px-4 py-2 rounded-full text-[#9ca3af] hover:text-[#adc7f7] hover:bg-[#1A365D]/20 transition-all">好用工具</a>
-    <a href="#daily" class="px-4 py-2 rounded-full text-[#9ca3af] hover:text-[#adc7f7] hover:bg-[#1A365D]/20 transition-all">晨曦日照</a>
-  </nav>
-  <div class="flex items-center gap-4">
-    <span class="text-[#adc7f7] text-sm font-mono" id="current-time"></span>
+
+  <!-- Upcoming Events -->
+  <div class="card">
+    <div class="card-icon">📅</div>
+    <div class="card-title">近期重要數據</div>
+    <div class="timeline">
+      <div class="timeline-item"><div class="timeline-date">05/03</div><div class="timeline-event">美國非農就業數據 🇺🇸</div></div>
+      <div class="timeline-item"><div class="timeline-date">05/07</div><div class="timeline-event">Fed 利率決議 🏦</div></div>
+      <div class="timeline-item"><div class="timeline-date">05/12</div><div class="timeline-event">CPI 通脹數據 📊</div></div>
+    </div>
+  </div>
+
+  <!-- Focus Card -->
+  <div class="card focus-card">
+    <div class="focus-emoji">🎯</div>
+    <div class="card-title">今日 Focus</div>
+    <div class="focus-text">
+      休息日不用盯盤，但記得：<br>
+      「市場永遠有機會，修復體力更重要 🌸」
+    </div>
+  </div>
+
+  <!-- 好用工具 -->
+  <div class="card" style="background: linear-gradient(135deg, #fefefe 0%, #f8f8f8 100%);">
+    <div class="card-icon">🔧</div>
+    <div class="card-title">好用工具</div>
+    <div class="market-grid" style="grid-template-columns: repeat(3, 1fr);">
+      <a href="https://www.worldmonitor.app/" target="_blank" style="text-decoration:none;">
+        <div style="background:#f0f9ff;border-radius:16px;padding:16px;text-align:center;border:2px solid #22d3ee;transition:transform 0.3s;">
+          <div style="font-size:28px;margin-bottom:8px;">🌐</div>
+          <div style="font-size:14px;font-weight:700;color:#22d3ee;">World Monitor</div>
+          <div style="font-size:11px;color:#666;margin-top:4px;">全球情報</div>
+        </div>
+      </a>
+      <a href="https://crucix.live/" target="_blank" style="text-decoration:none;">
+        <div style="background:#f5f3ff;border-radius:16px;padding:16px;text-align:center;border:2px solid #6366f1;transition:transform 0.3s;">
+          <div style="font-size:28px;margin-bottom:8px;">🔮</div>
+          <div style="font-size:14px;font-weight:700;color:#6366f1;">Crucix</div>
+          <div style="font-size:11px;color:#666;margin-top:4px;">AI 情報</div>
+        </div>
+      </a>
+      <a href="https://traderwillhu.github.io/market_dashboard/" target="_blank" style="text-decoration:none;">
+        <div style="background:#fffbeb;border-radius:16px;padding:16px;text-align:center;border:2px solid #d4a574;transition:transform 0.3s;">
+          <div style="font-size:28px;margin-bottom:8px;">📊</div>
+          <div style="font-size:14px;font-weight:700;color:#d4a574;">Market</div>
+          <div style="font-size:11px;color:#666;margin-top:4px;">股票評級</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="brand">🌸 晨曦照著樹</div>
+    <div>曦曦出品 · 每日自動更新</div>
+    <div class="xixi-tag">🌸 made with love by Xi Xi</div>
   </div>
 </div>
-</header>
-
-<!-- 主內容區 -->
-<main class="pt-24 pb-12 px-6 max-w-[1400px] mx-auto">
-  
-  <!-- Hero 區塊 -->
-  <section class="mb-12">
-    <div class="glass-panel rounded-2xl p-8 border border-[#1f2937]/50">
-      <div class="flex flex-col md:flex-row gap-8 items-center">
-        <div class="flex-1">
-          <h1 class="text-4xl font-bold mb-4 bg-gradient-to-r from-[#D4AF37] to-[#22d3ee] bg-clip-text text-transparent">
-            全球熱錢流向第一平台
-          </h1>
-          <p class="text-lg text-[#9ca3af] mb-6">
-            掌握市場脈動、追蹤資金流向、專業金融分析
-          </p>
-          <div class="flex gap-4">
-            <a href="#quotes" class="px-6 py-3 rounded-full bg-[#D4AF37] text-[#020617] font-bold hover:opacity-90 transition-opacity">
-              查看報價
-            </a>
-            <a href="#hot-money" class="px-6 py-3 rounded-full border border-[#1f2937] text-[#e5e7eb] hover:bg-[#1A365D]/30 transition-all">
-              熱錢追蹤
-            </a>
-          </div>
-        </div>
-        <!-- 熱錢溫度計 -->
-        <div class="w-full md:w-80 p-6 bg-[#0f172a]/80 rounded-xl border border-[#1f2937]/50">
-          <div class="text-sm text-[#9ca3af] mb-2">熱錢溫度</div>
-          <div class="flex items-center gap-4">
-            <div class="text-3xl font-bold text-[#22c55e]">Risk-On</div>
-            <div class="flex-1 h-3 bg-[#1f2937] rounded-full overflow-hidden">
-              <div class="h-full w-3/4 bg-gradient-to-r from-[#22c55e] to-[#D4AF37] rounded-full"></div>
-            </div>
-          </div>
-          <div class="mt-4 text-xs text-[#9ca3af]">市場風險偏好偏向上漲</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 熱錢追蹤 -->
-  <section id="hot-money" class="mb-12">
-    <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
-      <span class="text-[#D4AF37]">🔥</span> 熱錢追蹤
-    </h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <!-- DXY -->
-      <div class="p-4 bg-[#0f172a]/80 rounded-xl border border-[#D4AF37]/20 card-hover">
-        <div class="flex justify-between items-start mb-2">
-          <span class="font-bold text-lg">DXY</span>
-          <span class="text-[#22c55e] text-sm font-bold">+0.3%</span>
-        </div>
-        <p class="text-xs text-[#9ca3af] uppercase">美元指數</p>
-        <div class="mt-2 text-sm text-[#9ca3af]">偏強</div>
-      </div>
-      <!-- VIX -->
-      <div class="p-4 bg-[#0f172a]/80 rounded-xl border border-[#adc7f7]/20 card-hover">
-        <div class="flex justify-between items-start mb-2">
-          <span class="font-bold text-lg">VIX</span>
-          <span class="text-red-400 text-sm font-bold">-1.2%</span>
-        </div>
-        <p class="text-xs text-[#9ca3af] uppercase">恐慌指數</p>
-        <div class="mt-2 text-sm text-[#9ca3af]">市場穩定</div>
-      </div>
-      <!-- BTC ETF -->
-      <div class="p-4 bg-[#0f172a]/80 rounded-xl border border-[#D4AF37]/20 card-hover">
-        <div class="flex justify-between items-start mb-2">
-          <span class="font-bold text-lg">BTC ETF</span>
-          <span class="text-[#22c55e] text-sm font-bold">+$156M</span>
-        </div>
-        <p class="text-xs text-[#9ca3af] uppercase">比特幣現貨ETF</p>
-        <div class="mt-2 text-sm text-[#9ca3af]">淨流入</div>
-      </div>
-      <!-- EM Flow -->
-      <div class="p-4 bg-[#0f172a]/80 rounded-xl border border-[#D4AF37]/20 card-hover">
-        <div class="flex justify-between items-start mb-2">
-          <span class="font-bold text-lg">EM</span>
-          <span class="text-[#22c55e] text-sm font-bold">+$2.3B</span>
-        </div>
-        <p class="text-xs text-[#9ca3af] uppercase">新興市場資金</p>
-        <div class="mt-2 text-sm text-[#9ca3af]">資金流入</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 即時報價 -->
-  <section id="quotes" class="mb-12">
-    <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
-      <span class="text-[#D4AF37]">📈</span> 即時報價
-    </h2>
-    
-    <!-- 標籤切換 -->
-    <div class="flex gap-2 mb-4">
-      <button class="px-4 py-2 bg-[#D4AF37]/20 text-[#D4AF37] rounded-full text-sm font-bold">加密貨幣</button>
-      <button class="px-4 py-2 bg-[#1f2937] text-[#9ca3af] rounded-full text-sm hover:bg-[#1A365D]/30 transition-all">台灣股市</button>
-      <button class="px-4 py-2 bg-[#1f2937] text-[#9ca3af] rounded-full text-sm hover:bg-[#1A365D]/30 transition-all">AI 科技股</button>
-    </div>
-    
-    <!-- 加密貨幣 -->
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-      <!-- BTC -->
-      <div class="p-4 bg-[#0f172a]/80 rounded-xl border border-[#D4AF37]/20 card-hover">
-        <div class="flex justify-between items-start mb-2">
-          <span class="font-bold text-lg text-[#D4AF37]">BTC</span>
-          <span class="text-red-400 text-sm font-bold">-2.2%</span>
-        </div>
-        <p class="text-2xl font-mono font-bold">$66,620</p>
-        <p class="text-xs text-[#9ca3af] uppercase">比特幣</p>
-      </div>
-      <!-- ETH -->
-      <div class="p-4 bg-[#0f172a]/80 rounded-xl border border-[#D4AF37]/20 card-hover">
-        <div class="flex justify-between items-start mb-2">
-          <span class="font-bold text-lg text-[#D4AF37]">ETH</span>
-          <span class="text-red-400 text-sm font-bold">-4.2%</span>
-        </div>
-        <p class="text-2xl font-mono font-bold">$2,048</p>
-        <p class="text-xs text-[#9ca3af] uppercase">以太坊</p>
-      </div>
-      <!-- SOL -->
-      <div class="p-4 bg-[#0f172a]/80 rounded-xl border border-[#D4AF37]/20 card-hover">
-        <div class="flex justify-between items-start mb-2">
-          <span class="font-bold text-lg text-[#D4AF37]">SOL</span>
-          <span class="text-red-400 text-sm font-bold">-4.1%</span>
-        </div>
-        <p class="text-2xl font-mono font-bold">$79.11</p>
-        <p class="text-xs text-[#9ca3af] uppercase">Solana</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 好用工具 ===== -->
-  <section id="tools" class="mb-12">
-    <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
-      <span class="text-[#22d3ee]">🔧</span> 好用工具
-    </h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <!-- World Monitor -->
-      <a href="https://www.worldmonitor.app/" target="_blank" rel="noopener noreferrer"
-         class="group p-6 bg-[#0f172a]/80 rounded-xl border border-[#1f2937]/50 card-hover relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-[#22d3ee]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-        <div class="relative z-10">
-          <div class="flex items-center gap-3 mb-3">
-            <span class="text-3xl">🌐</span>
-            <span class="font-bold text-lg text-[#22d3ee]">World Monitor</span>
-          </div>
-          <p class="text-sm text-[#9ca3af] mb-4">
-            全球即時情報網，435+來源追蹤地緣政治、軍事、能源市場,
-            190+國家使用，WIRED推薦
-          </p>
-          <div class="flex items-center gap-2 text-xs text-[#9ca3af]">
-            <span class="px-2 py-1 bg-[#22d3ee]/10 text-[#22d3ee] rounded-full">實時情報</span>
-            <span class="px-2 py-1 bg-[#6366f1]/10 text-[#6366f1] rounded-full">免費使用</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Crucix -->
-      <a href="https://crucix.live/" target="_blank" rel="noopener noreferrer"
-         class="group p-6 bg-[#0f172a]/80 rounded-xl border border-[#1f2937]/50 card-hover relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-[#6366f1]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-        <div class="relative z-10">
-          <div class="flex items-center gap-3 mb-3">
-            <span class="text-3xl">🔮</span>
-            <span class="font-bold text-lg text-[#6366f1]">Crucix</span>
-          </div>
-          <p class="text-sm text-[#9ca3af] mb-4">
-            智能情報終端，26個數據源每15分鐘更新，可串接LLM
-            生成交易思路，Telegram/Discord推送警報
-          </p>
-          <div class="flex items-center gap-2 text-xs text-[#9ca3af]">
-            <span class="px-2 py-1 bg-[#6366f1]/10 text-[#6366f1] rounded-full">AI 分析</span>
-            <span class="px-2 py-1 bg-[#22c55e]/10 text-[#22c55e] rounded-full">自我托管</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Market Dashboard -->
-      <a href="https://traderwillhu.github.io/market_dashboard/" target="_blank" rel="noopener noreferrer"
-         class="group p-6 bg-[#0f172a]/80 rounded-xl border border-[#1f2937]/50 card-hover relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-        <div class="relative z-10">
-          <div class="flex items-center gap-3 mb-3">
-            <span class="text-3xl">📊</span>
-            <span class="font-bold text-lg text-[#D4AF37]">Market Dashboard</span>
-          </div>
-          <p class="text-sm text-[#9ca3af] mb-4">
-            股票評級儀表板，ABC評級系統、ATR、波動調整相對強度
-            Yahoo Finance數據，每日自動更新
-          </p>
-          <div class="flex items-center gap-2 text-xs text-[#9ca3af]">
-            <span class="px-2 py-1 bg-[#D4AF37]/10 text-[#D4AF37] rounded-full">評級系統</span>
-            <span class="px-2 py-1 bg-[#22d3ee]/10 text-[#22d3ee] rounded-full">篩選強勢股</span>
-          </div>
-        </div>
-      </a>
-    </div>
-  </section>
-
-</main>
-
-<!-- Footer -->
-<footer class="border-t border-[#1f2937]/50 py-8 px-6">
-  <div class="max-w-[1400px] mx-auto text-center text-sm text-[#9ca3af]">
-    <p>🌸 晨曦金融網 - 全球熱錢流向第一平台</p>
-    <p class="mt-2">每天進步一點點，做出精緻的作品</p>
-  </div>
-</footer>
-
-<script>
-// 顯示當前時間
-function updateTime() {
-  const now = new Date();
-  const options = { 
-    timeZone: 'Asia/Taipei',
-    hour: '2-digit', 
-    minute: '2-digit',
-    weekday: 'short'
-  };
-  document.getElementById('current-time').textContent = now.toLocaleTimeString('zh-TW', options);
-}
-updateTime();
-setInterval(updateTime, 60000);
-</script>
 </body>
 </html>
