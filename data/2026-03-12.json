@@ -1,0 +1,76 @@
+{
+  "date": "2026-03-12",
+  "title": "每日金融 AI 新聞快報",
+  "headlines": [
+    {
+      "title": "台股反彈逾 500 點！AI 族群領軍助攻",
+      "summary": "受惠於美股大漲，台股今日開高走高，AI 相關族群包括台積電、廣達等股價走揚，帶動大盤反彈。",
+      "category": "ai",
+      "categoryLabel": "AI 趨勢",
+      "source": "工商時報",
+      "time": "2小時前"
+    },
+    {
+      "title": "聯準會利率決策出爐：維持利率不變",
+      "summary": "聯準會宣布維持基準利率在 5.25%-5.5% 不變，符合市場預期，並重申對通膨的謹慎態度。",
+      "category": "global",
+      "categoryLabel": "全球金融",
+      "source": "Reuters",
+      "3小時前"
+    }
+  ],
+  "market": [
+    {
+      "title": "半導體族群大爆發！股價全面勁揚",
+      "summary": "受惠於 AI 晶片需求持續火熱，半導體族群今日股價全面走揚。",
+      "category": "market",
+      "categoryLabel": "市場趨勢",
+      "source": "經濟日報",
+      "time": "1小時前"
+    },
+    {
+      "title": "比特幣重返 85,000 美元大關",
+      "summary": "加密貨幣市場持續升溫，比特幣今日再度挑戰新高。",
+      "category": "market",
+      "categoryLabel": "市場趨勢",
+      "source": "CoinDesk",
+      "time": "4小時前"
+    }
+  ],
+  "tech": [
+    {
+      "title": "OpenAI 發布 GPT-5 預覽版",
+      "summary": "OpenAI 再度超前業界，推出更強大的語言模型，功能大幅提升。",
+      "category": "ai",
+      "categoryLabel": "AI 趨勢",
+      "source": "TechCrunch",
+      "time": "5小時前"
+    },
+    {
+      "title": "Google AI Gemini 整合 Workspace",
+      "summary": "Google 宣布 AI 功能全面整合至 Workspace 企業版。",
+      "category": "tech",
+      "categoryLabel": "科技趨勢",
+      "source": "The Verge",
+      "time": "6小時前"
+    }
+  ],
+  "global": [
+    {
+      "title": "日本央行維持負利率政策",
+      "summary": "日本央行宣布維持寬鬆貨幣政策，日圓貶值壓力持續。",
+      "category": "global",
+      "categoryLabel": "全球金融",
+      "source": "NHK",
+      "time": "7小時前"
+    },
+    {
+      "title": "歐盟通過 AI 監管法案最終版本",
+      "summary": "歐盟正式通過 AI Act，為全球首部全面的 AI 監管法規。",
+      "category": "global",
+      "categoryLabel": "全球金融",
+      "source": "EU News",
+      "time": "8小時前"
+    }
+  ]
+}

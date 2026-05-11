@@ -1,0 +1,559 @@
+/* 🌸 晨曦金融網 - 樣式表 */
+/* 配色方案：高貴金 + 深藍 + 深灰 */
+
+/* CSS Variables */
+:root {
+    /* Primary Colors - 高貴金 */
+    --gold: #D4AF37;
+    --gold-light: #E5C76B;
+    --gold-dark: #B8962E;
+    
+    /* Secondary Colors - 深藍 */
+    --dark-blue: #1A365D;
+    --blue-light: #2C5282;
+    --blue-dark: #0F2744;
+    
+    /* Background */
+    --bg-dark: #0D1117;
+    --bg-card: #161B22;
+    --bg-section: #1A1A2E;
+    
+    /* Text */
+    --text-primary: #E2E8F0;
+    --text-secondary: #A0AEC0;
+    --text-muted: #718096;
+    
+    /* Status Colors */
+    --green: #38A169;
+    --red: #E53E3E;
+    --gray: #718096;
+    
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --spacing-xxl: 48px;
+    
+    /* Border Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+}
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans TC', 'Inter', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+/* Header */
+header {
+    background: linear-gradient(180deg, var(--dark-blue) 0%, rgba(26, 54, 93, 0.95) 100%);
+    padding: var(--spacing-md) 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.logo-icon {
+    font-size: 28px;
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+nav {
+    display: flex;
+    gap: var(--spacing-lg);
+}
+
+nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+nav a:hover,
+nav a.active {
+    color: var(--gold);
+}
+
+nav a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--gold);
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, var(--bg-dark) 0%, var(--blue-dark) 50%, var(--bg-dark) 100%);
+    padding: var(--spacing-xxl) 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: var(--spacing-md);
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero p {
+    font-size: 20px;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-lg);
+}
+
+.hero-buttons {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+}
+
+.btn {
+    padding: var(--spacing-md) var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+    color: var(--bg-dark);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.4);
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 2px solid var(--gold);
+    color: var(--gold);
+}
+
+.btn-secondary:hover {
+    background: rgba(212, 175, 55, 0.1);
+}
+
+/* Sections */
+.section {
+    padding: var(--spacing-xxl) 0;
+}
+
+.section.dark {
+    background-color: var(--bg-section);
+}
+
+.section-title {
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    color: var(--gold);
+}
+
+/* Hot Money Tracker */
+.risk-meter {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    text-align: center;
+}
+
+.risk-label {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    display: block;
+    margin-bottom: var(--spacing-md);
+}
+
+.risk-bar {
+    height: 24px;
+    background: linear-gradient(90deg, var(--green) 0%, var(--gold) 50%, var(--red) 100%);
+    border-radius: var(--radius-lg);
+    position: relative;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.risk-indicator {
+    position: absolute;
+    top: -4px;
+    left: 60%;
+    width: 8px;
+    height: 32px;
+    background: white;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.risk-labels {
+    display: flex;
+    justify-content: space-between;
+    max-width: 400px;
+    margin: var(--spacing-sm) auto 0;
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.hot-money-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.hot-money-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    transition: all 0.3s ease;
+}
+
+.hot-money-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold);
+    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.2);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+}
+
+.card-title {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.card-change {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.card-change.up {
+    color: var(--green);
+}
+
+.card-change.down {
+    color: var(--red);
+}
+
+.card-value {
+    font-size: 28px;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.card-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+/* Observation Box */
+.observation {
+    background: linear-gradient(135deg, var(--dark-blue) 0%, var(--blue-dark) 100%);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    border-left: 4px solid var(--gold);
+}
+
+.observation h3 {
+    color: var(--gold);
+    margin-bottom: var(--spacing-sm);
+}
+
+.observation p {
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+.observation strong {
+    color: var(--gold-light);
+}
+
+/* Quotes Section */
+.quotes-category {
+    margin-bottom: var(--spacing-xl);
+}
+
+.quotes-category h3 {
+    font-size: 20px;
+    margin-bottom: var(--spacing-md);
+    color: var(--text-primary);
+}
+
+.quotes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.quotes-forex {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.quote-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.quote-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+}
+
+.quote-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+}
+
+.quote-symbol {
+    font-weight: 700;
+    color: var(--gold);
+    font-size: 18px;
+}
+
+.quote-name {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.quote-price {
+    font-size: 24px;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: var(--spacing-xs);
+}
+
+.quote-change {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.quote-change.up {
+    color: var(--green);
+}
+
+.quote-change.down {
+    color: var(--red);
+}
+
+.quote-change.neutral {
+    color: var(--gray);
+}
+
+/* Daily Report */
+.daily-report-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-xl);
+    max-width: 800px;
+    margin: 0 auto;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.report-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.report-date {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--gold);
+}
+
+.report-day {
+    color: var(--text-muted);
+}
+
+.report-weather {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-lg);
+}
+
+.report-section {
+    margin-bottom: var(--spacing-lg);
+}
+
+.report-section h3 {
+    font-size: 16px;
+    color: var(--gold);
+    margin-bottom: var(--spacing-sm);
+}
+
+.report-section ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.report-section li {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-xs);
+    padding-left: var(--spacing-md);
+    position: relative;
+}
+
+.report-section li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+}
+
+.observation-box {
+    background: rgba(26, 54, 93, 0.5);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--gold);
+}
+
+.report-footer {
+    text-align: center;
+    padding-top: var(--spacing-md);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.goodnight-quote {
+    font-size: 18px;
+    color: var(--gold);
+    font-style: italic;
+}
+
+/* Footer */
+footer {
+    background: var(--blue-dark);
+    padding: var(--spacing-xl) 0;
+    text-align: center;
+    margin-top: var(--spacing-xxl);
+}
+
+footer p {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-sm);
+}
+
+footer .copyright {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 32px;
+    }
+    
+    .hero p {
+        font-size: 16px;
+    }
+    
+    nav {
+        display: none;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+    }
+    
+    .hot-money-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .quotes-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .hot-money-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-title {
+        font-size: 24px;
+    }
+}

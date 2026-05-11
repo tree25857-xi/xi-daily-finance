@@ -1,0 +1,2085 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>OpenClaw Skills 學習中心</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="OpenClaw Skills 學習中心：從入門安裝、技能挑選到高階自訂開發的完整教學與實戰場景。">
+  <style>
+    :root {
+      --bg: #020617;
+      --bg-elevated: #0f172a;
+      --bg-elevated-soft: #020617;
+      --bg-accent: #111827;
+      --border-subtle: #1f2937;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --primary: #22d3ee;
+      --primary-soft: rgba(34, 211, 238, 0.15);
+      --accent: #6366f1;
+      --danger: #f97316;
+      --success: #22c55e;
+      --warning: #eab308;
+      --radius-lg: 16px;
+      --radius-md: 10px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 20px 45px rgba(15, 23, 42, 0.85);
+      --shadow-card: 0 18px 40px rgba(15, 23, 42, 0.9);
+      --transition-normal: 180ms ease-out;
+      --nav-height: 64px;
+      --max-width: 1120px;
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Noto Sans TC",
+        "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at top left, #0f172a 0, #020617 45%, #000 100%);
+      color: var(--text-main);
+      font-family: var(--font-main);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+    }
+
+    /* ====== 全局 Layout ====== */
+    .site-shell {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(
+        to bottom,
+        rgba(15, 23, 42, 0.9),
+        rgba(15, 23, 42, 0.65),
+        transparent
+      );
+      border-bottom: 1px solid rgba(31, 41, 55, 0.9);
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 8px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 40%;
+      background: conic-gradient(
+        from 180deg,
+        #22d3ee,
+        #6366f1,
+        #22c55e,
+        #22d3ee
+      );
+      position: relative;
+      box-shadow: 0 0 40px rgba(34, 211, 238, 0.55);
+      overflow: hidden;
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      inset: 3px;
+      border-radius: 40%;
+      background: radial-gradient(circle at 20% 0%, #0f172a 0, #020617 45%, #000 100%);
+    }
+
+    .brand-text-main {
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      font-size: 15px;
+    }
+
+    .brand-text-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .nav-link {
+      padding: 6px 12px;
+      border-radius: 999px;
+      color: var(--text-muted);
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: color var(--transition-normal),
+        background var(--transition-normal),
+        border-color var(--transition-normal),
+        transform 140ms ease-out;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      color: var(--text-main);
+      background: rgba(15, 23, 42, 0.85);
+      border-color: rgba(55, 65, 81, 0.9);
+      transform: translateY(-1px);
+    }
+
+    .nav-link-primary {
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      background: linear-gradient(135deg, #22d3ee, #6366f1);
+      color: #0b1120;
+      font-weight: 600;
+      border: none;
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.55);
+    }
+
+    .nav-link-primary:hover {
+      background: linear-gradient(135deg, #2dd4bf, #818cf8);
+      color: #020617;
+    }
+
+    .hamburger {
+      display: none;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid rgba(55, 65, 81, 0.95);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-main);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--text-main);
+      position: relative;
+      display: inline-block;
+      transition: all var(--transition-normal);
+    }
+
+    .hamburger span::before,
+    .hamburger span::after {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--text-main);
+      left: 0;
+      transition: all var(--transition-normal);
+    }
+
+    .hamburger span::before {
+      top: -5px;
+    }
+
+    .hamburger span::after {
+      top: 5px;
+    }
+
+    .hamburger.open span {
+      background: transparent;
+    }
+
+    .hamburger.open span::before {
+      transform: translateY(5px) rotate(45deg);
+    }
+
+    .hamburger.open span::after {
+      transform: translateY(-5px) rotate(-45deg);
+    }
+
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      padding: 10px 20px 14px;
+      background: radial-gradient(circle at top, #020617 0, #020617 50%, #000 100%);
+      border-bottom: 1px solid rgba(31, 41, 55, 0.95);
+    }
+
+    .mobile-nav a {
+      padding: 8px 10px;
+      border-radius: 10px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      border: 1px solid transparent;
+    }
+
+    .mobile-nav a:hover {
+      color: var(--text-main);
+      border-color: rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.8);
+    }
+
+    .mobile-nav .nav-link-primary {
+      justify-content: center;
+      text-align: center;
+      display: inline-block;
+      margin-top: 4px;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .page-container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 32px 20px 56px;
+    }
+
+    .section {
+      margin-bottom: 40px;
+      padding: 24px 20px;
+      background: radial-gradient(circle at top left, #020617 0, #020617 45%, #020617 100%);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(31, 41, 55, 0.95);
+      box-shadow: var(--shadow-card);
+      backdrop-filter: blur(12px);
+    }
+
+    .section + .section {
+      margin-top: 28px;
+    }
+
+    .section-header {
+      margin-bottom: 16px;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title-tag {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--primary);
+      border: 1px solid rgba(34, 211, 238, 0.6);
+    }
+
+    .section-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      max-width: 520px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid rgba(31, 41, 55, 0.95);
+      margin: 12px 0 18px;
+    }
+
+    p {
+      margin: 0 0 10px;
+      line-height: 1.6;
+      font-size: 14px;
+      color: var(--text-main);
+    }
+
+    strong {
+      color: #f9fafb;
+    }
+
+    /* ====== Hero 區塊 ====== */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+      gap: 20px;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-size: 26px;
+      line-height: 1.25;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      margin-bottom: 10px;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      max-width: 520px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      border: 1px solid rgba(55, 65, 81, 0.95);
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.95), #020617);
+      color: var(--text-muted);
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--primary);
+      box-shadow: 0 0 10px rgba(34, 211, 238, 0.65);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: var(--radius-pill);
+      font-size: 13px;
+      font-weight: 500;
+      border: 1px solid transparent;
+      cursor: pointer;
+      background: transparent;
+      color: var(--text-main);
+      text-decoration: none;
+      transition: all var(--transition-normal);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #22d3ee, #6366f1);
+      color: #020617;
+      box-shadow: 0 18px 30px rgba(59, 130, 246, 0.55);
+      border: none;
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      border-color: rgba(55, 65, 81, 0.95);
+      background: rgba(15, 23, 42, 0.85);
+      color: var(--text-muted);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15, 23, 42, 1);
+      color: var(--text-main);
+    }
+
+    .hero-note {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .hero-note code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+      background: rgba(17, 24, 39, 0.9);
+      border-radius: 6px;
+      padding: 1px 5px;
+      border: 1px solid rgba(31, 41, 55, 0.95);
+    }
+
+    .hero-panel {
+      position: relative;
+      border-radius: 22px;
+      padding: 18px 16px 16px;
+      background: radial-gradient(circle at top left, #0f172a 0, #020617 55%, #000 100%);
+      border: 1px solid rgba(55, 65, 81, 0.95);
+      box-shadow: 0 25px 50px rgba(15, 23, 42, 1);
+      overflow: hidden;
+    }
+
+    .hero-panel::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at top, rgba(34, 211, 238, 0.12), transparent 60%),
+        radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.18), transparent 65%),
+        radial-gradient(circle at 80% 40%, rgba(34, 197, 94, 0.18), transparent 60%);
+      opacity: 0.8;
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+    .hero-panel-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .hero-pill {
+      font-size: 11px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      color: var(--primary);
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(34, 211, 238, 0.7);
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .hero-pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #22c55e, #22d3ee);
+      box-shadow: 0 0 12px rgba(34, 211, 238, 0.9);
+    }
+
+    .hero-panel-tabs {
+      display: flex;
+      gap: 6px;
+      font-size: 11px;
+      margin-bottom: 10px;
+    }
+
+    .hero-panel-tab {
+      padding: 3px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.92);
+      background: rgba(15, 23, 42, 0.88);
+      color: var(--text-muted);
+    }
+
+    .hero-panel-tab.active {
+      border-color: rgba(34, 211, 238, 0.8);
+      color: var(--primary);
+      background: rgba(15, 23, 42, 1);
+      box-shadow: 0 0 16px rgba(34, 211, 238, 0.4);
+    }
+
+    .hero-diagram {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .hero-node {
+      position: relative;
+      border-radius: 14px;
+      padding: 8px 10px;
+      border: 1px solid rgba(55, 65, 81, 0.95);
+      background: radial-gradient(circle at top, #020617 0, #020617 100%);
+      font-size: 11px;
+    }
+
+    .hero-node-title {
+      font-weight: 600;
+      margin-bottom: 2px;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-node-sub {
+      color: var(--text-muted);
+      font-size: 10px;
+    }
+
+    .hero-node-tag {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      font-size: 10px;
+      color: var(--primary);
+      opacity: 0.85;
+    }
+
+    .hero-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .hero-footer strong {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .hero-mini-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .hero-mini-item {
+      padding: 2px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.95);
+      background: rgba(15, 23, 42, 0.85);
+    }
+
+    /* ====== 學習路徑進度條 ====== */
+    .roadmap {
+      margin-top: 18px;
+      padding: 12px 12px 10px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(31, 41, 55, 0.95);
+      background: radial-gradient(circle at top, #020617 0, #020617 100%);
+    }
+
+    .roadmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .roadmap-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .roadmap-label strong {
+      font-size: 13px;
+      color: var(--text-main);
+    }
+
+    .difficulty-legend {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      font-size: 10px;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .legend-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+    }
+
+    .legend-dot.easy {
+      background: #22c55e;
+    }
+
+    .legend-dot.mid {
+      background: #eab308;
+    }
+
+    .legend-dot.hard {
+      background: #f97316;
+    }
+
+    .roadmap-bar {
+      position: relative;
+      height: 9px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.95);
+      overflow: hidden;
+      border: 1px solid rgba(31, 41, 55, 0.95);
+    }
+
+    .roadmap-bar-fill {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      border-radius: inherit;
+      overflow: hidden;
+    }
+
+    .roadmap-segment {
+      position: relative;
+    }
+
+    .roadmap-segment::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.9;
+    }
+
+    .roadmap-segment:nth-child(1)::before {
+      background: linear-gradient(90deg, #22c55e, #4ade80);
+    }
+
+    .roadmap-segment:nth-child(2)::before {
+      background: linear-gradient(90deg, #4ade80, #eab308);
+    }
+
+    .roadmap-segment:nth-child(3)::before {
+      background: linear-gradient(90deg, #eab308, #f97316);
+    }
+
+    .roadmap-segment:nth-child(4)::before {
+      background: linear-gradient(90deg, #f97316, #f97316);
+    }
+
+    .roadmap-segment:nth-child(5)::before {
+      background: linear-gradient(90deg, #f97316, #6366f1);
+    }
+
+    .roadmap-bar-mask {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.2), transparent 55%);
+      pointer-events: none;
+    }
+
+    .roadmap-weeks {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 6px;
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    .roadmap-week-label {
+      text-align: center;
+      flex: 1;
+    }
+
+    .roadmap-week-label span {
+      display: block;
+      font-weight: 500;
+      color: var(--text-main);
+    }
+
+    /* Animation */
+    .roadmap-bar-outer {
+      overflow: hidden;
+    }
+
+    .roadmap-bar-fill {
+      transform: translateX(-100%);
+      transition: transform 1200ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .roadmap-bar-fill.active {
+      transform: translateX(0);
+    }
+
+    /* ====== Tabs 區 ====== */
+
+    .tab-header {
+      display: inline-flex;
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: var(--radius-pill);
+      padding: 3px;
+      border: 1px solid rgba(31, 41, 55, 0.95);
+      margin-bottom: 12px;
+    }
+
+    .tab-button {
+      border-radius: var(--radius-pill);
+      border: none;
+      background: transparent;
+      padding: 5px 10px;
+      font-size: 12px;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all var(--transition-normal);
+      white-space: nowrap;
+    }
+
+    .tab-button span.diamond {
+      font-size: 9px;
+      opacity: 0.7;
+    }
+
+    .tab-button.active {
+      background: radial-gradient(circle at top, #020617, #020617);
+      color: var(--primary);
+      box-shadow: 0 0 18px rgba(34, 211, 238, 0.35);
+    }
+
+    .tab-button.active span.diamond {
+      opacity: 1;
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.6fr 2fr;
+      gap: 14px;
+      align-items: flex-start;
+      margin-top: 6px;
+    }
+
+    .card {
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(31, 41, 55, 0.95);
+      background: rgba(15, 23, 42, 0.9);
+      padding: 10px 11px;
+      font-size: 13px;
+    }
+
+    .card h4 {
+      margin: 0 0 6px;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+    }
+
+    .list-compact {
+      list-style: none;
+      margin: 0;
+      padding-left: 13px;
+      font-size: 13px;
+      color: var(--text-main);
+    }
+
+    .list-compact li {
+      margin-bottom: 4px;
+      position: relative;
+    }
+
+    .list-compact li::before {
+      content: "•";
+      position: absolute;
+      left: -10px;
+      color: var(--primary);
+      opacity: 0.8;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .tag {
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(31, 41, 55, 0.95);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text-muted);
+    }
+
+    .tag.success {
+      border-color: rgba(34, 197, 94, 0.7);
+      color: #bbf7d0;
+    }
+
+    .tag.warning {
+      border-color: rgba(234, 179, 8, 0.7);
+      color: #fef9c3;
+    }
+
+    .tag.danger {
+      border-color: rgba(248, 113, 113, 0.8);
+      color: #fee2e2;
+    }
+
+    /* ====== 表格 ====== */
+
+    .table-wrapper {
+      margin-top: 6px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(31, 41, 55, 0.95);
+      overflow: hidden;
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    thead {
+      background: rgba(15, 23, 42, 0.98);
+    }
+
+    th,
+    td {
+      padding: 6px 8px;
+      border-bottom: 1px solid rgba(31, 41, 55, 0.95);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      font-weight: 600;
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    tbody tr:nth-child(even) {
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 1px 7px;
+      border-radius: 999px;
+      font-size: 10px;
+      border: 1px solid rgba(55, 65, 81, 0.95);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text-muted);
+    }
+
+    .pill.easy {
+      border-color: rgba(34, 197, 94, 0.9);
+      color: #bbf7d0;
+    }
+
+    .pill.mid {
+      border-color: rgba(234, 179, 8, 0.9);
+      color: #fef9c3;
+    }
+
+    .pill.high {
+      border-color: rgba(248, 113, 113, 0.9);
+      color: #fee2e2;
+    }
+
+    .pill-risk-low {
+      border-color: rgba(34, 197, 94, 0.9);
+      color: #bbf7d0;
+    }
+
+    .pill-risk-mid {
+      border-color: rgba(234, 179, 8, 0.9);
+      color: #fef9c3;
+    }
+
+    .pill-risk-high {
+      border-color: rgba(248, 113, 113, 0.9);
+      color: #fee2e2;
+    }
+
+    /* ====== 場景應用 Accordion ====== */
+
+    .accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .accordion-item {
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(31, 41, 55, 0.95);
+      background: rgba(15, 23, 42, 0.92);
+      overflow: hidden;
+    }
+
+    .accordion-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 8px 9px;
+      cursor: pointer;
+    }
+
+    .accordion-title {
+      font-size: 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .accordion-title-main {
+      font-weight: 500;
+    }
+
+    .accordion-title-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .accordion-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      align-items: flex-end;
+      font-size: 11px;
+    }
+
+    .accordion-meta-top {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .accordion-chevron {
+      font-size: 11px;
+      color: var(--text-muted);
+      transition: transform var(--transition-normal);
+    }
+
+    .accordion-item.open .accordion-chevron {
+      transform: rotate(90deg);
+      color: var(--primary);
+    }
+
+    .accordion-body {
+      display: none;
+      padding: 0 9px 8px;
+      border-top: 1px solid rgba(31, 41, 55, 0.95);
+      font-size: 12px;
+      color: var(--text-main);
+    }
+
+    .accordion-body p {
+      font-size: 12px;
+    }
+
+    .accordion-body ul {
+      margin: 4px 0 0;
+      padding-left: 16px;
+      font-size: 12px;
+    }
+
+    .accordion-body li {
+      margin-bottom: 2px;
+    }
+
+    /* ====== 資源區 ====== */
+
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .resource-card {
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(31, 41, 55, 0.95);
+      background: rgba(15, 23, 42, 0.92);
+      padding: 8px 9px;
+      font-size: 12px;
+    }
+
+    .resource-card h4 {
+      margin: 0 0 4px;
+      font-size: 12px;
+    }
+
+    .resource-card a {
+      color: var(--primary);
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    .resource-card a:hover {
+      text-decoration: underline;
+    }
+
+    /* ====== Footer ====== */
+
+    .site-footer {
+      border-top: 1px solid rgba(31, 41, 55, 0.95);
+      padding: 16px 20px 20px;
+      font-size: 11px;
+      color: var(--text-muted);
+      background: radial-gradient(circle at top, #020617 0, #020617 100%);
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-cta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .footer-cta button,
+    .footer-cta a {
+      font-size: 11px;
+      padding: 4px 9px;
+    }
+
+    /* ====== RWD ====== */
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-panel {
+        order: -1;
+      }
+
+      .two-col {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .resource-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: inline-flex;
+      }
+
+      .page-container {
+        padding: 20px 16px 32px;
+      }
+
+      .section {
+        padding: 16px 14px;
+        margin-bottom: 24px;
+      }
+
+      .section-title {
+        font-size: 17px;
+      }
+
+      .hero-title {
+        font-size: 22px;
+      }
+
+      .resource-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="site-shell">
+  <!-- ====== 導覽列 ====== -->
+  <header class="site-header">
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="brand-mark"></div>
+        <div>
+          <div class="brand-text-main">OpenClaw Skills 學習中心</div>
+          <div class="brand-text-sub">從入門到高階開發的完整互動式學習平臺</div>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="#overview" class="nav-link">總覽</a>
+        <a href="#getting-started" class="nav-link">入門基礎</a>
+        <a href="#advanced-usage" class="nav-link">進階應用</a>
+        <a href="#advanced-dev" class="nav-link">高階開發</a>
+        <a href="#skills-lib" class="nav-link">技能庫</a>
+        <a href="#scenarios" class="nav-link">30 場景</a>
+        <a href="#resources" class="nav-link">推薦資源</a>
+        <a href="#overview" class="nav-link nav-link-primary">分享 / 開始使用</a>
+      </nav>
+      <button class="hamburger" aria-label="切換導覽選單">
+        <span></span>
+      </button>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="#overview">總覽</a>
+      <a href="#getting-started">入門基礎</a>
+      <a href="#advanced-usage">進階應用</a>
+      <a href="#advanced-dev">高階開發</a>
+      <a href="#skills-lib">技能庫</a>
+      <a href="#scenarios">30 場景應用</a>
+      <a href="#resources">推薦資源</a>
+      <a href="#overview" class="nav-link-primary">立即開始學習</a>
+    </div>
+  </header>
+
+  <!-- ====== 主要內容 ====== -->
+  <main>
+    <div class="page-container">
+      <!-- ====== 總覽 / Hero ====== -->
+      <section id="overview" class="section">
+        <div class="section-header">
+          <div class="section-title">
+            OpenClaw Skills 學習中心
+            <span class="section-title-tag">Overview · 1–10+ 週學習地圖</span>
+          </div>
+          <div class="section-desc">
+            一個從 0 到自動化代理人的完整學習平臺：從安裝 Gateway、連接消息平臺、挑選 Skills、到自訂開發與實戰場景，
+            幫助你在 10+ 週內建立屬於自己的專屬 AI 助理系統。
+          </div>
+        </div>
+        <hr />
+        <div class="hero">
+          <div>
+            <div class="hero-title">從訊息平臺到自訂技能，系統化掌握 OpenClaw 能力圈</div>
+            <p class="hero-subtitle">
+              專為「想要實際跑起來」的使用者設計：不只介紹概念，而是一步步帶你完成安裝、配置、技能挑選、
+              風險分級、自動化工作流設計，最後做到可以自己寫 Skills。
+            </p>
+            <div class="hero-badges">
+              <div class="badge">
+                <span class="badge-dot"></span>
+                7 大課程模組
+              </div>
+              <div class="badge">
+                <span class="badge-dot"></span>
+                12 大消息平臺接入
+              </div>
+              <div class="badge">
+                <span class="badge-dot"></span>
+                700+ Skills 分類與 Top 10 精選
+              </div>
+              <div class="badge">
+                <span class="badge-dot"></span>
+                30 個日常與專業實戰場景
+              </div>
+            </div>
+            <div class="hero-actions">
+              <a href="#getting-started" class="btn btn-primary">
+                開始 4 週入門路線
+              </a>
+              <a href="#skills-lib" class="btn btn-ghost">
+                查看技能庫與 Top 10 必裝
+              </a>
+            </div>
+            <div class="hero-note">
+              建議從「<strong>Telegram 入門路線</strong>」開始：<code>1. 安裝 Gateway → 2. 接 Telegram → 3. 啟用 5–10 個低風險 Skills</code>
+            </div>
+
+            <!-- 學習路徑進度條 -->
+            <div class="roadmap">
+              <div class="roadmap-header">
+                <div class="roadmap-label">
+                  <strong>系統化學習路徑 · 1–10+ 週</strong>
+                  <span>從入門裝好到自訂 Skills 與自動化工作流</span>
+                </div>
+                <div class="difficulty-legend">
+                  <div class="legend-item">
+                    <span class="legend-dot easy"></span> 入門
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-dot mid"></span> 進階
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-dot hard"></span> 高階
+                  </div>
+                </div>
+              </div>
+              <div class="roadmap-bar-outer">
+                <div class="roadmap-bar">
+                  <div class="roadmap-bar-fill" id="roadmapFill">
+                    <div class="roadmap-segment"></div>
+                    <div class="roadmap-segment"></div>
+                    <div class="roadmap-segment"></div>
+                    <div class="roadmap-segment"></div>
+                    <div class="roadmap-segment"></div>
+                  </div>
+                  <div class="roadmap-bar-mask"></div>
+                </div>
+              </div>
+              <div class="roadmap-weeks">
+                <div class="roadmap-week-label">
+                  <span>Week 1–2</span> 安裝、Telegram、官方入門 Skills
+                </div>
+                <div class="roadmap-week-label">
+                  <span>Week 3–4</span> 多平臺接入、Top 10 必裝 Skills
+                </div>
+                <div class="roadmap-week-label">
+                  <span>Week 5–6</span> 工作流設計與 10+ 場景應用
+                </div>
+                <div class="roadmap-week-label">
+                  <span>Week 7–8</span> 自訂 Skills / MCP / Memory
+                </div>
+                <div class="roadmap-week-label">
+                  <span>Week 9+</span> 針對自己領域打造專屬代理人
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 右側：4 大核心組件示意 -->
+          <div class="hero-panel">
+            <div class="hero-panel-inner">
+              <div class="hero-panel-header">
+                <div class="hero-pill">
+                  <span class="hero-pill-dot"></span>
+                  OpenClaw 核心架構 · 4 大組件
+                </div>
+              </div>
+              <div class="hero-panel-tabs">
+                <div class="hero-panel-tab active">架構一覽</div>
+                <div class="hero-panel-tab">技能 & 記憶</div>
+              </div>
+              <div class="hero-diagram">
+                <div class="hero-node">
+                  <div class="hero-node-title">Gateway</div>
+                  <div class="hero-node-sub">
+                    負責接 Telegram / WhatsApp / Discord / Slack 等 12 大消息平臺的入口與路由。
+                  </div>
+                  <div class="hero-node-tag">通訊樞紐</div>
+                </div>
+                <div class="hero-node">
+                  <div class="hero-node-title">Agent</div>
+                  <div class="hero-node-sub">
+                    LLM 推理引擎，負責理解指令、拆解任務、選擇並呼叫合適的 Skills。
+                  </div>
+                  <div class="hero-node-tag">大腦</div>
+                </div>
+                <div class="hero-node">
+                  <div class="hero-node-title">Skills</div>
+                  <div class="hero-node-sub">
+                    幫助 Agent 連接外部世界：雲端服務、資料庫、DevOps、家電、金融市場等。
+                  </div>
+                  <div class="hero-node-tag">手腳</div>
+                </div>
+                <div class="hero-node">
+                  <div class="hero-node-title">Memory</div>
+                  <div class="hero-node-sub">
+                    檔案 / DB 形式的長期記憶與個人偏好，讓助理「越用越懂你」。
+                  </div>
+                  <div class="hero-node-tag">長期記憶</div>
+                </div>
+              </div>
+              <div class="hero-footer">
+                <div>
+                  當你發訊息到 Telegram / Discord 時，會經過
+                  <strong>Gateway → Agent → Skills → Memory</strong> 的完整流程。
+                </div>
+                <div class="hero-mini-list">
+                  <div class="hero-mini-item">1–2 週：裝好 + 聊天</div>
+                  <div class="hero-mini-item">3–6 週：多場景工作流</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== 入門基礎 ====== -->
+      <section id="getting-started" class="section">
+        <div class="section-header">
+          <div class="section-title">
+            入門基礎
+            <span class="section-title-tag">Week 1–2 · 安裝 & 第一個訊息平臺</span>
+          </div>
+          <div class="section-desc">
+            目標：把 OpenClaw 真正裝起來、接上 Telegram / Discord 其中一個，並啟用安全且實用的第一批官方 Skills。
+          </div>
+        </div>
+        <hr />
+        <div class="tab-header" data-tab-group="getting-started">
+          <button class="tab-button active" data-tab-target="gs-prepare">
+            <span class="diamond">◆</span> 安裝前準備
+          </button>
+          <button class="tab-button" data-tab-target="gs-install">
+            <span class="diamond">◆</span> 安裝與基本設定
+          </button>
+          <button class="tab-button" data-tab-target="gs-telegram">
+            <span class="diamond">◆</span> Telegram 入門路線
+          </button>
+          <button class="tab-button" data-tab-target="gs-first-skills">
+            <span class="diamond">◆</span> 第一批官方 Skills
+          </button>
+        </div>
+
+        <!-- Tab 1 -->
+        <div class="tab-panel active" id="gs-prepare" data-tab-panel="getting-started">
+          <div class="two-col">
+            <div class="card">
+              <h4>1. 系統與帳號準備</h4>
+              <ul class="list-compact">
+                <li>一台長期在線的機器：雲端主機 / NAS / 家用機器人主機皆可。</li>
+                <li>建議安裝 Docker（或 Node.js / Python，視你實際教學路線而定）。</li>
+                <li>準備至少一組 LLM API 金鑰（OpenAI / Anthropic / 其他相容供應商）。</li>
+                <li>建立 Telegram / Discord 等你打算優先使用的消息平臺帳號。</li>
+              </ul>
+              <div class="tag-row">
+                <span class="tag success">推薦：先從 Telegram 開始，錯誤資訊最清楚</span>
+              </div>
+            </div>
+            <div class="card">
+              <h4>2. 安全與風險提醒</h4>
+              <ul class="list-compact">
+                <li>一開始只啟用「讀取型」或低風險 Skills（摘要、查詢、筆記寫入等）。</li>
+                <li>避免立刻開啟「金流 / 下單 / 密碼管理 / 家庭門鎖」等高風險技能。</li>
+                <li>使用 .env 或 Secrets 管理金鑰與密碼，避免直接寫死在程式碼中。</li>
+              </ul>
+              <div class="tag-row">
+                <span class="tag warning">中風險：有寫入權限的 Skills（Notion / Obsidian / Email）</span>
+                <span class="tag danger">高風險：金融 / 家電 / 金流相關 Skills</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2 -->
+        <div class="tab-panel" id="gs-install" data-tab-panel="getting-started">
+          <p><strong>安裝與基本設定流程（示意）：</strong></p>
+          <p>實際指令請依你的安裝方式修改，此處提供一個通用結構，方便你在 Google Sites 裡分段說明。</p>
+          <div class="card">
+            <h4>步驟一：下載與初始化</h4>
+            <p>以 CLI 方式為例：</p>
+            <pre style="white-space: pre-wrap; font-size: 12px; background:#020617; padding:8px 9px; border-radius:8px; border:1px solid rgba(31,41,55,0.95); overflow-x:auto;">
+# 1. 下載 / 安裝 OpenClaw（依實際文件替換）
+curl -L https://your-install-script.sh | bash
+
+# 2. 初始化設定
+openclaw init
+
+# 3. 檢查版本與基本狀態
+openclaw status
+            </pre>
+            <p>初始化完成後，會在你的設定目錄中產生預設的 <code>config.yml</code> 或等價設定檔。</p>
+          </div>
+          <div class="card" style="margin-top:8px;">
+            <h4>步驟二：編輯設定檔</h4>
+            <ul class="list-compact">
+              <li>填入 LLM API 金鑰（例如 <code>OPENAI_API_KEY</code>）。</li>
+              <li>設定預設 Agent 模型與溝通語言（中文 / 英文）。</li>
+              <li>保留 Gateway 與 Skills 區塊供後續配置。</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Tab 3 -->
+        <div class="tab-panel" id="gs-telegram" data-tab-panel="getting-started">
+          <div class="two-col">
+            <div class="card">
+              <h4>Telegram 接入流程總覽</h4>
+              <ol class="list-compact" style="padding-left:16px;">
+                <li>在 Telegram 與 <strong>BotFather</strong> 建立新的 Bot，取得 Token。</li>
+                <li>在 OpenClaw Gateway 設定中新增 Telegram Connector，填入 Bot Token。</li>
+                <li>重新啟動 Gateway，使新設定生效。</li>
+                <li>在 Telegram 搜尋你的 Bot 名稱，點選 <code>/start</code> 開始對話。</li>
+                <li>測試基本對話與簡單指令，確認 Agent 正常回應。</li>
+              </ol>
+              <div class="tag-row">
+                <span class="tag success">完成此步驟 = 入門 50% 完成</span>
+              </div>
+            </div>
+            <div class="card">
+              <h4>常見錯誤與排查</h4>
+              <div class="table-wrapper">
+                <table>
+                  <thead>
+                  <tr>
+                    <th style="width:26%;">問題</th>
+                    <th>可能原因</th>
+                    <th style="width:26%;">排查方向</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td>Bot 沒有回應</td>
+                    <td>Gateway 未啟動 / Token 填錯 / Telegram Webhook 設錯。</td>
+                    <td>確認服務正在執行；重新產生並填入 Token。</td>
+                  </tr>
+                  <tr>
+                    <td>回應延遲很久</td>
+                    <td>LLM 回應時間過長或 API 設定錯誤。</td>
+                    <td>檢查 LLM 日誌；改用較快模型測試。</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 4 -->
+        <div class="tab-panel" id="gs-first-skills" data-tab-panel="getting-started">
+          <p><strong>建議新手先啟用 5–10 個「低風險、高通用性」 Skills，建立最小可用系統（MVP）。</strong></p>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+              <tr>
+                <th style="width:16%;">Skill 名稱</th>
+                <th style="width:16%;">類別</th>
+                <th style="width:12%;">難度</th>
+                <th style="width:12%;">風險</th>
+                <th>用途說明</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td><code>summarize</code></td>
+                <td>通用工具</td>
+                <td><span class="pill easy">★☆☆☆☆</span></td>
+                <td><span class="pill-risk-low">🟢 低</span></td>
+                <td>摘要長文、會議紀錄、聊天紀錄，是所有場景都可以搭配的基礎技能。</td>
+              </tr>
+              <tr>
+                <td><code>obsidian</code></td>
+                <td>知識管理</td>
+                <td><span class="pill mid">★★☆☆☆</span></td>
+                <td><span class="pill-risk-mid">🟡 中</span></td>
+                <td>在 Obsidian Vault 中建立 / 搜尋筆記，適合打造個人知識庫。</td>
+              </tr>
+              <tr>
+                <td><code>notion</code></td>
+                <td>任務 / 專案</td>
+                <td><span class="pill mid">★★☆☆☆</span></td>
+                <td><span class="pill-risk-mid">🟡 中</span></td>
+                <td>讀寫 Notion 資料庫，管理代辦、專案進度與知識文件。</td>
+              </tr>
+              <tr>
+                <td><code>web-search</code></td>
+                <td>網路搜尋</td>
+                <td><span class="pill mid">★★☆☆☆</span></td>
+                <td><span class="pill-risk-low">🟢 低</span></td>
+                <td>在網路上搜尋最新資訊、文件與範例，搭配 summarize 效果更好。</td>
+              </tr>
+              <tr>
+                <td><code>email-helper</code></td>
+                <td>溝通協作</td>
+                <td><span class="pill mid">★★☆☆☆</span></td>
+                <td><span class="pill-risk-mid">🟡 中</span></td>
+                <td>草擬、整理與發送 Email，建議先啟用「草稿模式」，再手動確認寄出。</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== 進階應用 ====== -->
+      <section id="advanced-usage" class="section">
+        <div class="section-header">
+          <div class="section-title">
+            進階應用
+            <span class="section-title-tag">Week 3–6 · 多平臺 & Top 10 Skills</span>
+          </div>
+          <div class="section-desc">
+            目標：從單一 Telegram / Discord 扩展到多個消息平臺，並挑選 10–20 個高 CP 值 Skills，建立穩定可用的日常工作流。
+          </div>
+        </div>
+        <hr />
+        <div class="tab-header" data-tab-group="advanced-usage">
+          <button class="tab-button active" data-tab-target="au-platforms">
+            <span class="diamond">◆</span> 12 大消息平臺總覽
+          </button>
+          <button class="tab-button" data-tab-target="au-top10">
+            <span class="diamond">◆</span> Top 10 必裝 Skills
+          </button>
+          <button class="tab-button" data-tab-target="au-bundles">
+            <span class="diamond">◆</span> 推薦組合包
+          </button>
+        </div>
+
+        <!-- Tab: 平臺總覽 -->
+        <div class="tab-panel active" id="au-platforms" data-tab-panel="advanced-usage">
+          <p><strong>常見消息平臺接入一覽：</strong></p>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+              <tr>
+                <th style="width:15%;">平臺</th>
+                <th style="width:22%;">推薦用途</th>
+                <th style="width:12%;">接入難度</th>
+                <th>備註與典型場景</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>Telegram</td>
+                <td>個人 / 小團隊助理</td>
+                <td><span class="pill easy">★☆☆☆☆</span></td>
+                <td>新手最推薦的起點，Bot 設定簡單，訊息格式彈性大。</td>
+              </tr>
+              <tr>
+                <td>Discord</td>
+                <td>社群經營 / 教學社群</td>
+                <td><span class="pill mid">★★★☆☆</span></td>
+                <td>適合開發者社群、課程社群，結合頻道與角色權限管理。</td>
+              </tr>
+              <tr>
+                <td>Slack</td>
+                <td>公司團隊 / 內部助理</td>
+                <td><span class="pill mid">★★★☆☆</span></td>
+                <td>適合作為「工程 / 產品團隊」內部 AI 助理入口。</td>
+              </tr>
+              <tr>
+                <td>WhatsApp</td>
+                <td>客戶溝通 / 外部服務</td>
+                <td><span class="pill high">★★★★☆</span></td>
+                <td>常用於客服 / 客戶經理型場景，建議先做足資料與權限控管。</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Tab: Top 10 Skills (示意前幾個) -->
+        <div class="tab-panel" id="au-top10" data-tab-panel="advanced-usage">
+          <p><strong>Top 10 必裝 Skills（示例前 5 項，實際可擴充為完整 10 項）：</strong></p>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+              <tr>
+                <th style="width:6%;">#</th>
+                <th style="width:16%;">Skill</th>
+                <th style="width:16%;">類別</th>
+                <th style="width:12%;">難度</th>
+                <th style="width:12%;">風險</th>
+                <th>用途與安裝建議</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>1</td>
+                <td><code>summarize</code></td>
+                <td>通用工具</td>
+                <td><span class="pill easy">★☆☆☆☆</span></td>
+                <td><span class="pill-risk-low">🟢 低</span></td>
+                <td>所有場景幾乎都會用到的摘要核心，建議作為預設技能啟用。</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td><code>web-search</code></td>
+                <td>資訊搜尋</td>
+                <td><span class="pill mid">★★☆☆☆</span></td>
+                <td><span class="pill-risk-low">🟢 低</span></td>
+                <td>與 summarize 組合，快速獲取與整理最新資訊。</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td><code>obsidian</code></td>
+                <td>知識管理</td>
+                <td><span class="pill mid">★★☆☆☆</span></td>
+                <td><span class="pill-risk-mid">🟡 中</span></td>
+                <td>適合重度筆記 / Zettelkasten 使用者，讓對話內容自動沉澱成知識庫。</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td><code>notion</code></td>
+                <td>任務 / 專案</td>
+                <td><span class="pill mid">★★☆☆☆</span></td>
+                <td><span class="pill-risk-mid">🟡 中</span></td>
+                <td>對應工作任務、專案管理與 CRM 場景。</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td><code>github-helper</code></td>
+                <td>開發者工具</td>
+                <td><span class="pill high">★★★★☆</span></td>
+                <td><span class="pill-risk-mid">🟡 中</span></td>
+                <td>整理 PR、Issue、Commit 訊息，適合作為工程團隊的日誌與回顧工具。</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Tab: 組合包 -->
+        <div class="tab-panel" id="au-bundles" data-tab-panel="advanced-usage">
+          <div class="two-col">
+            <div class="card">
+              <h4>個人效率組合</h4>
+              <p>適合自由工作者、知識工作者、研究生。</p>
+              <ul class="list-compact">
+                <li>summarize + web-search：資訊收集與整理。</li>
+                <li>obsidian / notion：知識庫與任務系統。</li>
+                <li>email-helper：信件草稿與整理。</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h4>開發者組合</h4>
+              <p>適合工程師、DevOps、架構師。</p>
+              <ul class="list-compact">
+                <li>github-helper：PR / Issue / Commit 整理。</li>
+                <li>docs-qa / repo-qa：專案文件與程式碼問題查詢。</li>
+                <li>chatops：在 Slack / Discord 直接操作 CI / Infra。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== 高階開發 ====== -->
+      <section id="advanced-dev" class="section">
+        <div class="section-header">
+          <div class="section-title">
+            高階開發
+            <span class="section-title-tag">Week 7–10+ · 自訂 Skills / Memory / 工作流</span>
+          </div>
+          <div class="section-desc">
+            目標：理解 Skills 與 SKILL.md 架構，能自行撰寫自訂 Skills、調整 metadata.openclaw，並規劃定時 / 條件觸發的自動化工作流。
+          </div>
+        </div>
+        <hr />
+        <div class="tab-header" data-tab-group="advanced-dev">
+          <button class="tab-button active" data-tab-target="ad-architecture">
+            <span class="diamond">◆</span> Skills 架構
+          </button>
+          <button class="tab-button" data-tab-target="ad-skillmd">
+            <span class="diamond">◆</span> SKILL.md 寫作範例
+          </button>
+          <button class="tab-button" data-tab-target="ad-workflow">
+            <span class="diamond">◆</span> 自動化工作流示例
+          </button>
+        </div>
+
+        <div class="tab-panel active" id="ad-architecture" data-tab-panel="advanced-dev">
+          <div class="two-col">
+            <div class="card">
+              <h4>1. 檔案與目錄結構</h4>
+              <ul class="list-compact">
+                <li>每個 Skill 一個獨立資料夾（含程式碼與 SKILL.md）。</li>
+                <li><code>SKILL.md</code>：自然語言描述技能行為、使用方法、邊界與安全限制。</li>
+                <li><code>metadata.openclaw</code>（YAML）：定義 emoji、依賴、安裝命令等。</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h4>2. 設計原則</h4>
+              <ul class="list-compact">
+                <li>「對 Agent 說話」：用自然語言描述，而不是只寫技術細節。</li>
+                <li>清楚列出「可以做什麼 / 不可以做什麼」。</li>
+                <li>每個 Skill 單一職責，避免過度肥大。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="ad-skillmd" data-tab-panel="advanced-dev">
+          <p><strong>SKILL.md 標準結構範例（適合貼到文件或 Google Sites 中）：</strong></p>
+          <pre style="white-space: pre-wrap; font-size: 12px; background:#020617; padding:8px 9px; border-radius:8px; border:1px solid rgba(31,41,55,0.95); overflow-x:auto;">
+# Skill 名稱：Daily Market Briefing
+
+## 這個 Skill 在做什麼
+- 每個交易日早上，整理全球股市、商品、匯率與重大新聞，輸出一份 Markdown 晨報。
+
+## 什麼時候應該使用這個 Skill
+- 使用者提到「晨報」、「早上看盤」、「今天市場怎麼樣」時。
+- 使用者是交易員 / 風控 / 投資相關角色。
+
+## 執行步驟
+1. 透過市場資料 API 抓取最新指數 / 期貨 / 匯率。
+2. 透過新聞 API 抓取與金融相關的重要標題與簡短內容。
+3. 將結果整理成以下區塊：
+   - Overnight Summary
+   - Index & Futures
+   - FX & Commodities
+   - Today Watchlist & Event
+4. 將整理好的報告以 Markdown 格式回傳或寫入指定筆記系統。
+
+## 不應該做的事
+- 不要主動下單或調整實際倉位。
+- 不要在沒有明確授權時寫入高風險位置（例如：風控系統真實參數）。
+          </pre>
+        </div>
+
+        <div class="tab-panel" id="ad-workflow" data-tab-panel="advanced-dev">
+          <div class="two-col">
+            <div class="card">
+              <h4>晨間市場簡報工作流</h4>
+              <p>適合交易員 / 量化研究人員：</p>
+              <ul class="list-compact">
+                <li>每天 08:30 自動觸發。</li>
+                <li>呼叫「市場資料 + 新聞 + 技術指標」相關 Skills。</li>
+                <li>整理成 Markdown 報告後，寫入 Obsidian / Notion，並推送到 Telegram 群組。</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h4>開發團隊每日 Digest</h4>
+              <p>適合工程團隊：</p>
+              <ul class="list-compact">
+                <li>每天收集 GitHub PR / Issue / CI 結果。</li>
+                <li>用 summarize 生成短版與長版摘要。</li>
+                <li>透過 Slack / Email 發送給團隊成員。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== 技能庫 ====== -->
+      <section id="skills-lib" class="section">
+        <div class="section-header">
+          <div class="section-title">
+            技能庫（Skills Library）
+            <span class="section-title-tag">700+ Skills 分類 / 難度 / 風險標示</span>
+          </div>
+          <div class="section-desc">
+            依照「類別 / 場景 / 難度 / 風險」整理常用 Skills，提供 Top Picks 與分類檢索。
+            在 Google Sites 中可對應為多張表格或多個子頁面。
+          </div>
+        </div>
+        <hr />
+        <p><strong>示例表格：常用 Skills 類別與難度 / 風險對比（可擴充）。</strong></p>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+            <tr>
+              <th style="width:18%;">Skill 名稱</th>
+              <th style="width:14%;">類別</th>
+              <th style="width:18%;">主要場景</th>
+              <th style="width:10%;">難度</th>
+              <th style="width:10%;">風險</th>
+              <th>備註 / 推薦理由</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td><code>summarize</code></td>
+              <td>通用工具</td>
+              <td>所有文字資訊處理</td>
+              <td><span class="pill easy">★☆☆☆☆</span></td>
+              <td><span class="pill-risk-low">🟢 低</span></td>
+              <td>最基礎、最實用，建議所有配置中預設啟用。</td>
+            </tr>
+            <tr>
+              <td><code>obsidian</code></td>
+              <td>知識管理</td>
+              <td>個人知識庫 / 交易日誌</td>
+              <td><span class="pill mid">★★☆☆☆</span></td>
+              <td><span class="pill-risk-mid">🟡 中</span></td>
+              <td>適合筆記流派使用者，建議先從讀取開始，再開啟寫入。</td>
+            </tr>
+            <tr>
+              <td><code>github-helper</code></td>
+              <td>開發者工具</td>
+              <td>PR / Issue Digest</td>
+              <td><span class="pill high">★★★★☆</span></td>
+              <td><span class="pill-risk-mid">🟡 中</span></td>
+              <td>對工程團隊效果極高，需要良好權限控管。</td>
+            </tr>
+            <tr>
+              <td><code>home-automation</code></td>
+              <td>生活 / 家庭</td>
+              <td>智慧家電控制</td>
+              <td><span class="pill high">★★★★☆</span></td>
+              <td><span class="pill-risk-high">🟠 高</span></td>
+              <td>務必限制指令範圍（像是只能控制燈光 / 溫度）。</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ====== 30 場景應用（Accordion 示意） ====== -->
+      <section id="scenarios" class="section">
+        <div class="section-header">
+          <div class="section-title">
+            30 場景應用
+            <span class="section-title-tag">Use Cases · 從晨間簡報到股票盯盤</span>
+          </div>
+          <div class="section-desc">
+            這裡整理典型場景的「劇本模板」，你可以在 Google Sites 中用多張卡片或 Accordion 呈現。
+            以下示意數個場景，你可以依此格式擴充到 30 個。
+          </div>
+        </div>
+        <hr />
+        <div class="accordion" id="scenarioAccordion">
+          <!-- 場景 1：晨間簡報 -->
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <div class="accordion-title">
+                <span class="accordion-title-main">晨間市場簡報（全球指數 + 新聞）</span>
+                <span class="accordion-title-sub">每日 08:30 自動產出 Markdown 報告，推送到 Telegram 群組。</span>
+              </div>
+              <div class="accordion-meta">
+                <div class="accordion-meta-top">
+                  <span class="pill easy">難度：中</span>
+                  <span class="pill-risk-mid">風險：🟡 中</span>
+                </div>
+                <div class="accordion-meta-top">
+                  <span class="pill">平臺：Telegram</span>
+                  <span class="pill">Skills：市場資料 / 新聞 / summarize / obsidian</span>
+                </div>
+                <span class="accordion-chevron">▶</span>
+              </div>
+            </div>
+            <div class="accordion-body">
+              <p><strong>流程範例：</strong></p>
+              <ul>
+                <li>每天 08:30 觸發工作流，抓取全球股市與期貨數據。</li>
+                <li>抓取重要金融新聞標題與摘要。</li>
+                <li>用 summarize 組合成一篇晨報（Markdown）。</li>
+                <li>寫入 Obsidian「Daily Briefing」資料夾，並推送到 Telegram 群組。</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 場景 2：交易日誌 -->
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <div class="accordion-title">
+                <span class="accordion-title-main">交易日誌與策略回顧助手</span>
+                <span class="accordion-title-sub">自動將每日交易紀錄整理成圖表與文字摘要，寫入知識庫。</span>
+              </div>
+              <div class="accordion-meta">
+                <div class="accordion-meta-top">
+                  <span class="pill mid">難度：中高</span>
+                  <span class="pill-risk-mid">風險：🟡 中</span>
+                </div>
+                <div class="accordion-meta-top">
+                  <span class="pill">平臺：Telegram / Desktop</span>
+                  <span class="pill">Skills：CSV / Charts / obsidian / summarize</span>
+                </div>
+                <span class="accordion-chevron">▶</span>
+              </div>
+            </div>
+            <div class="accordion-body">
+              <p><strong>適用族群：</strong> 期貨 / 選擇權 / 股票交易員。</p>
+              <ul>
+                <li>讀取當日交易明細（CSV / API）。</li>
+                <li>生成績效表與簡單圖表。</li>
+                <li>用 summarize 寫出「今日盤感 + 策略執行狀態 + 改進建議」。</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 場景 3：開發團隊 Digest -->
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <div class="accordion-title">
+                <span class="accordion-title-main">開發團隊每日 Digest</span>
+                <span class="accordion-title-sub">彙整 GitHub PR / Issue / CI 結果，推送到 Slack。</span>
+              </div>
+              <div class="accordion-meta">
+                <div class="accordion-meta-top">
+                  <span class="pill mid">難度：中</span>
+                  <span class="pill-risk-mid">風險：🟡 中</span>
+                </div>
+                <div class="accordion-meta-top">
+                  <span class="pill">平臺：Slack</span>
+                  <span class="pill">Skills：github-helper / summarize</span>
+                </div>
+                <span class="accordion-chevron">▶</span>
+              </div>
+            </div>
+            <div class="accordion-body">
+              <p><strong>流程摘要：</strong></p>
+              <ul>
+                <li>每天收集當日 PR / Issue 變動。</li>
+                <li>用 summarize 生出簡短與詳細版本說明。</li>
+                <li>推送到 Slack #daily-dev 頻道。</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 你可以依此格式複製擴充到 30 個場景 -->
+        </div>
+      </section>
+
+      <!-- ====== 推薦資源 ====== -->
+      <section id="resources" class="section">
+        <div class="section-header">
+          <div class="section-title">
+            推薦資源
+            <span class="section-title-tag">官方文件 / Skills 目錄 / 安全指南</span>
+          </div>
+          <div class="section-desc">
+            將常用的官方文件、Skills 目錄與實戰文章集中整理，讓自己與團隊能快速查找。
+            在 Google Sites 中可對應為「連結卡片」或「參考資料」子頁面。
+          </div>
+        </div>
+        <hr />
+        <div class="resource-grid">
+          <div class="resource-card">
+            <h4>官方文件與架構說明</h4>
+            <p>OpenClaw 官方文件、Skills 與 Memory 架構說明。</p>
+            <p><a href="https://docs.openclaw.ai/" target="_blank" rel="noreferrer">https://docs.openclaw.ai/</a></p>
+          </div>
+          <div class="resource-card">
+            <h4>Skills 目錄與搜尋</h4>
+            <p>以類別 / 標籤搜尋 Skills，了解實際用途與安裝方式。</p>
+            <p><a href="https://openclawskills.org" target="_blank" rel="noreferrer">https://openclawskills.org</a></p>
+          </div>
+          <div class="resource-card">
+            <h4>風險與安全實戰</h4>
+            <p>不同工具 / 技能的風險分級與啟用建議。</p>
+            <p><a href="#" target="_blank" rel="noreferrer">（保留給你自己的長文 / 教學）</a></p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ====== Footer ====== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        OpenClaw Skills 學習中心 · 你可以直接將此頁分享給朋友或團隊，一起規劃屬於自己的 AI 助理系統。
+      </div>
+      <div class="footer-cta">
+        <button class="btn btn-ghost" id="copyUrlBtn">複製本頁網址</button>
+        <a href="#overview" class="btn btn-primary">回到頂部開始學習</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  // ====== Hamburger / Mobile Nav ======
+  const hamburger = document.querySelector(".hamburger");
+  const mobileNav = document.getElementById("mobileNav");
+
+  if (hamburger && mobileNav) {
+    hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("open");
+      if (mobileNav.style.display === "flex") {
+        mobileNav.style.display = "none";
+      } else {
+        mobileNav.style.display = "flex";
+      }
+    });
+
+    // 點擊 mobile nav 錨點後關閉
+    mobileNav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        hamburger.classList.remove("open");
+        mobileNav.style.display = "none";
+      });
+    });
+  }
+
+  // ====== Tabs ======
+  document.querySelectorAll(".tab-header").forEach((header) => {
+    const group = header.getAttribute("data-tab-group");
+    header.querySelectorAll(".tab-button").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const targetId = btn.getAttribute("data-tab-target");
+
+        // 切換按鈕狀態
+        header.querySelectorAll(".tab-button").forEach((b) => {
+          b.classList.toggle("active", b === btn);
+        });
+
+        // 切換對應面板
+        document.querySelectorAll('[data-tab-panel="' + group + '"]').forEach((panel) => {
+          panel.classList.toggle("active", panel.id === targetId);
+        });
+      });
+    });
+  });
+
+  // ====== Accordion ======
+  document.querySelectorAll("#scenarioAccordion .accordion-item").forEach((item) => {
+    const header = item.querySelector(".accordion-header");
+    const body = item.querySelector(".accordion-body");
+
+    header.addEventListener("click", () => {
+      const isOpen = item.classList.contains("open");
+      // 若你想同時只能開一個，先全部關閉：
+      document.querySelectorAll("#scenarioAccordion .accordion-item").forEach((i) => {
+        i.classList.remove("open");
+        i.querySelector(".accordion-body").style.display = "none";
+      });
+      // 再決定是否打開當前項目
+      if (!isOpen) {
+        item.classList.add("open");
+        body.style.display = "block";
+      }
+    });
+  });
+
+  // ====== Roadmap 進度條動畫 ======
+  window.addEventListener("load", () => {
+    const fill = document.getElementById("roadmapFill");
+    if (fill) {
+      setTimeout(() => {
+        fill.classList.add("active");
+      }, 200);
+    }
+  });
+
+  // ====== 複製網址按鈕 ======
+  const copyUrlBtn = document.getElementById("copyUrlBtn");
+  if (copyUrlBtn && navigator.clipboard) {
+    copyUrlBtn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+        copyUrlBtn.textContent = "已複製 ✔";
+        setTimeout(() => {
+          copyUrlBtn.textContent = "複製本頁網址";
+        }, 1500);
+      } catch (e) {
+        copyUrlBtn.textContent = "複製失敗";
+      }
+    });
+  }
+</script>
+</body>
+</html>

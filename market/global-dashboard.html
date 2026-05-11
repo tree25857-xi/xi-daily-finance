@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Global Finance Dashboard | 全球金融即時儀表板</title>
+ 
+ <!-- React & ReactDOM -->
+ <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+ <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+ 
+ <!-- Babel for JSX -->
+ <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+ 
+ <!-- Tailwind CSS -->
+ <script src="https://cdn.tailwindcss.com"></script>
+ 
+ <!-- Lucide Icons -->
+ <script src="https://unpkg.com/lucide@latest"></script>
+
+ <!-- Custom Tailwind Config -->
+ <script>
+ tailwind.config = {
+ darkMode: 'class',
+ theme: {
+ extend: {
+ colors: {
+ slate: {
+ 850: '#1e293b',
+ 900: '#0f172a',
+ 950: '#020617',
+ },
+ trade: {
+ up: '#22c55e',
+ down: '#ef4444',
+ accent: '#3b82f6'
+ }
+ },
+ fontFamily: {
+ sans: ['Noto Sans TC', 'Microsoft JhengHei', 'sans-serif'],
+ }
+ }
+ }
+ }
+ </script>
+ <style>
+ body {
+ background-color: #020617; /* slate-950 */
+ color: #e2e8f0;
+ }
+ /* Custom scrollbar */
+ ::-webkit-scrollbar {
+ width: 8px;
+ height: 8px;
+ }
+ ::-webkit-scrollbar-track {
+ background: #0f172a; 
+ }
+ ::-webkit-scrollbar-thumb {
+ background: #334155; 
+ border-radius: 4px;
+ }
+ ::-webkit-scrollbar-thumb:hover {
+ background: #475569; 
+ }
+ .widget-container {
+ min-height: 220px;
+ }
+ .quote-container {
+ min-height: 220px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ }
+ /* Header styles for our site */
+ .site-header {
+ background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 100%);
+ }
+ .site-nav {
+ background: rgba(13, 27, 42, 0.95);
+ backdrop-filter: blur(10px);
+ }
+ .site-footer {
+ background: #0d1b2a;
+ }
+ </style>
+</head>
+<body>
+ <div id="root"></div>
+
+ <!-- Navigation -->
+ <nav class="site-nav py-3 border-b border-slate-800">
+ <div class="max-w-7xl mx-auto px-4">
+ <ul class="flex flex-wrap gap-4 text-sm">
+ <li><a href="../index.html" class="text-slate-400 hover:text-white transition-colors">🏠 首頁</a></li>
+ <li><a href="market-tracker.html" class="text-slate-400 hover:text-white transition-colors">📊 市場儀表板</a></li>
+ <li><a href="market-screenshots.html" class="text-slate-400 hover:text-white transition-colors">📸 曦曦截圖</a></li>
+ <li><a href="global-dashboard.html" class="text-amber-400 font-medium">🌐 全球金融儀表板</a></li>
+ <li><a href="../archive.html" class="text-slate-400 hover:text-white transition-colors">📚 歷史檔案</a></li>
+ </ul>
+ </div>
+ </nav>
+
+ <script type="text/babel">
+ const { useState, useEffect, useRef } = React;
+ 
+ // --- Data Configuration ---
+ const MARKET_DATA = [
+ // 1. 美股與指數
+ { symbol: "FOREXCOM:SPXUSD", label: "S&P 500", category: "stocks", desc: "標普500", type: 'chart' },
+ { symbol: "FOREXCOM:DJI", label: "Dow Jones", category: "stocks", desc: "道瓊工業", type: 'chart' },
+ { symbol: "FOREXCOM:NSXUSD", label: "NAS100", category: "stocks", desc: "納斯達克100", type: 'chart' }, 
+ { symbol: "NASDAQ:TSLA", label: "TSLA", category: "stocks", desc: "特斯拉", type: 'chart' },
+ { symbol: "NASDAQ:SOX", label: "SOX Index", category: "stocks", desc: "費城半導體", type: 'quote' },
+ { symbol: "NASDAQ:GOOG", label: "Google", category: "stocks", desc: "Alphabet Inc.", type: 'chart' },
+ { symbol: "NYSE:TSM", label: "TSM ADR", category: "stocks", desc: "台積電", type: 'chart' },
+ { symbol: "NASDAQ:NVDA", label: "NVIDIA", category: "stocks", desc: "輝達", type: 'chart' },
+
+ // 2. 大宗商品期貨
+ { symbol: "OANDA:XAUUSD", label: "Gold", category: "commodities", desc: "黃金現貨", type: 'chart' },
+ { symbol: "OANDA:XAGUSD", label: "Silver", category: "commodities", desc: "白銀現貨", type: 'chart' },
+ { symbol: "TVC:USOIL", label: "USOIL", category: "commodities", desc: "西德州原油 (WTI)", type: 'quote' },
+ { symbol: "OANDA:XCUUSD", label: "Copper", category: "commodities", desc: "銅 (USD)", type: 'chart' },
+ 
+ // 農產品
+ { symbol: "CAPITALCOM:WHEAT", label: "Wheat", category: "commodities", desc: "小麥 (US CFD)", type: 'chart' },
+ { symbol: "CAPITALCOM:SOYBEAN", label: "Soybean", category: "commodities", desc: "大豆 (US CFD)", type: 'chart' },
+ { symbol: "CAPITALCOM:CORN", label: "Corn", category: "commodities", desc: "玉米 (US CFD)", type: 'chart' },
+
+ // 3. 虛擬貨幣
+ { symbol: "BINANCE:BTCUSDT", label: "Bitcoin", category: "crypto", desc: "比特幣", type: 'chart' },
+ { symbol: "BINANCE:ETHUSDT", label: "Ethereum", category: "crypto", desc: "以太幣", type: 'chart' },
+ { symbol: "BINANCE:SOLUSDT", label: "Solana", category: "crypto", desc: "索拉納", type: 'chart' },
+
+ // 4. 外匯
+ { symbol: "FX:GBPUSD", label: "GBP/USD", category: "forex", desc: "英鎊/美元", type: 'chart' },
+ { symbol: "FX:EURUSD", label: "EUR/USD", category: "forex", desc: "歐元/美元", type: 'chart' },
+ { symbol: "FX:USDJPY", label: "USD/JPY", category: "forex", desc: "美元/日圓", type: 'chart' },
+ { symbol: "FX:USDCHF", label: "USD/CHF", category: "forex", desc: "美元/瑞郎", type: 'chart' },
+ { symbol: "FX:AUDUSD", label: "AUD/USD", category: "forex", desc: "澳幣/美元", type: 'chart' },
+ { symbol: "FX:USDCAD", label: "USD/CAD", category: "forex", desc: "美元/加幣", type: 'chart' },
+ ];
+
+ // --- Mini Chart Widget ---
+ const MiniChartWidget = ({ symbol, description }) => {
+ const containerRef = useRef(null);
+
+ useEffect(() => {
+ if (!containerRef.current) return;
+ containerRef.current.innerHTML = '';
+ const script = document.createElement('script');
+ script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js';
+ script.async = true;
+ script.type = 'text/javascript';
+ script.innerHTML = JSON.stringify({
+ "symbol": symbol,
+ "width": "100%",
+ "height": "100%",
+ "locale": "zh-TW",
+ "dateRange": "1M",
+ "colorTheme": "dark",
+ "isTransparent": true,
+ "autosize": true,
+ "largeChartUrl": "",
+ "chartOnly": false,
+ "noTimeScale": false
+ });
+ containerRef.current.appendChild(script);
+ }, [symbol]);
+
+ return (
+ <div className="bg-slate-800 rounded-xl p-4 shadow-lg border border-slate-700/50 hover:border-blue-500/30 transition-all duration-300">
+ <div className="flex justify-between items-center mb-2">
+ <h3 className="text-sm font-semibold text-slate-400">{description}</h3>
+ <span className="text-xs text-slate-500 bg-slate-900 px-2 py-0.5 rounded">{symbol.split(':').pop().replace('!', '')}</span>
+ </div>
+ <div className="widget-container w-full h-56 rounded-lg overflow-hidden relative z-0" ref={containerRef}>
+ <div className="absolute inset-0 flex items-center justify-center text-slate-600 text-xs z-[-1]">載入中...</div>
+ </div>
+ </div>
+ );
+ };
+
+ // --- Single Quote Widget ---
+ const SingleQuoteWidget = ({ symbol, description }) => {
+ const containerRef = useRef(null);
+
+ useEffect(() => {
+ if (!containerRef.current) return;
+ containerRef.current.innerHTML = '';
+ const script = document.createElement('script');
+ script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js';
+ script.async = true;
+ script.type = 'text/javascript';
+ script.innerHTML = JSON.stringify({
+ "symbol": symbol,
+ "width": "100%",
+ "colorTheme": "dark",
+ "isTransparent": true,
+ "locale": "zh-TW"
+ });
+ containerRef.current.appendChild(script);
+ }, [symbol]);
+
+ return (
+ <div className="bg-slate-800 rounded-xl p-4 shadow-lg border border-slate-700/50 hover:border-orange-500/30 transition-all duration-300 flex flex-col h-full">
+ <div className="flex justify-between items-center mb-4">
+ <h3 className="text-sm font-semibold text-slate-400 flex items-center gap-2">
+ {description}
+ <span className="text-[10px] bg-orange-500/10 text-orange-400 px-1.5 py-0.5 rounded border border-orange-500/20">即時</span>
+ </h3>
+ <span className="text-xs text-slate-500 bg-slate-900 px-2 py-0.5 rounded">{symbol.split(':').pop().replace('!', '')}</span> 
+ </div>
+ <div className="flex-1 flex items-center justify-center w-full rounded-lg overflow-hidden relative bg-slate-800/50" ref={containerRef}>
+ <div className="text-slate-600 text-xs">載入數據...</div>
+ </div>
+ </div>
+ );
+ };
+
+ // --- Economic Calendar Widget ---
+ const EconomicCalendarWidget = () => {
+ const containerRef = useRef(null);
+
+ useEffect(() => {
+ if (!containerRef.current) return;
+ containerRef.current.innerHTML = '';
+ const script = document.createElement('script');
+ script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-events.js';
+ script.async = true;
+ script.type = 'text/javascript';
+ script.innerHTML = JSON.stringify({
+ "colorTheme": "dark",
+ "isTransparent": false,
+ "locale": "zh_TW",
+ "width": "100%",
+ "height": "500",
+ "importanceFilter": "0,1",
+ "currencyFilter": "USD,EUR,GBP,JPY,AUD,CAD,CNY"
+ });
+ containerRef.current.appendChild(script);
+ }, []);
+
+ return (
+ <div className="bg-slate-800 rounded-xl p-4 shadow-2xl border border-slate-700/50 hover:border-green-500/30 transition-all duration-300">
+ <h2 className="text-xl font-bold text-white mb-4 border-b border-slate-700 pb-2 flex items-center gap-2">
+ 🌐 經濟數據公佈行事曆
+ </h2>
+ <div className="w-full" style={{ height: '500px' }} ref={containerRef}>
+ <div className="flex items-center justify-center h-full text-slate-500">載入經濟日曆...</div>
+ </div>
+ </div>
+ );
+ };
+
+ // --- News Feed Widget ---
+ const NewsFeedWidget = () => {
+ const containerRef = useRef(null);
+
+ useEffect(() => {
+ if (!containerRef.current) return;
+ containerRef.current.innerHTML = '';
+ const script = document.createElement('script');
+ script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-timeline.js';
+ script.async = true;
+ script.type = 'text/javascript';
+ script.innerHTML = JSON.stringify({
+ "feedMode": "all_symbols",
+ "isTransparent": false,
+ "displayMode": "adaptive",
+ "colorTheme": "dark",
+ "locale": "zh_TW",
+ "width": "100%",
+ "height": "500"
+ });
+ containerRef.current.appendChild(script);
+ }, []);
+
+ return (
+ <div className="bg-slate-800 rounded-xl p-4 shadow-2xl border border-slate-700/50 hover:border-purple-500/30 transition-all duration-300">
+ <h2 className="text-xl font-bold text-white mb-4 border-b border-slate-700 pb-2 flex items-center gap-2">
+ 📰 即時金融新聞
+ </h2>
+ <div className="w-full" style={{ height: '500px' }} ref={containerRef}>
+ <div className="flex items-center justify-center h-full text-slate-500">載入新聞...</div>
+ </div>
+ </div>
+ );
+ };
+
+ // --- Ticker Tape ---
+ const TickerTape = () => {
+ const containerRef = useRef(null);
+ useEffect(() => {
+ if(!containerRef.current) return;
+ containerRef.current.innerHTML = '';
+ const script = document.createElement('script');
+ script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js';
+ script.async = true;
+ script.innerHTML = JSON.stringify({
+ "symbols": [
+ { "proName": "FOREXCOM:SPXUSD", "title": "S&P 500" },
+ { "proName": "FOREXCOM:NSXUSD", "title": "Nasdaq 100" },
+ { "proName": "FOREXCOM:DJI", "title": "Dow Jones" },
+ { "proName": "NASDAQ:TSLA", "title": "Tesla" },
+ { "proName": "NASDAQ:NVDA", "title": "NVIDIA" },
+ { "proName": "NYSE:TSM", "title": "TSM ADR" },
+ { "proName": "OANDA:XAUUSD", "title": "Gold" },
+ { "proName": "TVC:UKOIL", "title": "Brent Oil" },
+ { "proName": "XETR:DAX", "title": "DAX" },
+ { "proName": "NIKKEI:NI225", "title": "Nikkei 225" },
+ { "proName": "FX_IDC:EURUSD", "title": "EUR/USD" },
+ { "proName": "FX:USDJPY", "title": "USD/JPY" },
+ { "proName": "BITSTAMP:BTCUSD", "title": "Bitcoin" },
+ { "proName": "FX:AUDUSD", "title": "AUD/USD" },
+ { "proName": "FX:GBPJPY", "title": "GBP/JPY" },
+ { "proName": "NYSE:BABA", "title": "Alibaba" },
+ { "proName": "NYSE:JPM", "title": "JPMorgan" },
+ { "proName": "AMEX:SPY", "title": "S&P 500 ETF" },
+ { "proName": "BITSTAMP:ETHUSD", "title": "Ethereum" },
+ { "proName": "BITSTAMP:DOGEUSD", "title": "Dogecoin" }
+ ],
+ "showSymbolLogo": true,
+ "isTransparent": false,
+ "displayMode": "adaptive",
+ "colorTheme": "dark",
+ "locale": "zh-TW"
+ });
+ containerRef.current.appendChild(script);
+ }, []);
+ return <div className="w-full h-12 mb-6 border-b border-slate-800" ref={containerRef}></div>;
+ };
+
+ // --- Tab Button ---
+ const TabButton = ({ active, onClick, children, icon }) => (
+ <button 
+ onClick={onClick}
+ className={`flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 
+ ${active 
+ ? 'bg-amber-600 text-white shadow-lg shadow-amber-500/20' 
+ : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white'}`}
+ >
+ {icon}
+ <span>{children}</span>
+ </button>
+ );
+
+ // --- Main App ---
+ const App = () => {
+ const [filter, setFilter] = useState('all');
+
+ const icons = {
+ all: <i data-lucide="layout-grid" className="w-4 h-4"></i>,
+ stocks: <i data-lucide="trending-up" className="w-4 h-4"></i>,
+ commodities: <i data-lucide="wheat" className="w-4 h-4"></i>,
+ crypto: <i data-lucide="bitcoin" className="w-4 h-4"></i>,
+ forex: <i data-lucide="banknote" className="w-4 h-4"></i>,
+ };
+
+ const displayedData = filter === 'all' 
+ ? MARKET_DATA 
+ : MARKET_DATA.filter(item => item.category === filter);
+
+ useEffect(() => {
+ if (window.lucide) {
+ window.lucide.createIcons();
+ }
+ });
+
+ return (
+ <div className="min-h-screen pb-10">
+ <TickerTape />
+ 
+ <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+ <div className="flex flex-col md:flex-row justify-between items-center mb-8 mt-6">
+ <div className="mb-4 md:mb-0 text-center md:text-left">
+ <h1 className="text-2xl font-bold text-white tracking-tight flex items-center gap-2">
+ <span className="bg-amber-600 p-1.5 rounded-lg bg-opacity-20 text-amber-400">
+ 🌐
+ </span>
+ 全球金融即時報價儀表板
+ </h1>
+ <p className="text-slate-400 text-sm mt-1">即時追蹤美股、期貨、加密貨幣與外匯走勢</p>
+ </div>
+ 
+ <div className="text-right hidden md:block">
+ <div className="text-xs text-slate-500 font-mono">LIVE MARKET DATA</div>
+ <div className="flex items-center gap-2">
+ <span className="relative flex h-3 w-3">
+ <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+ <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+ </span>
+ <span className="text-green-400 text-sm font-medium">🌸 曦曦出品</span>
+ </div>
+ </div>
+ </div>
+
+ {/* Market Filter Tabs */}
+ <div className="flex flex-wrap gap-2 mb-8 justify-center md:justify-start">
+ <TabButton active={filter === 'all'} onClick={() => setFilter('all')} icon={icons.all}>全部市場</TabButton>
+ <TabButton active={filter === 'stocks'} onClick={() => setFilter('stocks')} icon={icons.stocks}>美股 & 指數</TabButton>
+ <TabButton active={filter === 'commodities'} onClick={() => setFilter('commodities')} icon={icons.commodities}>原物料期貨</TabButton>
+ <TabButton active={filter === 'crypto'} onClick={() => setFilter('crypto')} icon={icons.crypto}>虛擬貨幣</TabButton>
+ <TabButton active={filter === 'forex'} onClick={() => setFilter('forex')} icon={icons.forex}>外匯現貨</TabButton>
+ </div>
+
+ {/* Market Data Grid */}
+ <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+ {displayedData.map((item) => (
+ item.type === 'quote' ? (
+ <SingleQuoteWidget 
+ key={item.symbol} 
+ symbol={item.symbol} 
+ description={item.desc}
+ />
+ ) : (
+ <MiniChartWidget 
+ key={item.symbol} 
+ symbol={item.symbol} 
+ description={item.desc}
+ />
+ )
+ ))}
+ </div>
+
+ {/* Calendar & News */}
+ <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-6">
+ <EconomicCalendarWidget />
+ <NewsFeedWidget />
+ </div>
+ 
+ {/* Footer */}
+ <div className="mt-12 border-t border-slate-800 pt-6 text-center text-xs text-slate-600">
+ <p>數據由 TradingView 提供 | 部分大宗商品採用 CFD 或強制即時報價以確保顯示穩定</p>
+ <p className="mt-2">© 2026 Daily Finance AI · 🌲 曦照著樹</p>
+ </div>
+ </div>
+ </div>
+ );
+ };
+
+ const root = ReactDOM.createRoot(document.getElementById('root'));
+ root.render(<App />);
+ </script>
+</body>
+</html>
