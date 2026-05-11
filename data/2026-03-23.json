@@ -1,0 +1,107 @@
+{
+  "date": "2026-03-23",
+  "financial_news": [
+    {
+      "title": "Fed 降息希望渺茫，美股連續第4週下跌",
+      "summary": "由於中東局勢緊張推動油價飆升，美股三大指數上週五再度收低，道瓊本月跌幅創2022年以來最大。市場普遍預期聯準會短期內降息的可能性微乎其微。",
+      "url": "https://www.reuters.com/markets/"
+    },
+    {
+      "title": "超微電腦 (Super Micro) 員工遭起訴，股價暴跌引發連鎖反應",
+      "summary": "美國檢方起訴 Super Micro 員工涉嫌向中國走私 Nvidia 晶片，消息引發該公司股價崩跌逾 20%，並對整體科技股板塊造成壓力。",
+      "url": "https://www.reuters.com/business/finance/"
+    },
+    {
+      "title": "高盛預計 2026 年併購活動將加速",
+      "summary": "高盛執行長 David Solomon 表示，儘管中東衝突帶來不確定性，但預計 2026 年全球企業併購 (M&A) 活動將會顯著反彈。",
+      "url": "https://www.reuters.com/business/finance/"
+    },
+    {
+      "title": "美股波動加劇，投資者轉向防禦性資產",
+      "summary": "隨著紅海局勢影響供應鏈，且多國上調通膨預測，全球股市避險情緒升溫，國債收益率大幅波動。",
+      "url": "https://www.bloomberg.com/news/articles/2026-03-18/stock-market-today-dow-s-p-live-updates-"
+    },
+    {
+      "title": "阿里巴巴市值縮水，投資者對 AI 變現能力存疑",
+      "summary": "阿里巴巴在美股與港股市場連日重挫，投資者對其龐大 AI 投資能否轉化為利潤感到擔憂，引發對 AI 泡沫的討論。",
+      "url": "https://www.vietnam.vn/en/diem-tin-kinh-te-the-gioi-noi-bat-ngay-20-3-2026"
+    },
+    {
+      "title": "歐洲央行 (ECB) 預計將在 4 月重啟升息",
+      "summary": "因應中東衝突帶來的二次通膨風險，摩根大通、摩根士丹利等多家投行預測歐銀可能在 4 月份再度上調利率。",
+      "url": "https://www.vietnam.vn/en/diem-tin-kinh-te-the-gioi-noi-bat-ngay-20-3-2026"
+    },
+    {
+      "title": "英債收益率飆升，市場修正利率預期",
+      "summary": "英國兩年期國債收益率創 14 個月新高，顯示市場正在為更長期的利率高原做準備，儘管央行表示不應過度反應。",
+      "url": "https://www.reuters.com/business/energy/global-markets-wrapup-1-2026-03-19/"
+    },
+    {
+      "title": "卡達 GDP 預期因地緣衝突大幅下修",
+      "summary": "分析指出，由於能源設施受威脅，卡達 2026 年 GDP 可能萎縮 13%，當地銀行已出現明顯的資金流出跡象。",
+      "url": "https://www.reuters.com/"
+    },
+    {
+      "title": "本週重點：澳洲儲備銀行利率決議",
+      "summary": "市場預計澳洲央行將維持利率不變，但交易員已定價 2026 年內還有三次升息空間，目標利率上調至 4.85%。",
+      "url": "https://www.ig.com/en-ch/news-and-trade-ideas/week-ahead--23-march-2026-260320"
+    },
+    {
+      "title": "中東能源走廊受阻，全球通膨預期全面上調",
+      "summary": "標普全球 (S&P Global) 在最新報告中大幅上調 2026 年通膨預測，並因應地緣政治風險下修全球經濟成長目標。",
+      "url": "https://www.spglobal.com/market-intelligence/en/news-insights/research/2026/03/global-economic-outlook-march-2026"
+    }
+  ],
+  "ai_news": [
+    {
+      "title": "OpenAI 年化營收破 250 億美元，傳 2026 年底啟動 IPO",
+      "summary": "OpenAI 業績再創新高，消息人士透露該公司已開始與承銷商接觸，最快將於 2026 年下半年在美股掛牌上市。",
+      "url": "https://www.crescendo.ai/news/latest-ai-news-and-updates"
+    },
+    {
+      "title": "IBM 宣布量子計算邁向新里程碑，2026 年將超越傳統電腦",
+      "summary": "IBM 預測 2026 年量子計算機將在多個複雜運算領域全面超越現有最強性能的傳統電腦，為新藥研發提供強大助力。",
+      "url": "https://www.ibm.com/think/news/ai-tech-trends-predictions-2026"
+    },
+    {
+      "title": "微軟研究院：AI 將在氣候模擬領域取得重大突破",
+      "summary": "微軟展示了最新的氣候建模技術，預計 AI 驅動的分子動力學模擬將在 2026 年前改變材料科學的發展進程。",
+      "url": "https://news.microsoft.com/source/features/ai/whats-next-in-ai-7-trends-to-watch-in-2026/"
+    },
+    {
+      "title": "NVIDIA 發布 2026 年 AI 趨勢報告：企業級 AI 普及化",
+      "summary": "NVIDIA 報告指出，AI 正在幫助各行各業削減成本並提升生產力，預計 2026 年將有超過 80% 的大型企業全面導入生成式 AI。",
+      "url": "https://blogs.nvidia.com/blog/state-of-ai-report-2026/"
+    },
+    {
+      "title": "Anthropic 營收追趕，AI 領頭羊競爭白熱化",
+      "summary": "Anthropic 年化營收逼近 190 億美元，與 OpenAI 的市場爭奪戰日益激烈，並計划在 2026 年推出更強大的多模態模型。",
+      "url": "https://www.crescendo.ai/news/latest-ai-news-and-updates"
+    },
+    {
+      "title": "全球 AI 監管趨嚴，倫理與隱私成為 2026 年核心議題",
+      "summary": "各國政府正加速推進 AI 立法，旨在平衡技術創新與數據保護，預計 2026 年將出台更細化的跨境數據流動規範。",
+      "url": "https://www.thehomedecores.com/breaking-news-today-how-tech-ai-and-markets-are-shaping-2026-trends"
+    },
+    {
+      "title": "AI 泡沫化疑慮再現，麻省理工專家警告市場風險",
+      "summary": "MIT 專家 Davenport 預測 2026 年 AI 投資可能出現局部冷卻，部分商業模式不清的 AI 新創公司將面臨生存挑戰。",
+      "url": "https://sloanreview.mit.edu/article/five-trends-in-ai-and-data-science-for-2026/"
+    },
+    {
+      "title": "雲端巨頭加大 AI 基礎設施投入，資本支出再創新高",
+      "summary": "微軟、亞馬遜與 Google 均上調 2026 年雲端與 AI 硬體資本支出，旨在鞏固在全球算力市場的領導地位。",
+      "url": "https://www.thehomedecores.com/breaking-news-today-how-tech-ai-and-markets-are-shaping-2026-trends"
+    },
+    {
+      "title": "新一代 AI 自動化工具將於 2026 年大幅改變職場生態",
+      "summary": "業界分析指出，隨著自主代理技術的成熟，2026 年將出現大規模的職場自動化轉型，對白領階級工作產生深遠影響。",
+      "url": "https://www.aiandnews.com/blog/latest-ai-news-march-2026/"
+    },
+    {
+      "title": "AI 初創公司融資依然強勁，專注垂直領域應用",
+      "summary": "儘管市場出現波動，但針對醫療、金融等垂直領域的 AI 新創公司在 2026 年第一季度仍獲得大量資金挹注。",
+      "url": "https://www.aiandnews.com/blog/ai-news-big-investments/"
+    }
+  ]
+}

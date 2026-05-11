@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+ <meta charset="UTF-8" />
+ <title>OpenClaw Skills 學習中心 - 範例頁面</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <meta name="description" content="OpenClaw Skills 學習中心：從入門安裝、技能挑選到高階自訂開發的完整教學與實戰場景。">
+ <style>
+ :root {
+ --bg: #020617;
+ --bg-elevated: #0f172a;
+ --bg-elevated-soft: #020617;
+ --bg-accent: #111827;
+ --border-subtle: #1f2937;
+ --text-main: #e5e7eb;
+ --text-muted: #9ca3af;
+ --primary: #22d3ee;
+ --primary-soft: rgba(34, 211, 238, 0.15);
+ --accent: #6366f1;
+ --danger: #f97316;
+ --success: #22c55e;
+ --warning: #eab308;
+ --radius-lg: 16px;
+ --radius-md: 10px;
+ --radius-pill: 999px;
+ --shadow-soft: 0 20px 45px rgba(15, 23, 42, 0.85);
+ --shadow-card: 0 18px 40px rgba(15, 23, 42, 0.9);
+ --transition-normal: 180ms ease-out;
+ --nav-height: 64px;
+ --max-width: 1120px;
+ --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Noto Sans TC",
+ "Segoe UI", sans-serif;
+ }
+
+ * {
+ box-sizing: border-box;
+ }
+
+ html,
+ body {
+ margin: 0;
+ padding: 0;
+ background: radial-gradient(circle at top left, #0f172a 0, #020617 45%, #000 100%);
+ color: var(--text-main);
+ font-family: var(--font-main);
+ scroll-behavior: smooth;
+ }
+
+ body {
+ min-height: 100vh;
+ }
+
+ /* ====== 全局 Layout ====== */
+ .site-shell {
+ min-height: 100vh;
+ display: flex;
+ flex-direction: column;
+ }
+
+ .site-header {
+ position: sticky;
+ top: 0;
+ z-index: 50;
+ backdrop-filter: blur(16px);
+ background: linear-gradient(
+ to bottom,
+ rgba(15, 23, 42, 0.9),
+ rgba(15, 23, 42, 0.65),
+ transparent
+ );
+ border-bottom: 1px solid rgba(31, 41, 55, 0.9);
+ }
+
+ .nav-inner {
+ max-width: var(--max-width);
+ margin: 0 auto;
+ padding: 8px 20px;
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ gap: 16px;
+ }
+
+ .brand {
+ display: flex;
+ align-items: center;
+ gap: 10px;
+ }
+
+ .brand-mark {
+ width: 32px;
+ height: 32px;
+ border-radius: 40%;
+ background: conic-gradient(
+ from 180deg,
+ #22d3ee,
+ #6366f1,
+ #22c55e,
+ #22d3ee
+ );
+ position: relative;
+ box-shadow: 0 0 40px rgba(34, 211, 238, 0.55);
+ overflow: hidden;
+ }
+
+ .brand-mark::after {
+ content: "";
+ position: absolute;
+ inset: 3px;
+ border-radius: 40%;
+ background: radial-gradient(circle at 20% 0%, #0f172a 0, #020617 45%, #000 100%);
+ }
+
+ .brand-text-main {
+ font-weight: 600;
+ letter-spacing: 0.04em;
+ font-size: 15px;
+ }
+
+ .brand-text-sub {
+ font-size: 11px;
+ color: var(--text-muted);
+ }
+
+ .nav-links {
+ display: flex;
+ gap: 12px;
+ align-items: center;
+ font-size: 13px;
+ }
+
+ .nav-link {
+ padding: 6px 12px;
+ border-radius: 999px;
+ color: var(--text-muted);
+ text-decoration: none;
+ border: 1px solid transparent;
+ transition: color var(--transition-normal),
+ background var(--transition-normal),
+ border-color var(--transition-normal),
+ transform 140ms ease-out;
+ white-space: nowrap;
+ }
+
+ .nav-link:hover {
+ color: var(--text-main);
+ background: rgba(15, 23, 42, 0.85);
+ border-color: rgba(55, 65, 81, 0.9);
+ transform: translateY(-1px);
+ }
+
+ .nav-link-primary {
+ padding: 6px 14px;
+ border-radius: var(--radius-pill);
+ background: linear-gradient(135deg, #22d3ee, #6366f1);
+ color: #0b1120;
+ font-weight: 600;
+ border: none;
+ box-shadow: 0 0 25px rgba(56, 189, 248, 0.55);
+ }
+
+ main {
+ flex: 1;
+ }
+
+ .page-container {
+ max-width: var(--max-width);
+ margin: 0 auto;
+ padding: 32px 20px 56px;
+ }
+
+ .section {
+ margin-bottom: 40px;
+ padding: 24px 20px;
+ background: radial-gradient(circle at top left, #020617 0, #020617 45%, #020617 100%);
+ border-radius: var(--radius-lg);
+ border: 1px solid rgba(31, 41, 55, 0.95);
+ box-shadow: var(--shadow-card);
+ backdrop-filter: blur(12px);
+ }
+
+ .section-header {
+ margin-bottom: 16px;
+ display: flex;
+ align-items: baseline;
+ justify-content: space-between;
+ gap: 12px;
+ flex-wrap: wrap;
+ }
+
+ .section-title {
+ font-size: 20px;
+ font-weight: 600;
+ letter-spacing: 0.04em;
+ display: flex;
+ align-items: center;
+ gap: 10px;
+ }
+
+ .section-title-tag {
+ font-size: 11px;
+ padding: 2px 8px;
+ border-radius: 999px;
+ background: rgba(15, 23, 42, 0.9);
+ color: var(--primary);
+ border: 1px solid rgba(34, 211, 238, 0.6);
+ }
+
+ .section-desc {
+ font-size: 13px;
+ color: var(--text-muted);
+ max-width: 520px;
+ }
+
+ hr {
+ border: none;
+ border-top: 1px solid rgba(31, 41, 55, 0.95);
+ margin: 12px 0 18px;
+ }
+
+ p {
+ margin: 0 0 10px;
+ line-height: 1.6;
+ font-size: 14px;
+ color: var(--text-main);
+ }
+
+ strong {
+ color: #f9fafb;
+ }
+
+ /* ====== Hero 區塊 ====== */
+ .hero {
+ display: grid;
+ grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+ gap: 20px;
+ align-items: center;
+ }
+
+ .hero-title {
+ font-size: 26px;
+ line-height: 1.25;
+ font-weight: 700;
+ letter-spacing: 0.03em;
+ margin-bottom: 10px;
+ }
+
+ .hero-subtitle {
+ font-size: 14px;
+ color: var(--text-muted);
+ margin-bottom: 16px;
+ max-width: 520px;
+ }
+
+ .hero-badges {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 8px;
+ margin-bottom: 18px;
+ }
+
+ .badge {
+ display: inline-flex;
+ align-items: center;
+ gap: 6px;
+ padding: 4px 10px;
+ border-radius: 999px;
+ font-size: 11px;
+ border: 1px solid rgba(55, 65, 81, 0.95);
+ background: radial-gradient(circle at top, rgba(15, 23, 42, 0.95), #020617);
+ color: var(--text-muted);
+ }
+
+ .badge-dot {
+ width: 7px;
+ height: 7px;
+ border-radius: 50%;
+ background: var(--primary);
+ box-shadow: 0 0 10px rgba(34, 211, 238, 0.65);
+ }
+
+ /* ====== Footer ====== */
+ .site-footer {
+ border-top: 1px solid rgba(31, 41, 55, 0.95);
+ padding: 16px 20px 20px;
+ font-size: 11px;
+ color: var(--text-muted);
+ background: radial-gradient(circle at top, #020617 0, #020617 100%);
+ }
+
+ .footer-inner {
+ max-width: var(--max-width);
+ margin: 0 auto;
+ display: flex;
+ flex-wrap: wrap;
+ gap: 10px;
+ align-items: center;
+ justify-content: space-between;
+ }
+
+ @media (max-width: 900px) {
+ .hero {
+ grid-template-columns: minmax(0, 1fr);
+ }
+ }
+ </style>
+</head>
+<body>
+<div class="site-shell">
+ <!-- ====== 導覽列 ====== -->
+ <header class="site-header">
+ <div class="nav-inner">
+ <div class="brand">
+ <div class="brand-mark"></div>
+ <div>
+ <div class="brand-text-main">OpenClaw Skills 學習中心</div>
+ <div class="brand-text-sub">從入門到高階開發的完整互動式學習平臺</div>
+ </div>
+ </div>
+ <nav class="nav-links">
+ <a href="#overview" class="nav-link">總覽</a>
+ <a href="#getting-started" class="nav-link">入門基礎</a>
+ <a href="#advanced-usage" class="nav-link">進階應用</a>
+ <a href="#skills-lib" class="nav-link">技能庫</a>
+ <a href="../reference/template.html" class="nav-link">📐 設計模板</a>
+ </nav>
+ </div>
+ </header>
+
+ <!-- ====== 主要內容 ====== -->
+ <main>
+ <div class="page-container">
+ <!-- ====== 總覽 / Hero ====== -->
+ <section id="overview" class="section">
+ <div class="section-header">
+ <div class="section-title">
+ OpenClaw Skills 學習中心
+ <span class="section-title-tag">範例頁面</span>
+ </div>
+ <div class="section-desc">
+ 這是一個完整的範例頁面，展示專業級網站的設計風格與結構。
+ 來自 OpenClaw Skills 學習中心官網。
+ </div>
+ </div>
+ <hr />
+ <div class="hero">
+ <div>
+ <div class="hero-title">從訊息平臺到自訂技能，系統化掌握 OpenClaw 能力圈</div>
+ <p class="hero-subtitle">
+ 專為「想要實際跑起來」的使用者設計：不只介紹概念，而是一步步帶你完成安裝、配置、技能挑選。
+ </p>
+ <div class="hero-badges">
+ <div class="badge">
+ <span class="badge-dot"></span>
+ 7 大課程模組
+ </div>
+ <div class="badge">
+ <span class="badge-dot"></span>
+ 12 大消息平臺接入
+ </div>
+ <div class="badge">
+ <span class="badge-dot"></span>
+ 700+ Skills
+ </div>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- ====== 入門基礎 ====== -->
+ <section id="getting-started" class="section">
+ <div class="section-header">
+ <div class="section-title">
+ 入門基礎
+ <span class="section-title-tag">Week 1–2</span>
+ </div>
+ <div class="section-desc">
+ 目標：把 OpenClaw 真正裝起來、接上 Telegram，並啟用安全且實用的第一批官方 Skills。
+ </div>
+ </div>
+ <hr />
+ <p>從安裝 Gateway、連接消息平臺、挑選 Skills、到自訂開發與實戰場景，幫助你在 10+ 週內建立屬於自己的專屬 AI 助理系統。</p>
+ </section>
+
+ <!-- ====== 技能庫 ====== -->
+ <section id="skills-lib" class="section">
+ <div class="section-header">
+ <div class="section-title">
+ 技能庫（Skills Library）
+ <span class="section-title-tag">700+ Skills</span>
+ </div>
+ <div class="section-desc">
+ 依照「類別 / 場景 / 難度 / 風險」整理常用 Skills，提供 Top Picks 與分類檢索。
+ </div>
+ </div>
+ <hr />
+ <p>這裡有完整的技能分類與風險評估，是我們未來開發的重要參考來源。</p>
+ </section>
+ </div>
+ </main>
+
+ <!-- ====== Footer ====== -->
+ <footer class="site-footer">
+ <div class="footer-inner">
+ <div>
+ 🌸 晨曦照著樹 | 範例頁面
+ </div>
+ <div>
+ <a href="../reference/template.html" class="nav-link">← 返回設計模板</a>
+ </div>
+ </div>
+ </footer>
+</div>
+</body>
+</html>
