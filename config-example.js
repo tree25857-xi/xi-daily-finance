@@ -5,7 +5,7 @@
 const XI_CONFIG = {
   // Alpha Vantage API Token
   // 取得方式：https://www.alphavantage.co/support/#api-key
-  ALPHA_VANTAGE_TOKEN: '<ALPHAVANTAGE_KEY_REDACTED>',
+  ALPHA_VANTAGE_TOKEN: process.env.ALPHAVANTAGE_KEY,
   
   // 其他 API Key 可以加在這裡
   // EXAMPLE_API_KEY: 'your-key-here'
